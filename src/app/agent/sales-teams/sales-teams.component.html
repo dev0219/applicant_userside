@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div id="nav" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/pricing">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="isSubMenuClick = isSubMenuClick == true ? false : true">
+        For Agents
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="isSubMenuClick == true">
+          <a class="dropdown-item" routerLink="/about">Individuals</a>
+          <a class="dropdown-item" routerLink="/sales-teams">Sales Teams</a>   
+          <a class="dropdown-item" routerLink="/campaigns">Campaigns</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <!-- <a [routerLink]="['/signup']" class="btn btn-secondary my-2 my-sm-0 mr-3" id="call-button" type="info">Login</a> -->
+      <a blank target="_blank" href="https://apply.insure/f/demo" class="btn btn-warning my-2 my-sm-0" id="demo1-button" type="warning">demo</a>
+      <a [routerLink]="['/signup']" class="btn btn-secondary my-2 my-sm-0" id="call-button" type="info">sign up</a>
+    </form>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div id="info" class="col-lg-6">
+      <h3><b>Sales Teams</b></h3>
+      <br><br>
+      Sales Teams can be set up very quickly. Simply 
+      <font color="indianred"><b>complete this form </b></font>
+      and you will have your link within 6 hours.
+      <br><br>
+      You can select a custom links. For example, if 
+      <font color="dodgerblue">Jon</font>,
+      <font color="indianred">James</font>
+      and 
+      <font color="orange">Jill</font>
+        sign up, their links would be 
+      <font color="dodgerblue">apply.insure/Jon</font>,
+      <font color="indianred">apply.insure/James</font> and 
+      <font color="orange">apply.insure/Jill</font>		
+      <br><br>
+      If you text your application to a client, it will appear like this:<br><br>
+      <img src="../../assets/images/frontend_img_02_2021/Proquote.png" width="300px">   
+      <br><br>
+      Each advisor on your team will have their own link. They will be emailed immediately upon an app being submitted. The Master Admin (usually the sales manager), will also receive the email updates as well.
+      <br><br>
+    </div>   
+  </div>
+  <img src="../../assets/images/frontend_img_02_2021/teams.png" width="100%">
+  <br><br><br>
+  Check out:  <u> Teams</u> | <u>Marketing Campaigns</u>
+</div>
+<br><br><br><br>
+<div class="text-center">
+  <img src="../../assets/images/frontend_img_02_2021/computer.png" width="70%">  
+  <br><br>  
+  <img src="../../assets/images/frontend_img_02_2021/computer2.png" width="70%">
+</div>

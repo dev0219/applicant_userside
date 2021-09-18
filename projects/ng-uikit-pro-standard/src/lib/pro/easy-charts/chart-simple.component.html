@@ -1,0 +1,13 @@
+<span class="min-chart">
+  <span 
+  *ngIf="customText"  
+  class="chart-custom-text"
+  [ngStyle]="{
+  'line-height': size + 'px',
+  'width': size + 'px',
+  'height': size + 'px'}">{{ customText }}</span>
+  <span 
+  *ngIf="!customText" 
+  class="percent">{{ percent }}</span>
+  <mdb-easy-pie-chart [percent]="percent" [options]="options"></mdb-easy-pie-chart>
+</span>

@@ -1,0 +1,162 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false" (click)="isMobileClick = isMobileClick == true ? false : true">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div id="nav" class="collapse navbar-collapse" *ngIf="isMobileClick != false">
+    <ul class="nav navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/pricing">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="isSubMenuClick = isSubMenuClick == true ? false : true">
+          For Agents
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="isSubMenuClick == true">
+          <a class="dropdown-item" routerLink="/about">Individuals</a>
+          <a class="dropdown-item" routerLink="/sales-teams">Sales Teams</a>
+          <a class="dropdown-item" routerLink="/campaigns">Campaigns</a>
+        </div>
+      </li>
+    </ul>
+    <div class="text-right">
+      <!-- <a class="btn btn-secondary my-2 my-sm-0 call-button mr-3" [routerLink]="['/signin']">Login</a> -->
+      <a blank target="_blank" href="https://apply.insure/f/demo" class="btn btn-warning my-2 my-sm-0" id="demo1-button" type="warning">demo</a>
+      <a class="btn btn-secondary my-2 my-sm-0 call-button" [routerLink]="['/signup']">Signup</a>
+    </div>
+  </div>
+</nav>
+<div class="text-center">
+  <p id="jumbo-text">Signup</p>
+  <br><br>
+  <div class="container">
+
+    <div class="d-flex justify-content-center">
+      <div class="col-lg-6">
+        <form [formGroup]="signupForm" (ngSubmit)="signupSubmit(signupForm.value)" class="signup_form">
+          <div class="input-group user_name">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="">First and last name</span>
+            </div>
+
+            <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && signupForm.controls.firstName.errors }" [(ngModel)]="firstName" mdbValidate>
+            <input type="text" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && signupForm.controls.lastName.errors }" [(ngModel)]="lastName" mdbValidate>
+
+            <div *ngIf="submitted && signupForm.controls.firstName.errors" class="invalid-feedback">
+                <div *ngIf="signupForm.controls.firstName.errors.required">First Name is required</div>
+            </div>
+            <div *ngIf="submitted && signupForm.controls.lastName.errors" class="invalid-feedback">
+              <div *ngIf="signupForm.controls.lastName.errors.required">Last Name is required</div>
+            </div>
+          </div>
+          <div class="form-group validation-center">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && signupForm.controls.email.errors }" [(ngModel)]="email" mdbValidate>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+            <div *ngIf="submitted && signupForm.controls.email.errors" class="invalid-feedback">
+              <div *ngIf="signupForm.controls.email.errors.required">Email is required</div>
+              <div *ngIf="signupForm.controls.email.errors.email">fill valid email address</div>
+            </div>
+          </div>
+          <div class="form-group validation-center">
+            <input type="phone" class="form-control" id="phone" placeholder="Phone" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && signupForm.controls.phone.errors }" [(ngModel)]="phone" mdbValidate>
+            <div *ngIf="submitted && signupForm.controls.phone.errors" class="invalid-feedback">
+              <div *ngIf="signupForm.controls.phone.errors.required">Phone is required</div>
+            </div>
+          </div>
+
+          <div class="row basic-url-err">
+            <div class="col-md-12" *ngFor="let item of basicurls; index as i">
+              <div class="row ">
+                <div class="col-md-12">
+                  <div class="input-group validation-center basic-url-input">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon3">https://apply.insure/</span>
+                    </div>
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" formControlName="basicurls{{i}}" (change)="updateUniqueurlErr($event,i)" mdbValidate  [(ngModel)]="basicurls[i]['basicurls']" [ngClass]="{ 'is-invalid': submitted && basicurls[i]['basicurls'] == '' }" (keyup)="onBlurBasicUrl($event,i)" />
+                  </div>
+                  <div *ngIf="submitted && basicurls[i]['basicurls'] == ''" class="invalid-feedback">
+                    <div *ngIf="submitted && basicurls[i]['basicurls'] == ''">Basic url is required</div>
+                  </div>
+
+                  <div [ngClass]="uniqueurlErr[i] != '' ? '' : 'd-none' " class="text text-danger">{{ uniqueurlErr[i] }}</div>
+                </div>
+                <div id="remove_basic_url" *ngIf="i+1==basicurls.length && (signupForm.controls.links.value == '5-10' || signupForm.controls.links.value == '10-20' || signupForm.controls.links.value == '20+')"
+                [ngClass]="[
+                  signupForm.controls.links.value == '5-10' && basicurls.length == 5 ? 'd-none' : '',
+                  signupForm.controls.links.value == '10-20' && basicurls.length == 10 ? 'd-none' : '',
+                  signupForm.controls.links.value == '20+' && basicurls.length == 20 ? 'd-none' : ''
+                ]">
+                  <div class="close_icon">
+                    <button type="button" class="close" aria-label="Close" style="margin-top: 10px; font-size: 20pt !important;" (click)="deleteLink(i)" *ngIf="i>0">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-12 text-right" id="add_basic_url">
+              <div class="row animated fadeIn" *ngIf="signupForm.controls.links.value == '5-10' || signupForm.controls.links.value == '10-20' || signupForm.controls.links.value == '20+'">
+                <div class="col-sm-12" id="add_url_btn">
+                  <button mdbBtn type="button" color="warning" size="md" style="letter-spacing: 2px" class="shadow-none" (click)="addBasicUrl()">
+                    <i class="fa fa-plus"></i>&nbsp; Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group validation-center link-class">
+            <div class="row">
+              <div class="col-md-12">
+                <label class="control-label">How many links do you expect to need? <span class="text text-danger">*</span></label>
+              </div>
+              <div class="col-md-12">
+                <select class="form-control" formControlName="links" [ngClass]="{ 'is-invalid': submitted && signupForm.controls.links.errors }" [(ngModel)]="links" (change)="changeLink($event,signupForm.controls.links.value)">
+                  <optgroup label="How many links do you expect to need?">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5-10">5-10</option>
+                    <option value="10-20">10-20</option>
+                    <option value="20+">20+</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+            <!-- <div *ngIf="submitted && signupForm.controls.links.errors" class="invalid-feedback">
+              <div *ngIf="signupForm.controls.links.errors.required">No of links is required
+              </div> -->
+          </div>
+
+
+          <button type="submit" class="btn-lg btn-primary" [disabled]="loading">Submit</button>
+          <p id="subtext2">Upon submitting, your account will be verified and you will immedtiatley be sent a confirmation email so you can start using your link. <u>No payment nessecary at signup.</u></p>
+          <br>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <div class="text-center">
+    <p id="jumbo-text">Contact Us </p>
+    <br>
+    610-864-1155
+    <br><br>
+    Peter@apply.insure - sales questions
+    <br><br>
+    support@apply.insure - service help
+    <br><br>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div *ngIf="agentInfo.email != ''" class="quoteDiv py-3">
+  <div class="row navbar-div">
+    <!-- <div class="col-md-6 col-6 logo">
+      <img [src]="sitelogo != '' ? '/assets/sitelogo/'+agentInfo.sitelogo : '/assets/images/shield_logo.svg'" alt="Logo"/>
+      <p><span>Secure. </span><span>Fast.</span><span>Coverage.</span></p>
+    </div> -->
+    <div class="agent_detail" [ngClass]="commonService.checkMobile()?'text-right':''">
+      <div class="agent_cont" [ngClass]="commonService.checkMobile() ? 'agent-info-header-mobile' : ''">
+        <div class="agent_profile">
+          <p class="agent_name" >Your Agent:</p>
+          
+          <!-- /assets/agent_images/{{agentInfo.agent_image}} -->
+          <h6 class="text-capitalize" style="display:flex; align-items: center;">
+            <img class="d-flex mr-2 agent_img img-circle" width="35" src="https://apply.insure/{{agentInfo.agent_image}}" alt="" *ngIf="agentInfo.agent_image">
+            <span (click)="menuoption = menuoption == 0 ? 1 : 0">
+              <!-- <img class="d-flex agent_img ml-2" width="16" src="/assets/images/frontend_img_02_2021/arrow-down-sign-to-navigate.svg" > -->
+              <i class="fa fa-bars d-flex agent_img bar_icon" aria-hidden="true" id="navmenutoggle" *ngIf="agentInfo.agent_image"></i>
+              
+            </span>
+          </h6>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-4 col-4" *ngIf="quote_id">
+      <h6 class="text-right pt-2 pr-1"
+         [ngClass]="commonService.checkMobile()?'col-12 mt-3':''">Quote Id # {{quote_id}}</h6>
+    </div> -->
+  </div>
+</div>
+<div class="container">
+<div class="dropdown-sec" id="menuoption" *ngIf="menuoption" (click)="handleModelClick($event)">
+  <div class="modal_body agent_data" [ngClass]="commonService.checkMobile()? 'mt-2':'mt-3'">
+    <!--img class="d-flex mr-3 agent_img" width="32" src="/assets/agent_images/{{agentInfo.agent_image}}" alt="" *ngIf="agentInfo.agent_image && commonService.checkMobile()"/-->
+    <img src="/assets/images/frontend_img_02_2021/close.svg" width="15" class="mb-0 float-right" (click)="menuoption = 0"/>&nbsp;
+    <div class="hedding_userepopup my-1">
+      <h3 class="mb-0">{{agentInfo.name}}</h3>
+      
+    </div>
+
+    <div class="my-1">
+      <a class="icon_btn" href="tel:{{agentInfo.phone}}"><!-- <img src="/assets/images/phone-call.svg"> -->
+      {{ agentInfo.phone }}</a>
+    </div>
+
+    <div class="my-1">
+      <a class="icon_btn" href="mailto:{{agentInfo.email}}">
+      <!-- <img src="/assets/images/email.svg"> -->
+      {{agentInfo.email}}
+      </a>
+    </div>
+    <!--  <h6 class="phone-number"><mdb-icon fas icon="phone-alt"></mdb-icon>&nbsp;&nbsp;&nbsp;{{agentInfo.phone}}</h6>
+    <h6 class="agent-email"><mdb-icon fas icon="envelope"></mdb-icon>&nbsp;&nbsp;&nbsp;{{agentInfo.email}}</h6> -->
+  </div>
+</div>
+
+<!--Modal: modalPush-->
+<div *ngIf="agentInfo.email != ''" class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Contact Information</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4 col-4">
+            <!-- <img class="d-flex mr-3 mx-auto" width="80" [src]="agentInfo.logo" alt=""  (error) ="changeSource($event)"> -->
+          </div>
+          <div class="col-md-8 col-8">
+            <h6 class="mt-0 mb-0 text-left text-capitalize">{{agentInfo.name}}</h6>
+            <h6 class="mt-0 mb-0 text-left">{{agentInfo.email}}</h6>
+            <h6 class="mt-0 mb-0 text-left">{{agentInfo.phone}}</h6>
+          </div>
+        </div>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer flex-center">
+        <a href="javascript:void(0)" data-dismiss="modal" class="btn btn-info shadow-none">OK</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+</div>
+<!--Modal: modalPush-->

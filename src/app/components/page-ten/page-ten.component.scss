@@ -1,0 +1,122 @@
+.page-ten-block {
+  background-color: #F4F4F4;
+  border-radius: 10px;
+  min-height: 100px;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+.haven_life{
+  .col{
+    .align-items-center{
+      height: 150px;
+      .font-small{
+        height: 75px;
+      }
+    }
+  }
+}
+.pricing-block {
+  margin-top: 50px;
+
+  .card {
+    box-shadow: none !important;
+    background-color: #f4f4f4 !important;
+  }
+
+  .avatar {
+    border-color: #1672B4;
+    margin-top: -45px !important;
+
+    .price {
+      border-radius: 50%;
+      width: 100%;
+      height: 110px;
+      background-color: #fff;
+
+      p {
+        padding-top: 15px;
+      }
+    }
+  }
+}
+
+.stepper-vertical li:not(:last-child):after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: calc(100% - 40px);
+  left: 2.19rem;
+  top: 3.44rem;
+  background-color: lightseagreen;
+}
+
+.stepper-indicator {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border: 2px solid lightseagreen;
+  background: white;
+
+  img {
+    width: 120%;
+    margin-top: -2px;
+    margin-left: -10% !important;
+  }
+}
+
+.form-check-input[type='radio']:checked + label:before,
+label.btn
+input[type='radio']:checked + label:before {
+  border: 2px solid lightseagreen;
+}
+
+.form-check-input[type='radio']:checked + label:after,
+label.btn input[type='radio']:checked + label:after {
+  -webkit-transform: scale(0.62);
+  transform: scale(0.62);
+}
+
+.form-check-input[type='radio']:checked + label:after,
+.form-check-input[type='radio'].with-gap:checked + label:after,
+label.btn input[type='radio']:checked + label:after,
+label.btn input[type='radio'].with-gap:checked + label:after {
+  background-color: lightseagreen;
+}
+
+.form-check-input[type='radio']:not(:checked) + label:before,
+.form-check-input[type='radio']:not(:checked) + label:after,
+label.btn input[type='radio']:not(:checked) + label:before,
+label.btn input[type='radio']:not(:checked) + label:after {
+  border: 2px solid lightseagreen;
+}
+
+.form-check-input[type='radio'] + label:before,
+.form-check-input[type='radio'] + label:after,
+label.btn input[type='radio'] + label:before,
+label.btn input[type='radio'] + label:after {
+  width: 25px;
+  height: 25px;
+}
+
+.page-eight-divider {
+  width: 5px;
+  background: white;
+  margin-top: 66px;
+}
+
+.page-ten-block.flood {
+  img {
+    width: 80px;
+    height: 80px;
+    border:solid 5px white;
+  }
+}
+
+
+@media screen and (max-width: 991px) {
+  .card-title{
+    h3{
+      font-size: 20px !important;
+    }
+  }
+}

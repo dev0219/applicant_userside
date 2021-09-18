@@ -1,0 +1,18 @@
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+$landscape-phone: 576px;
+
+// Medium devices (tablets, 768px and up)
+$tablet: 768px;
+
+// Large devices (desktops, 992px and up)
+$desktop: 992px;
+
+// Extra large devices (large desktops, 1200px and up)
+$large-desktop: 1200px;
+
+
+$button-primary-color: #44a3d3;
+$primary-color: #4285f4;

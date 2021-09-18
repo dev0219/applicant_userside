@@ -1,0 +1,25 @@
+<div  class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="row pb-4 pb-md-0">
+            <div class="col-lg-6 col-12">
+                <div class="cuurent_auto_premium_div">
+                    <label class="custom-file-upload form-group">
+                        <input type="file" id="quote_upload_file" (change)="uploadFile($event)" multiple>Upload  <i class="fa fa-upload"></i>
+                    </label>
+                    <ol class="uploaded_file_list form-group">
+                        <li *ngFor="let item of files; index as i" ><span>{{ item.name }}</span> <span (click)="removeFile(i)"><i class="fa fa-times"></i></span></li> 
+                    </ol>
+                    <p class="text-left mt-5 text-dark">Upload any documents you have that could help<br> us give you the most accurate quote.
+                     Current Dec <br> Pages, Drivers License, Home Info, etc.</p>
+                    <button type="button" class="text-center text-white pink_btn" style="border: none;margin-top: 50px;" type="submit" (click)="quote_upload_submit()">Continue</button>
+                </div>
+            </div>
+            <div class="col-lg-1 col-12"></div>
+            <div class="col-lg-5 col-12">
+                <div class="side_img_div animated zoomOut_custom">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

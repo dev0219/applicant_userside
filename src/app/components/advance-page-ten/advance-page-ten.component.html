@@ -1,0 +1,57 @@
+<div class="md-form form-group">
+  <div class="row animated fadeIn justify-content-center">
+
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="col-lg-6">
+         
+            <h3 class="font-weight-bold mb-0 main_screen_heading text-left">Who do you have insurance with now?</h3>
+            <!--p class="title">
+              We'll see if we can bundle your policies together.
+            </p>
+            <p class="subtitle">Average bundle discount is worth $767**</p!-->
+              <div class="text-center opt_box mt-4">
+                <select class="form-control" (change)="submitInsuranceType($event)">
+                  <option value="" selected>Current Carrier</option>
+                  <option value="Allstate">Allstate</option>
+                  <option value="Chubb">Chubb</option>
+                  <option value="Erie">Erie</option>
+                  <option value="Farmers">Farmers</option>
+                  <option value="GEICO">GEICO</option>
+                  <option value="Liberty Mutual">Liberty Mutual</option>
+                  <option value="MetLife">MetLife</option>
+                  <option value="Nationwide">Nationwide</option>
+                  <option value="NJM">NJM</option>
+                  <option value="Plymouth Rock">Plymouth Rock</option>
+                  <option value="Progressive">Progressive</option>
+                  <option value="State Farm">State Farm</option>
+                  <option value="Travelers">Travelers</option>
+                  <option value="USAA">USAA</option>
+                  <option value="Other">Other</option>
+                  <option value="None">None</option>
+                </select>
+              </div>
+              <!-- <button type="button" class="text-center text-white pink_btn" style="border: none;" (click)="">Continue</button> -->
+         
+        </div>
+        <div class="col-lg-1">
+
+        </div>
+        <div class="col-lg-5">
+          <div class="side_img_div animated zoomOut_custom"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+  
+    <!-- <div class="col-md-1 col-1 sale flat">
+      <img src="assets/images/sale.svg" height="25" class="d-inline-block align-top" alt="">
+    </div> -->
+    <!--div class="col-md-3 col-6" *ngFor="let item of insurances">
+      <div class="insurance-button" (click)="selectInsurance(item.value)">{{item.text}}</div>
+    </div-->
+    
+  </div>
+</div>

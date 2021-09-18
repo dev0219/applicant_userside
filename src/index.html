@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Proquote</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!--<script type="text/javascript" src="main.js"></script>-->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,700,900,900i&display=swap" rel="stylesheet">
+
+  <!-- For datepicker -->
+  <link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" />
+  <link href="https://cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet" />
+  <!-- End datepicker -->
+
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Apply Insure" />
+  <meta property="og:image" content="https://apply.insure/assets/images/logo.png" id="iphone_favicon" />
+  <link rel="icon" id="favicon" type="image/png" href="./assets/images/logo.png">
+  <script src="/assets/javascripts/storage.js"></script>
+</head>
+<body>
+<app-root></app-root>
+<script>
+  var path = window.location.pathname;
+  if(path = "/" || path == "/pricing" || path == "/about" || path == "/sales-teams" || path == "/campaigns" || path == "/signup"){
+    document.getElementById('favicon').setAttribute('href','/assets/images/logo.png');
+    document.getElementById('iphone_favicon').setAttribute('content','https://apply.insure/assets/images/logo.png');
+  }
+</script>
+</body>
+</html>

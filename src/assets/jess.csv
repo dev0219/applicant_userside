@@ -1,0 +1,4 @@
+page_no,question,answer_type
+5,Will you occupy this house within 5 days of closing?,y/n
+6,WIll you have a mortgage on this property?,y/n
+6,How many people will live in this house?,input

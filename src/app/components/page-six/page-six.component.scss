@@ -1,0 +1,91 @@
+p.title {
+  font-size: 25px;
+  font-weight: 400;
+}
+
+p.title:first-of-type {
+  margin-bottom: 0 !important;
+}
+
+p.subtitle {
+  font-weight: 400;
+}
+
+.col-md-3 {
+  cursor: pointer;
+
+  .insurance-button {
+    background-color: red;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bolder;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
+    margin-bottom: 20px;
+  }
+
+  .insurance-button:hover {
+    box-shadow: 8px 8px 5px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  }
+}
+
+.col-md-3:nth-child(2) .insurance-button,
+.col-md-3:nth-child(4) .insurance-button,
+.col-md-3:nth-child(7) .insurance-button,
+.col-md-3:nth-child(14) .insurance-button,
+.col-md-3:nth-child(15) .insurance-button {
+  background-color: #0071BD;
+}
+
+.col-md-3:nth-child(3) .insurance-button,
+.col-md-3:nth-child(8) .insurance-button,
+.col-md-3:nth-child(13) .insurance-button {
+  background-color: #E1142A;
+}
+
+.col-md-3:nth-child(5) .insurance-button {
+  background-color: #43A6DD;
+}
+
+.col-md-3:nth-child(6) .insurance-button {
+  background-color: #064F71;
+}
+
+.col-md-3:nth-child(9) .insurance-button {
+  background-color: #E06B0C;
+}
+
+.col-md-3:nth-child(10) .insurance-button {
+  background-color: #000606;
+}
+
+.col-md-3:nth-child(11) .insurance-button {
+  background-color: #033857;
+}
+
+.col-md-3:nth-child(12) .insurance-button {
+  background-color: #B3AA11;
+}
+
+.opt_box{
+  margin: 0 auto;
+  select{
+    background: #f2f2f2;
+    border: none;
+    border-radius: 6px;
+    padding: 15px 30px;
+    appearance: none;
+  }
+  &:before{
+    content: '\25BC';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 30px;
+    z-index: 9;
+    pointer-events: none;
+  }
+}

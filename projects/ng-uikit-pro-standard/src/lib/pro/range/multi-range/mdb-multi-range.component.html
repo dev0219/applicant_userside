@@ -1,0 +1,52 @@
+<div class="multi-range-field my-5 pb-5">
+  <div class="range-field" #rangeField>
+    <div class="track">
+      <div #firstRangeCloud class="range-cloud" title="range"
+           [ngClass]="{'visible': this.firstVisibility, 'hidden': !this.firstVisibility}">
+        <span class="text-transform">{{range.first}}</span>
+      </div>
+    </div>
+    <input #firstInput
+           [value]="value.first"
+           [attr.value]="value.first"
+           [name]="name"
+           [id]="id"
+           [min]="min"
+           [max]="max"
+           [step]="step"
+           [disabled]="disabled"
+           type="range"
+           class="mdbMultiRange original active"
+           (input)="firstRangeInput($event)"
+           [(ngModel)]="range.first"
+           (focus)="this.firstVisibility = true"
+           (blur)="this.firstVisibility = false; blurRangeInput('first')"
+           (touchend)="blurRangeInput('first')"
+           (click)="focusRangeInput('first')">
+
+
+    <div class="track">
+      <div #secondRangeCloud class="range-cloud" title="range"
+           [ngClass]="{'visible': this.secondVisibility, 'hidden': !this.secondVisibility}">
+        <span class="text-transform">{{range.second}}</span>
+      </div>
+    </div>
+    <input #secondInput
+           [value]="value.second"
+           [attr.value]="value.second"
+           [name]="name"
+           [id]="id"
+           [min]="min"
+           [max]="max"
+           [step]="step"
+           [disabled]="disabled"
+           type="range"
+           class="mdbMultiRange original ghost active"
+           (input)="secondRangeInput($event)"
+           [(ngModel)]="range.second"
+           (focus)="this.secondVisibility = true"
+           (blur)="this.secondVisibility = false; blurRangeInput('second')"
+           (touchend)="blurRangeInput('second')"
+           (click)="focusRangeInput('second')">
+  </div>
+</div>

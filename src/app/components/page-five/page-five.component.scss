@@ -1,0 +1,88 @@
+@import '../../../variables';
+
+.propertyBoard {
+  p {
+    font-size: 20px;
+  }
+
+  .property.discounts {
+    margin-top: 50px !important;
+
+    .col-md-6, .col-md-4 {
+      padding: 5px !important;
+
+    }
+  }
+
+  .property > p {
+    @media screen and (max-width: $tablet) {
+      margin-bottom: 0px !important;
+    }
+  }
+
+  .property {
+    padding-top: 40px;
+    @media screen and (max-width: $tablet) {
+      margin-left: 0px !important;
+    }
+      @media screen and (max-width: $tablet) {
+        padding: 10px 20px !important;
+      }
+      .label{
+        display: flex;
+        @media screen and (max-width: 767px) {
+          max-width: 100%;
+          flex: 100%;
+        }
+      }
+      .sale{
+        img{
+        height: 35px;
+        margin: 7px 0 0;
+        }
+      }
+      p {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem !important;
+      }
+      .buildingImag {
+        width: 60%;
+        height: auto;
+        margin-left: 20%;
+      }
+
+      div:hover {
+        cursor: pointer;
+        transition: ease .3s;
+      }
+
+      div {
+        padding: 3px 5px 2px 5px;
+        border-radius: 10px;
+        @media screen and (max-width: 767px) {
+          &.col-3{
+            flex: 0 0 40%;
+            max-width: 40%;
+          }
+        }
+      }
+  }
+
+  .property:last-of-type {
+    margin-top: 20px;
+  }
+}
+
+.activeOption {
+  background-color: #004fff ;
+  color: white;
+}
+
+.inactiveOption {
+  background-color: #E8E8E8;
+  color: black;
+  &:hover{
+    background-color: #004fff ;
+    color: #fff;
+  }
+}

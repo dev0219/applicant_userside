@@ -1,0 +1,216 @@
+<ng4-loading-spinner [timeout]="4000000"></ng4-loading-spinner>
+<app-sub-header [quote_id]="quote_id"></app-sub-header>
+<div class="container" id="scrollTop" [ngStyle]="(isMobile)?{'overflow':'hidden'}:{}">
+
+  <div class="row mainContent animated fadeIn">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-12 request_data">
+       <!-- Header section -->
+      <div class="md-form form-group mep-section text-center " *ngIf="screen > 1">
+        <div class="quote_title" *ngIf="screen == 5">
+          <h3 class="request">Quote Request Submited!</h3>
+          <p>Next we'll run some numbers and send you your top options. We'll send this to you at <span class="text text-danger">{{email}}</span> shortly</p>
+        </div>
+        <h3 *ngIf="screen != 5" class="top-address-label">{{ addressData['address'] }}</h3>
+        <img src="assets/images/icon.png" class="life-form-main-img"/>
+
+      </div>
+
+      <!-- First screen -->
+      <div class="md-form form-group" *ngIf="screen==1">
+        <div class="row">
+          <div class="col-md-12 head_sec" style="margin-bottom: 20px;">
+            <h2 class="title">Let's Insure You life home</h2>
+            <p class="font-weight-bolder">Apply in 2-3 minutes to get<br>quotes from multiple carriers!</p>
+          </div>
+
+          <div class="col-md-12 col-12 mb-3">
+            <input class="form-control inputAddressMD" autocorrect="off" (onAddressChange)="handleAddressChange($event)" id="inputAddressMD" autocapitalize="off" spellcheck="off" (load)="loadGooglePlace()" type="text" *ngIf="GooglePlace==true" [(ngModel)]="staticAddress" #placesRef placeholder="Enter address">
+            <input type="text" class="form-control inputAddressMD" placeholder="Ex: 419 Virginia Ave, Phoenixville, Pennsylvania 19460" *ngIf="GooglePlace==false" [(ngModel)]="staticAddress"/>
+          </div>
+
+          <div class="manual_add_link">
+            <a href="javascript:void(0)" (click)="isManualAddress = isManualAddress == true ? false : true">{{ isManualAddress == true ? 'google address':'manual address' }}</a>
+          </div>
+
+          <div class="add_ntx" *ngIf="isManualAddress == true">
+            <button class="btn btn-primary shadow-none " style="margin-left: 0px; padding-top: 8px; padding-bottom: 8px;" (click)="manualAddressSave()">
+              Continue
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="!GooglePlace" class="row">
+          <div class="col-4 col-md-4">
+            <input type="number" class="form-control inputManualField" placeholder="Square" [(ngModel)]="zillowData['square']">
+          </div>
+          <div class="col-4 col-md-4">
+            <input type="number" class="form-control inputManualField" placeholder="Estimate" [(ngModel)]="zillowData['estimate']">
+          </div>
+          <div class="col-4 col-md-4">
+            <input type="number" class="form-control inputManualField" placeholder="Year Built" [(ngModel)]="zillowData['built_year']">
+          </div>
+        </div>
+      </div>
+      <!-- End first screen -->
+
+      <!-- Second screen-->
+      <div class="md-form form-group home_sec" *ngIf="screen==2">
+        <div class="text-center">
+          <button type="button" (click)="helththyselection('Super Healthy')">Super Healthy</button>
+          <button type="button" (click)="helththyselection('Very Healthy')">Very Healthy</button>
+          <button type="button" (click)="helththyselection('Average Healthy')">Average Healthy</button>
+          <button type="button" (click)="helththyselection('Some What Unhealthy')">Some What Unhealthy</button>
+          <button type="button" (click)="helththyselection('Not Healthy')">Not Healthy</button>
+        </div>
+      </div>
+      <!-- End second screen-->
+
+      <!-- Third screen-->
+      <div class="md-form form-group personDataForm life-person-form" *ngIf="screen==3">
+        <div class="col-md-12" *ngIf="validatingForm">
+          <h5 class="font-weight-bolder h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">Please list your household members:</h5>
+        </div>
+        <!-- Grid column -->
+        <div class="col-md-12" *ngIf="validatingForm">
+          <form [formGroup]="validatingForm" class="personForm" (ngSubmit)="showDiscounts()"
+                [ngStyle]="isMobile?{'margin-top':'30px'}:{}">
+            <div class="row member_mail_mob">
+              <div class="col-sm-12 col-12">
+                <div class="form-row">
+                  <div class="col-6">
+                      <!-- <div class="col-sm-2 col-2 ">
+                        <label for="form8" class="col-form-label text-success">
+                          <img src="assets/images/gmail.png" height="25" class="d-inline-block align-top" alt="">
+                        </label>
+                      </div> -->
+                        <div class="md-form mt-0">
+                          <input mdbInput mdbValidate type="email" class="form-control" id="form8"
+                                [(ngModel)]="email" formControlName="emailInput" placeholder="enter email">
+
+                          <mdb-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">Email type is
+                            invalid
+                          </mdb-error>
+                          <mdb-success *ngIf="emailInput.valid && (emailInput.dirty || emailInput.touched)">Email type is valid
+                          </mdb-success>
+                        </div>
+                  </div>
+                  <div class="col-6">
+                      <!-- <div class="col-sm-2 col-2 ">
+                      <label for="form1" class="col-form-label text-success">
+                        <img src="assets/images/smartphone.png" height="25" class="d-inline-block align-top" alt="">
+
+                      </label>
+                      </div> -->
+                        <div class="md-form mt-0">
+                          <input mdbInput type="text" mdbValidate name="phone" formControlName="phoneInput" class="form-control"
+                                id="form1" [(ngModel)]="phone" placeholder="phone number">
+                          <mdb-error *ngIf="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)">Phone number is invalid.</mdb-error>
+                          <mdb-success *ngIf="phoneInput.valid && (phoneInput.dirty || phoneInput.touched)">Phone number is
+                            valid
+                          </mdb-success>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" *ngFor="let item of personData; index as i">
+              <div class="col-md-12">
+                <div class="form-row">
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input mdbInput type="text" mdbValidate class="form-control" formControlName="firstnameInput{{i}}" [(ngModel)]="personData[i]['first_name']" placeholder="first name">
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0">
+                      <input mdbInput type="text" mdbValidate class="form-control" formControlName="lastnameInput{{i}}" [(ngModel)]="personData[i]['last_name']" placeholder="last name">
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0" onclick="this.children.focus()">
+                      <ejs-datepicker id='datepicker' readonly required class="form-control" placeholder="date of birth" formControlName="birthdayInput{{i}}" [(ngModel)]="personData[i]['birthday']"  format ='MM/dd/yyyy' (focus)="checkdob($event)" (focusout)="checkdob($event)"></ejs-datepicker>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="md-form mt-0" onclick="this.children.focus()">
+                      <!--input mdbInput type="text" mdbValidate class="form-control" formControlName="needlifeinsInput{{i}}" [(ngModel)]="personData[i]['needlifeinsInput']" placeholder="needs life ins?"-->
+
+                      <mdb-select  mdbValidate class="form-control" formControlName="needlifeinsInput{{i}}" [(ngModel)]="personData[i]['needlifeinsInput']" [options]="needlifeinsInputOption" placeholder="need life policy ?">
+                      </mdb-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="close_icon" *ngIf="i+1==personData.length">
+                <button type="button" class="close" aria-label="Close" style="margin-top: 10px; font-size: 20pt !important;" (click)="deletePerson(i)" *ngIf="i>0">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="row animated fadeIn">
+              <div class="col-sm-12">
+                <button mdbBtn type="button" color="warning" size="md" style="letter-spacing: 2px" class="shadow-none" (click)="addPerson()">
+                  <i class="fa fa-plus"></i>&nbsp; Add
+                </button>
+              </div>
+            </div>
+            <!-- Grid row -->
+            <div id="destination"></div>
+            <div class="form-group col-md-12" style="margin-top: 25px;margin-bottom: 50px;">
+              <app-next-button type="submit" color="primary" text="Continue"></app-next-button>
+            </div>
+          </form>
+        </div>
+
+        <div class="loading_img" *ngIf="!validatingForm">
+          <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"></app-loader>
+          <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"></app-loader>
+          <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"></app-loader>
+        </div>
+      </div>
+      <!-- End third screen-->
+
+      <!-- Four screen-->
+      <div class="md-form form-group text-center personDataForm" *ngIf="screen==4">
+        <h5 class="font-weight-bolder h5-responsive requst_commt" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">Do you have any special request(s) or comments to add?</h5>
+        <div class="row form-group">
+          <div class="col-12">
+            <div class="md-form mt-0 sp_coment" >
+              <textarea class="form-control" rows="6" [(ngModel)]="requestorcomments" placeholder=""></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="md-form mt-0" >
+              <app-next-button type="button" color="primary" text="continue" (click)="setRequestOrComments()"></app-next-button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End four screen-->
+
+      <!-- Five screen -->
+      <div class="md-form form-group personDataForm" *ngIf="screen==5">
+        <div class="row animated fadeIn">
+          <div class="col-md-12 col-lg-12 col-12 mt-5">
+            <div class="row background-secondary form-group">
+              <div class="col-md-4 col-4">
+                <h6 class="agent_name">Your Agent</h6>
+              </div>
+
+              <div class="col-md-8">
+                <h6 class="text-capitalize">{{currentAgent}}</h6>
+                <h6>{{agentInfo.phone}}</h6>
+                <h6>{{agentInfo.email}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End five screen -->
+    </div>
+  </div>
+</div>

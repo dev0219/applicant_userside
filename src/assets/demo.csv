@@ -1,0 +1,5 @@
+page_no,question,answer_type
+5,How many people live in your home?,input
+5,Are you a smoker?,y/n
+6,What is your prior address?,input
+6,Will you have a mortgage on your home?,y/n

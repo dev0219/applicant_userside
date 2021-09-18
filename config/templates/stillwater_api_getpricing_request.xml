@@ -1,0 +1,65 @@
+	<InsuranceSvcRq>
+		<!--  The following field is required to be unique for every service request,
+		format is 8-4-4-4-12 hexadecimal. If 00000000-0000-0000-0000-000000000000
+		is used, then we will generate a RqUID for you.  -->
+		<RqUID>00000000-0000-0000-0000-000000000000</RqUID>
+			<HomePolicyQuoteInqRq>
+			<!--  Use the same value as the RqUID above  -->
+			<RqUID>00000000-0000-0000-0000-000000000000</RqUID>
+			<!--  now  -->
+			<TransactionRequestDt>{{effective_date}}</TransactionRequestDt>
+			<CurCd>USD</CurCd>
+			<InsuredOrPrincipal>
+				<GeneralPartyInfo>
+					<NameInfo>
+						<PersonName>
+							<Surname>{{lastname}}</Surname>
+							<GivenName>{{firstname}}</GivenName>
+							<OtherGivenName>Middle</OtherGivenName>
+						</PersonName>
+					</NameInfo>
+				</GeneralPartyInfo>
+				<InsuredOrPrincipalInfo>
+					<InsuredOrPrincipalRoleCd>FNI</InsuredOrPrincipalRoleCd>
+				</InsuredOrPrincipalInfo>
+			</InsuredOrPrincipal>
+			<PersPolicy>
+				<LOBCd>HOME</LOBCd>
+				<PersApplicationInfo>
+					<InsuredOrPrincipal/>
+					<ResidenceOwnedRentedCd>OWNED</ResidenceOwnedRentedCd>
+				</PersApplicationInfo>
+			</PersPolicy>
+			<Location id="LOC1">
+				<ItemIdInfo/>
+				<Addr>
+					<AddrTypeCd>PhysicalRisk</AddrTypeCd>
+					<Addr1>{{street}}</Addr1>
+					<City>{{city}}</City>
+					<StateProvCd>{{state}}</StateProvCd>
+					<PostalCode>{{postal_code}}</PostalCode>
+				</Addr>
+			</Location>
+			<HomeLineBusiness>
+				<LOBCd>HOME</LOBCd>
+				<Dwell id="DWE1" LocationRef="LOC1">
+					<PolicyTypeCd>{% if mode=='1' %}06{% endif %}{% if mode=='0' %}03{% endif %}</PolicyTypeCd>
+					<DwellOccupancy>
+						<ResidenceTypeCd>CD</ResidenceTypeCd>
+						<OccupancyTypeCd>OWNER</OccupancyTypeCd>
+					</DwellOccupancy>
+					<Coverage>
+						<CoverageCd>DWELL</CoverageCd>
+						<Limit>
+							<FormatInteger>{{dwell_coverage}}</FormatInteger>
+						</Limit>
+						<Deductible>
+							<FormatInteger>1000</FormatInteger>
+							<DeductibleAppliesToCd>AllPeril</DeductibleAppliesToCd>
+						</Deductible>
+					</Coverage>
+				</Dwell>
+			</HomeLineBusiness>
+		</HomePolicyQuoteInqRq>
+	</InsuranceSvcRq>
+</ACORD>

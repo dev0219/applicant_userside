@@ -1,0 +1,38 @@
+<div class="md-form form-group">
+  <div class="row animated fadeIn">
+    <div class="col-10 form-group">
+      <h5 class="h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}"> Who do you have an (any type) insurance policy with now?</h5>
+      <!--p class="title">
+        We'll see if we can bundle your policies together.
+      </p>
+      <p class="subtitle">Average bundle discount is worth $767**</p!-->
+    </div>
+    <div class="col-md-1 col-1 sale flat">
+      <img src="assets/images/sale.svg" height="25" class="d-inline-block align-top" alt="">
+    </div>
+    <!--div class="col-md-3 col-6" *ngFor="let item of insurances">
+      <div class="insurance-button" (click)="selectInsurance(item.value)">{{item.text}}</div>
+    </div-->
+    <div class="offset-3 col-md-6 text-center opt_box">
+      <select (change)="selectInsurance($event)" class="form-control">
+        <option value="" selected>Select</option>
+        <option value="Allstate">Allstate</option>
+        <option value="Chubb">Chubb</option>
+        <option value="Erie">Erie</option>
+        <option value="Farmers">Farmers</option>
+        <option value="GEICO">GEICO</option>
+        <option value="Liberty Mutual">Liberty Mutual</option>
+        <option value="MetLife">MetLife</option>
+        <option value="Nationwide">Nationwide</option>
+        <option value="NJM">NJM</option>
+        <option value="Plymouth Rock">Plymouth Rock</option>
+        <option value="Progressive">Progressive</option>
+        <option value="State Farm">State Farm</option>
+        <option value="Travelers">Travelers</option>
+        <option value="USAA">USAA</option>
+        <option value="Other">Other</option>
+        <option value="None">None</option>
+      </select>
+    </div>
+  </div>
+</div>

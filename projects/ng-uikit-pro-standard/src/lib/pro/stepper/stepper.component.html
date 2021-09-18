@@ -1,0 +1,26 @@
+<div class="card-body">
+  <ul #container class="stepper" [ngClass]="{ horizontal: !vertical && horizontal }">
+    <li
+      [ngClass]="{ active: step.isActive, done: step.isDone, wrong: step.isWrong }"
+      class="step"
+      *ngFor="let step of steps; let i = index"
+    >
+      <div
+        #stepTitle
+        class="step-title waves-effect waves-dark"
+        (click)="setNewActiveStep(i); onClick(i, $event)"
+      >
+        <span>{{ step.name }}</span>
+        <span class="step-label">{{ step.label }}</span>
+      </div>
+      <div
+        #stepContent
+        class="step-new-content"
+        [ngClass]="{ 'd-block': step.isActive }"
+        [@stepContentTransition]="!vertical && getAnimationState(i)"
+      >
+        <ng-container [ngTemplateOutlet]="step.content"></ng-container>
+      </div>
+    </li>
+  </ul>
+</div>

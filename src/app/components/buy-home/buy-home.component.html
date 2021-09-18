@@ -1,0 +1,28 @@
+<script src="../../home/home.component.spec.ts"></script>
+<div class="home-inputs">
+  <div class="md-form form-group">
+    <h4 class="text-center font-weight-bold">Are your buying a new home?</h4>
+    <div class="row col-xl-6 offset-xl-3 col-md-12 select-block-row">
+      <div class="col-md-6 col-6 select-block">
+        <p class="font-weight-bold" [ngClass]="!!isBuyingHome?'active':''" (click)="isBuyingHome=true">Yes</p>
+      </div>
+      <div class="col-md-6 col-6 select-block">
+        <p class="font-weight-bold" [ngClass]="isBuyingHome===false?'active':''" (click)="emitInfo(false)">No</p>
+      </div>
+    </div>
+  </div>
+  <div class="md-form form-group" *ngIf="isBuyingHome">
+    <h4 class="text-center font-weight-bold">Start Date?</h4>
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-10 offset-1">
+        <input type="date" id="input" class="form-control date_input" mdbInput
+               [(ngModel)]="buying_date">
+      </div>
+    </div>
+  </div>
+  <div class="md-form form-group" *ngIf="isBuyingHome">
+    <div class="form-row">
+      <button mdbBtn type="button" class="mx-auto shadow-none btn-primary" (click)="emitInfo(true)">Continue</button>
+    </div>
+  </div>
+</div>

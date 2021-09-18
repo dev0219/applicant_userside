@@ -1,0 +1,238 @@
+@import '../../../variables';
+
+.propertyBoard {
+  p {
+    font-size: 20px;
+  }
+  .col-md-2.col-2{
+    p{
+      @media screen and (max-width: 1180px) and (min-width: 769px) {
+      font-size:16px;
+      }
+    }
+  }
+  .property.discounts {
+    margin-top: 50px !important;
+
+    .col-md-6, .col-md-4 {
+      padding: 5px !important;
+
+    }
+  }
+
+  .property > p {
+    @media screen and (max-width: $tablet) {
+      margin-bottom: 0px !important;
+    }
+  }
+
+  .property {
+    padding-top: 10px;
+    @media screen and (max-width: $tablet) {
+      // margin-left: 0px !important;
+    }
+      @media screen and (max-width: $tablet) {
+        padding: 5px 20px !important;
+      }
+      .label{
+        display: flex;
+        @media screen and (max-width: 767px) {
+          max-width: 100%;
+          flex: 100%;
+        }
+      }
+      .sale{
+        img{
+        height: 35px;
+        margin: 7px 0 0;
+        }
+      }
+      p {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem !important;
+      }
+      .buildingImag {
+        width: 60%;
+        height: auto;
+        margin-left: 20%;
+      }
+
+      div:hover {
+        cursor: pointer;
+        transition: ease .3s;
+      }
+
+      div {
+        padding:10px;
+        border-radius: 10px;
+        text-align: center;
+        @media screen and (max-width: 767px) {
+          &.col-3{
+            flex: 0 0 40%;
+            max-width: 40%;
+          }
+        }
+      }
+      textarea.form-control {
+        background-color: transparent;
+        padding: 3px 5px 2px 5px;
+        border-radius: 5px;
+        border: 1px solid #d8d7d7;
+        resize: none;
+    }
+    &.basement-option{
+      display: flex;
+      justify-content: center;
+      @media screen and (max-width: 767px) {
+        justify-content: end;
+      }
+      &:after{
+        content: "";
+        width: 1px;
+        height: 15%;
+        position: absolute;
+        background: black;
+        top: 0;
+        @media screen and (max-width: 767px) {
+          height: 30%;
+          top: -11px;
+          left: 20%;
+        }
+      }
+    }
+    .roof_type_sale{
+      &.sale{
+        @media screen and (max-width: 767px) {
+          display:none;
+        }
+      }
+    }
+  }
+
+  
+}
+
+.activeOption {
+  background-color: #f51e47 ;
+  color: white;
+}
+
+.inactiveOption {
+  background-color:transparent;
+  color: black;
+  border: 2px solid #e8e8e8;
+  &:hover{
+    background-color: #f51e47;
+    color: #fff;
+    border: 2px solid #f51e47;
+  }
+}
+.propertyBoard{
+  .property{
+    .col-2 {
+      @media screen and (max-width: 767px) {
+      flex: 0 0 33%;
+      max-width: 33%;
+      }
+    }
+    div.col-3{
+        @media screen and (max-width: 767px) {
+          flex: 0 0 33%;
+          max-width: 33%;
+        }
+    }
+    &.roof_type {
+      .item{
+        img{
+          height: auto;
+          width: 100%;
+        }
+        .inactiveOption {
+          border: 1px solid #ddd;
+          text-align: center;
+          background: transparent;
+          padding: 10px;
+          &:hover{
+            color: #000000;
+            border-color: #f51e47;
+          }
+        }
+        .activeOption{
+          text-align: center;
+          padding: 10px;
+        }
+        p{
+          margin:0 !important;
+          line-height: normal;
+          font-size: 14px;
+          font-weight: 500;
+          min-height: 40px;
+        }
+      }
+    }
+  }
+}
+.propertyBoard .pink_btn
+{
+  width: 90%;
+  @media screen and (max-width:576px) {
+    width: 100%;
+    
+  }
+}
+.small
+{
+  font-size: 70% !important;
+  @media screen and (max-width:576px) {
+      font-size: 90% !important;
+    
+  }
+}
+.row.property
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+}
+.row.security_sys
+{
+ grid-template-columns: 40% 30% 30% !important;
+}
+.row.do_you_have_dog
+{
+  grid-template-columns: 40% 30% 30%;
+}
+.dog_desc
+{
+  grid-column: 2/4;
+}
+.row.roof_type
+{
+  grid-template-columns: 100%;
+  @media screen and (max-width:576px) 
+  {
+      grid-template-columns: unset !important;
+    
+  }
+}
+.row.below_question
+{
+  grid-template-columns: 40% 30% 30%;
+}
+@media screen and (max-width:576px) {
+
+    .row.property
+    {
+      grid-template-columns: 1fr 1fr 1fr;
+      margin: 0 !important;
+    } 
+    .row.property p
+    {
+      grid-column: 1/5;
+    }
+    .row.property.roof_type 
+    {
+      display:flex;
+    }
+  
+}

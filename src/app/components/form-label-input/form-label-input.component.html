@@ -1,0 +1,8 @@
+<div class="form-group" [ngClass]="{'row': !block, 'align-items-center': !!block}">
+  <label for="inputInsureProperty" class="col-form-label" [ngClass]="!block?'col-md-6':'text-center'"
+         style="font-size: 0.8rem">{{label}}</label>
+  <div [ngClass]="{'col-md-6': !block}">
+    <input [type]="type" [value]="value" mdbInput class="form-control" [disabled]="disabled"
+           id="inputInsureProperty"/>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="container">
+  <!-- Grid row -->
+  <!--<ngbd-datepicker-basic></ngbd-datepicker-basic>-->
+  <!-- Horizontal Steppers -->
+  <div class="row" style="margin-top: 100px;">
+    <div class="col-md-6 offset-md-3">
+
+      <!-- Material form login -->
+      <mdb-card>
+
+        <mdb-card-header class="info-color white-text text-center py-4">
+          <h5>
+            <strong>Sign in</strong>
+          </h5>
+        </mdb-card-header>
+
+
+        <!--Card content-->
+        <mdb-card-body class="px-lg-5 pt-0">
+
+          <!-- Form -->
+          <form class="text-center" style="color: #757575;" (submit)="login()" [formGroup]="loginForm">
+
+            <!-- Email -->
+            <div class="md-form">
+              <input type="email" id="materialLoginFormEmail" class="form-control" mdbInput formControlName="emailInput" [(ngModel)]="credentials.email">
+              <mdb-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">Email is
+                invalid
+              </mdb-error>
+              <mdb-success *ngIf="emailInput.valid && (emailInput.dirty || emailInput.touched)">Email is valid
+              </mdb-success>
+              <label for="materialLoginFormEmail">E-mail</label>
+            </div>
+
+            <!-- Password -->
+            <div class="md-form">
+              <input type="password" id="materialLoginFormPassword" class="form-control" mdbInput formControlName="passwordInput" [(ngModel)]="credentials.password">
+              <mdb-error *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">Password is
+                invalid
+              </mdb-error>
+              <mdb-success *ngIf="passwordInput.valid && (passwordInput.dirty || passwordInput.touched)">Password is valid
+              </mdb-success>
+              <label for="materialLoginFormPassword">Password</label>
+            </div>
+
+            <!-- Sign in button -->
+            <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0"
+                    mdbWavesEffect
+                    type="submit">Sign in
+            </button>
+
+            <!-- Social login -->
+            <p>or sign in with:</p>
+            <a type="button" mdbBtn floating="true" color="fb" size="sm">
+              <mdb-icon fab icon="facebook"></mdb-icon>
+            </a>
+            <a type="button" mdbBtn floating="true" color="tw" size="sm">
+              <mdb-icon fab icon="twitter"></mdb-icon>
+            </a>
+            <a type="button" mdbBtn floating="true" color="li" size="sm">
+              <mdb-icon fab icon="linkedin"></mdb-icon>
+            </a>
+            <a type="button" mdbBtn floating="true" color="git" size="sm">
+              <mdb-icon fab icon="github"></mdb-icon>
+            </a>
+
+          </form>
+          <!-- Form -->
+
+        </mdb-card-body>
+
+      </mdb-card>
+      <!-- Material form login -->
+    </div>
+  </div>
+</div>

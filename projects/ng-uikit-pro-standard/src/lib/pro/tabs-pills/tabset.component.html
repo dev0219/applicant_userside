@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="{{ listGetClass }}">
+      <ul
+        class="nav {{ buttonClass }}"
+        [ngClass]="classMap"
+        (click)="$event.preventDefault()"
+        #itemsList
+      >
+        <li
+          *ngFor="let tabz of tabs; let i = index"
+          [ngClass]="{
+            'ml-auto': tabz.type === 'content' && i === 0,
+            'list-group-item-action': buttonClass.includes('list-group'),
+            'nav-item': tabz.type !== 'content'
+          }"
+          class="{{ tabz.customClass }}"
+          [class.active]="tabz.active"
+          [class.disabled]="tabz.disabled"
+          (click)="click($event, i)"
+        >
+          <span
+            class="d-flex flex-fill"
+            *ngIf="tabs[i].type !== 'content' && tabs[i + 1] && tabs[i + 1].type === 'content'"
+          ></span>
+          <a
+            *ngIf="tabz.type !== 'content'"
+            #tabEl
+            href="javascript:void(0);"
+            class="nav-link"
+            [ngClass]="{ 'waves-light': !disableWaves }"
+            [class.active]="tabz.active"
+            [class.disabled]="tabz.disabled"
+          >
+            <span [mdbNgTransclude]="tabz.headingRef" [innerHTML]="tabz.heading"></span>
+            <span *ngIf="tabz.removable">
+              <span (click)="$event.preventDefault(); removeTab(tabz)" class="fas fa-times ml-2">
+              </span>
+            </span>
+          </a>
+          <a
+            *ngIf="tabz.type === 'content'"
+            #tabEl
+            class="nav-link"
+            [ngClass]="{ 'waves-light': !disableWaves }"
+            [class.active]="tabz.active"
+            [class.disabled]="tabz.disabled"
+          >
+            <span [mdbNgTransclude]="tabz.headingRef" [innerHTML]="tabz.heading"></span>
+            <span *ngIf="tabz.removable">
+              <span (click)="$event.preventDefault(); removeTab(tabz)" class="fas fa-times ml-2">
+              </span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="{{ tabsGetClass }}">
+      <div class="tab-content {{ contentClass }}">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

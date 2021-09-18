@@ -1,0 +1,202 @@
+<div class="animated fadeIn">
+  <div class="col">
+    <h3 class="text-center font-weight-bold text-black-50">Quote Request Submitted!</h3>
+    <p class="text-center small">
+      We will email you our final proposal with details once we are finished checking all carriers. Keep a look out for
+      this within the next 24 hours!
+    </p>
+  </div>
+  <div class="page-ten-block">
+    <h4 class="font-weight-bold text-black-50">Home Owner Estimate:</h4>
+    <div class="col">
+      <div class="form-row align-items-center justify-content-center">
+        <div class="col-md-5">
+          <div class="text-center">
+            <img src="../../../assets/images/homeico.png" class="mx-auto"/>
+          </div>
+          <h3 class="text-center font-weight-bold">{{apiData['homeowner_price']|currency:'USD':'symbol':'1.0-0'}}</h3>
+          <p class="text-center">This is a real price but we are also looking to beat this moment!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!commonService.checkMobile()">
+    <!--Rotating card-->
+    <div class="col-md-4 pricing-block">
+      <div class="page-ten-block">
+        <mdb-card class="testimonial-card">
+          <!--Avatar-->
+          <div class="avatar mx-auto">
+            <div class="price">
+              <p class="text-center">estimate</p>
+              <h4 class="font-weight-bold text-center">{{apiData['lowest_price']|currency:'USD':'symbol':'1.0-0'}}</h4>
+            </div>
+          </div>
+          <mdb-card-body>
+            <!--Name-->
+            <mdb-card-title>
+              <h3 class="font-weight-bold">Basic</h3>
+            </mdb-card-title>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
+    <!--/.Rotating card-->
+    <!--Rotating card-->
+    <div class="col-md-4 pricing-block">
+      <div class="page-ten-block">
+        <mdb-card class="testimonial-card">
+          <!--Avatar-->
+          <div class="avatar mx-auto">
+            <div class="price">
+              <p class="text-center">estimate</p>
+              <h4 class="font-weight-bold text-center">{{apiData['medium_price']|currency:'USD':'symbol':'1.0-0'}}</h4>
+            </div>
+          </div>
+          <mdb-card-body>
+            <!--Name-->
+            <mdb-card-title>
+              <h3 class="font-weight-bold">Good</h3>
+            </mdb-card-title>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
+    <!--/.Rotating card-->
+    <!--Rotating card-->
+    <div class="col-md-4 pricing-block">
+      <div class="page-ten-block">
+        <mdb-card class="testimonial-card">
+          <!--Avatar-->
+          <div class="avatar mx-auto">
+            <div class="price">
+              <p class="text-center">estimate</p>
+              <h4 class="font-weight-bold text-center">{{apiData['highest_price']|currency:'USD':'symbol':'1.0-0'}}</h4>
+            </div>
+          </div>
+          <mdb-card-body>
+            <!--Name-->
+            <mdb-card-title>
+              <h3 class="font-weight-bold">Enhanced</h3>
+            </mdb-card-title>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
+    <!--/.Rotating card-->
+  </div>
+  <div class="page-ten-block flood">
+    <div class="row p-0">
+      <div class="col-md-6 offset-md-3 col-10 offset-1">
+        <div class="media">
+          <img src="../../../assets/images/flood.svg" class="img-fluid rounded-circle d-flex align-self-center ml-3"
+               alt="Responsive image">
+          <div class="media-body">
+            <h5 class="font-weight-bold mt-3 text-center">{{floodData['application']['floodZone']}}
+              ({{(floodData['application']['floodZone']=='A' || floodData['application']['floodZone']=='AE')?'HIGH':"LOW"}} RISK)</h5>
+            <h5 class="font-weight-bolder text-center">{{floodData['policy']['totalPremium']|currency:'USD':'symbol':'1.0-0'}} /
+              year</h5>
+            <p></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="page-ten-block haven_life">
+    <div class="row p-0">
+      <div class="col-md-4 form-row align-items-center justify-content-center">
+        <div>
+          <div class="text-center">
+            <img src="../../../assets/images/Haven.png" class="mx-auto" style="width: 8em;"/>
+          </div>
+          <form target="_blank" action="https://simple.havenlife.com/amorphic/init/haven-simple.js?utm_source=PINNACLE_CLIENT" method="post"
+                class="form-row align-items-center justify-content-center">
+            <input type="hidden" name="token">
+            <input type="hidden" name="source" value="PINNACLE_CLIENT">
+            <input type="hidden" name="version" value="1.0">
+            <button type="submit" mdbBtn block="true" color="yellow" class="shadow-none" (click)="submitLifeForm()">Buy Now</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-8 row p-0">
+        <div class="col">
+          <div class="align-items-center">
+            <div class="p-2 text-center font-small">{{havenLifeAmount?'$'+commonService.commafy(havenLifeAmount)+' - death benefit':''}}</div>
+            <div class="mt-auto p-2 text-center">{{havenLifePricing|currency:'USD':'symbol':'1.0-0'}}/Month</div>
+            <div class="mt-auto p-2 form-check text-center">
+              <input type="radio" class="form-check-input" id="is_haven_life_33" name="is_haven_life"
+                     [checked]="questionData.haven_life==1"
+                     (click)="choose('haven_life', 1)"
+              >
+              <label class="form-check-label" for="is_haven_life_33"></label>
+            </div>
+          </div>
+        </div>
+        <div class="mat-divider-vertical page-eight-divider"></div>
+        <div class="col">
+          <div class="align-items-center">
+            <div class="p-2 text-center font-small">&nbsp;</div>
+            <div class="mt-auto p-2 text-center">None</div>
+            <div class="mt-auto p-2 form-check justify-content-center align-items-center text-center">
+              <input type="radio" class="form-check-input" id="is_haven_life_none" name="is_haven_life"
+                     [checked]="questionData.haven_life==0"
+                     (click)="choose('haven_life', 0)"
+              >
+              <label class="form-check-label align-self-center" for="is_haven_life_none"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-ten-block">
+    <h4 class="font-weight-bold text-black-50">Steps to Getting Coverage</h4>
+    <div class="col">
+      <div class="row mt-1">
+        <div class="col-md-12">
+          <!-- Stepers Wrapper -->
+          <ul class="stepper stepper-vertical">
+            <!-- First Step -->
+            <li class="completed">
+              <a href="javascript:void(0)">
+                <span class="stepper-indicator">
+                  <img src="../../../assets/images/checked.png"/>
+                </span>
+                <span class="label pl-3">Apply for quote</span>
+              </a>
+            </li>
+            <!-- Second Step -->
+            <li class="active">
+              <a href="javascript:void(0)">
+                <span class="stepper-indicator"></span>
+                <span class="label pl-3">Receive Proposal & Review</span>
+              </a>
+            </li>
+            <!-- Third Step -->
+            <li class="active">
+              <a href="javascript:void(0)">
+                <span class="stepper-indicator"></span>
+                <span class="label pl-3">Agree and Provide</span>
+              </a>
+              <!-- Section Description -->
+              <div class="step-content">
+                <p>Mortgage Information</p>
+                <p>Start Date</p>
+                <p>Payment Detail</p>
+              </div>
+            </li>
+            <!-- Second Step -->
+            <li class="active">
+              <a href="javascript:void(0)">
+                <span class="stepper-indicator"></span>
+                <span class="label pl-3 text-left">Receive New Policy Documentation</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

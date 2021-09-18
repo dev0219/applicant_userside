@@ -1,0 +1,56 @@
+@import "../../../variables";
+
+.home-inputs {
+  .row {
+    margin-top: 35px;
+    margin-bottom: 65px;
+
+
+    .date_input {
+      height: 50px;
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+
+  .select-block-row {
+    .select-block {
+      p {
+        cursor: pointer;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        background: #F2F2F2;
+      }
+
+      .active {
+        background-color: #43A3D3 !important;
+        color: white;
+      }
+    }
+  }
+
+  button.btn-primary {
+    background-color: $button-primary-color !important;
+  }
+}
+@media screen and (max-width: 846px) {
+  .home-inputs {
+    margin-top: 30vw !important;
+  }
+}
+@media screen and (max-width: $desktop - 1px) {
+  .home-inputs {
+    margin-top: 10vw;
+
+    .select-block-row {
+      margin-left: 0px;
+    }
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .home-inputs {
+    margin-top: 5vw;
+  }
+}

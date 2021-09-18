@@ -1,0 +1,166 @@
+<div class="md-form form-group">
+  <div class="row propertyBoard animated fadeIn justify-content-center">
+
+    <div class="col-lg-11">
+      <div class="row">
+          <div class="col-lg-6">
+              
+      <div class="col-12 row property">
+        <div class="col-md-8 col-6">
+        <p class="font-weight-bolder label">Short Term Rentals(airBnB,etc)?</p>
+      </div>
+        <div class="col-md-4 col-6">
+          <div class="opt_box">
+            <div>No</div>
+            <label class="switch">
+              <input type="checkbox" (change)="propertyInfo($event,'term_rental')">
+              <span class="slider round"></span>
+            </label>
+            <div>Yes</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12 row property">
+        <div class="col-md-8 col-6">
+        <p class="font-weight-bolder label">Property owned by corporation or a trust?</p>
+      </div>
+        <div class="col-md-4 col-6">
+          <div class="opt_box">
+            <div>No</div>
+            <label class="switch">
+              <input type="checkbox" (change)="propertyInfo($event,'property_own')">
+              <span class="slider round"></span>
+            </label>
+            <div>Yes</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12 row property">
+        <div class="col-md-8 col-6">
+        <p class="font-weight-bolder label">Multiple Unit Property?</p>
+      </div>
+        <div class="col-md-4 col-6">
+          <div class="opt_box">
+            <div>No</div>
+            <label class="switch">
+              <input type="checkbox" (change)="propertyInfo($event,'multiple_unit')">
+              <span class="slider round"></span>
+            </label>
+            <div>Yes</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12 row property">
+        <div class="col-md-8 col-6">
+        <p class="font-weight-bolder label">Have you filed any property insurance claims?</p>
+      </div>
+        <div class="col-md-4 col-6">
+          <div class="opt_box">
+            <div>No</div>
+            <label class="switch">
+              <input type="checkbox" (change)="propertyInfo($event,'insurance_claims')">
+              <span class="slider round"></span>
+            </label>
+            <div>Yes</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12 row property">
+        <div class="col-md-8 col-6">
+        <p class="font-weight-bolder label">Have you ever had a policy cancelled or non-renewed in 3 last years?</p>
+      </div>
+        <div class="col-md-4 col-6">
+          <div class="opt_box">
+            <div>No</div>
+            <label class="switch">
+              <input type="checkbox" (change)="propertyInfo($event,'policy_renewed')">
+              <span class="slider round"></span>
+            </label>
+            <div>Yes</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12 row property">
+        <div class="col-md-8 col-6">
+        <p class="font-weight-bolder label">Do you have a swimming pool?</p>
+        <p class="pool_opt" *ngIf="propertysData.swimming_pool == true">
+          <span>
+            <input type="checkbox" (change)="swimming_pool_type($event,'diving_board')" id="diving_board"/><label for="diving_board">diving board</label>
+          </span>
+          <span>
+            <input type="checkbox" (change)="swimming_pool_type($event,'slide')" id="slide"/><label for="slide">slide</label>
+          </span>
+          <span>
+            <input type="checkbox" (change)="swimming_pool_type($event,'above_ground')" id="above_ground"/><label for="above_ground">above ground</label>
+          </span>
+          <span>
+            <input type="checkbox" (change)="swimming_pool_type($event,'none_of_these')" id="none_of_these"/><label for="none_of_these">none of these</label>
+          </span>
+        </p>
+        </div>
+        <div class="col-md-4 col-6">
+          <div class="opt_box">
+            <div>No</div>
+            <label class="switch">
+              <input type="checkbox" (change)="propertyInfo($event,'swimming_pool')">
+              <span class="slider round"></span>
+            </label>
+            <div>Yes</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12 row property" *ngFor="let item of pageSixCustomQuestion; index as i" >
+        <div class="col-md-8 col-7">
+          <p class="font-weight-bolder label">
+            {{ item.question }}
+          </p>
+        </div>
+  
+  
+        <!-- For input box -->
+        <div class="col-md-12" *ngIf="item.type == 'input'">
+          <div>
+              <textarea [(ngModel)]="item.answer" class="form-control" placeholder="Answer:"></textarea>
+          </div>
+        </div>
+  
+        <!-- Yes/No Logic-->
+        <div class="col-md-2 col-2" *ngIf="item.type == 'y/n'">
+          <div [ngClass]="item.answer == 'Yes' ? 'activeOption':'inactiveOption'" (click)="item.answer = 'Yes'">
+            <p class="font-weight-bold text text-center">yes</p>
+          </div>
+        </div>
+        <div class="col-md-2 col-2" *ngIf="item.type == 'y/n'">
+          <div [ngClass]="item.answer == 'No' ? 'activeOption':'inactiveOption'" (click)="item.answer = 'No'" >
+            <p class="font-weight-bold text text-center">no</p>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="text-center text-white  pink_btn" style="background-color: #F51E47;border: none;" (click)="next()">Continue</button>
+           
+  
+      <!-- <div class="row property justify-content-center">
+        <div class="col-md-10" style="margin-top: 50px;">
+          <app-next-button color="primary" type="button" text="Next" (click)="next()"></app-next-button>
+        </div>
+      </div> -->
+    </div>
+          <div class="col-lg-1"></div>
+    
+          <div class="col-lg-5">
+            <div class="side_img_div animated zoomOut_custom"></div>
+          </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>

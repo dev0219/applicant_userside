@@ -1,0 +1,13 @@
+@import '../../../variables';
+
+.info-header {
+  padding: 10px 0px;
+  font-weight: bold;
+  margin-top: 20px;
+  @media screen and (min-width: $tablet) {
+    margin-left: -20px;
+  }
+}
+.invalid-input{
+  background-color: yellow !important;
+}

@@ -1,0 +1,113 @@
+<!-- Sidebar navigation -->
+<mdb-side-nav #sidenav [fixed]="true">
+  <links>
+    <!-- Side navigation links -->
+    <mdb-navbar-brand>
+      <li>
+        <div class="logo-wrapper waves-light" style="margin-top: 150px !important;">
+          <h3 class="font-weight-bold text-dark" style="padding-left: 20px !important;">Groups</h3>
+        </div>
+      </li>
+      <!--/. Logo -->
+    </mdb-navbar-brand>
+    <li>
+      <ul class="collapsible collapsible-accordion">
+        <mdb-accordion [multiple]="false" aria-multiselectable="false">
+          <!-- Simple link -->
+          <mdb-accordion-item class="no-collase" (click)="getData(-1); group_title='All'">
+            <mdb-accordion-item-head mdbWavesEffect class="text-dark">
+              <span class="text-dark font-weight-bolder" style="font-size: 1rem">
+              All</span>
+            </mdb-accordion-item-head>
+            <mdb-accordion-item-body></mdb-accordion-item-body>
+          </mdb-accordion-item>
+          <mdb-accordion-item class="no-collase" *ngFor="let data of groups"
+                              (click)="getData(data._id);group_title=data.name">
+            <mdb-accordion-item-head mdbWavesEffect>
+              <span class="text-dark font-weight-bolder" style="font-size: 1rem">
+                {{data.name}}</span>
+            </mdb-accordion-item-head>
+            <mdb-accordion-item-body></mdb-accordion-item-body>
+          </mdb-accordion-item>
+        </mdb-accordion>
+      </ul>
+    </li>
+    <!--/. Side navigation links -->
+  </links>
+  <div class="sidenav-bg mask-strong"></div>
+</mdb-side-nav>
+<!--/. Sidebar navigation -->
+<div class="content col-md-9 offset-md-1">
+  <h1 class="font-weight-bolder h1-responsive" style="margin-top: 50px;margin-bottom: 50px;">
+    <img [src]="'./uploads/'+loggedUserData['profilePic']" height="70"
+         style="margin-left: 30px;margin-right: 30px;"/>{{loggedUserData['label']}}</h1>
+  <mdb-card cascade="true" narrower="true">
+    <!--Card image-->
+    <!--<div-->
+    <!--class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">-->
+
+    <!--<a href="javascript:void(0);" class="white-text mx-3 text-center">{{group_title}}</a>-->
+    <!--</div>-->
+    <!--/Card image-->
+
+    <div class="px-4">
+
+      <!--<div class="col-md-6 mx-auto">-->
+      <!--<div class="md-form">-->
+      <!--<input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"-->
+      <!--mdbInput>-->
+      <!--<label for="search-input">Search</label>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div class="table-responsive">
+        <!--Table-->
+        <table mdbTable #tableEl="mdbTable" class="mb-0 table" hover="true">
+          <!--Table head-->
+          <thead>
+          <tr>
+            <th [mdbTableSort]="elements" sortBy="register_date" scope="col">Date&nbsp;<mdb-icon fas
+                                                                                                 icon="sort"></mdb-icon>
+            </th>
+            <th [mdbTableSort]="elements" sortBy="name" scope="col">Name&nbsp;<mdb-icon fas icon="sort"></mdb-icon>
+            </th>
+            <th [mdbTableSort]="elements" sortBy="address" scope="col">Address&nbsp;<mdb-icon fas
+                                                                                              icon="sort"></mdb-icon>
+            </th>
+            <th [mdbTableSort]="elements" sortBy="link" scope="col">Link&nbsp;<mdb-icon fas icon="sort"></mdb-icon>
+            </th>
+            <th [mdbTableSort]="elements" sortBy="quote_id" scope="col">Quote ID&nbsp;<mdb-icon fas
+                                                                                                icon="sort"></mdb-icon>
+            </th>
+          </tr>
+          </thead>
+          <!--Table head-->
+          <!--Table body-->
+          <tbody>
+          <tr *ngFor="let el of data; let i = index">
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+                scope="row">{{el.register_date | date: 'yyyy-MM-dd'}}</td>
+            <td
+              *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.name}}</td>
+            <td
+              *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.address}}</td>
+            <td
+              *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.link}}</td>
+            <td
+              *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.quote_id}}</td>
+          </tr>
+          </tbody>
+          <tfoot class="grey lighten-5 w-100">
+          <tr>
+            <td colspan="5">
+              <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+            </td>
+          </tr>
+          </tfoot>
+          <!--Table body-->
+        </table>
+        <!--Table-->
+      </div>
+    </div>
+  </mdb-card>
+</div>
+<button mdbBtn type="button" color="mdb-color" size="md" class="showDashboard" *ngIf="isMobile" (click)="showDashboard()" mdbWavesEffect><mdb-icon fas icon="toggle-on"></mdb-icon></button>

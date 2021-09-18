@@ -1,0 +1,11 @@
+{
+  "name": "ng-uikit-pro-standard",
+  "version": "8.1.0",
+  "files": [
+    "**/*"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
+  }
+}

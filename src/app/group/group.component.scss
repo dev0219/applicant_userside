@@ -1,0 +1,60 @@
+.list-group-item{
+  background-color: transparent !important;
+}
+.list-group{
+  width: calc(100% - 10px);
+  .list-group-item.active{
+    background-color: #59698d;
+    border-color: #59698d;
+  }
+}
+.list-group-item-action{
+  text-align: left !important;
+  color: #000 !important;
+  border: none !important;
+}
+.list-row{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+@media screen and (min-width: 1441px){
+
+  .content{
+    width: calc(100% - 315px) !important;
+    padding-top: 100px;
+    margin-left: 300px;
+  }
+}
+@media screen and (max-width: 1440px){
+  .content{
+    width: 60% !important;
+    padding-top: 100px;
+    margin-left: 20%;
+  }
+
+}
+.linkGroup{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+button.green{
+  color: white;
+}
+.showDashboard{
+  position: fixed;
+  top: 50%;
+  left: 0%;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+@media screen  and (max-width: 768px){
+  .actionButtons{
+    margin-top: 25px;
+  }
+  .content{
+    width: 100% !important;
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+    margin-left: 0px !important;
+  }
+}

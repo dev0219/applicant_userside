@@ -1,0 +1,24 @@
+@media screen and (min-width: 1441px){
+
+  .content{
+    width: calc(100% - 315px) !important;
+    padding-top: 100px;
+    margin-left: 300px;
+  }
+}
+@media screen and (max-width: 1440px){
+  .content{
+    width: 60% !important;
+    padding-top: 100px;
+    margin-left: 20%;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .content{
+    width: 100% !important;
+    margin-left: 0px !important;
+  }
+}
+

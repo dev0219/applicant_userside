@@ -1,0 +1,113 @@
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div id="nav" class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active"> 
+				<a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLink="/pricing">Pricing</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="isSubMenuClick = isSubMenuClick == true ? false : true">
+					For Agents 
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="isSubMenuClick == true">
+					<a class="dropdown-item" routerLink="/about">Individuals</a>
+					<a class="dropdown-item" routerLink="/sales-teams">Sales Teams</a>   
+					<a class="dropdown-item" routerLink="/campaigns">Campaigns</a>
+				</div>
+			</li>
+		</ul>
+		<form class="form-inline my-2 my-lg-0">
+			<!-- <a [routerLink]="['/signin']" class="btn btn-secondary my-2 my-sm-0 mr-3" id="signin-btn" type="info">Login</a> -->
+			<a blank target="_blank" href="https://apply.insure/f/demo" class="btn btn-light my-2 my-sm-0" id="demo1-button" type="info">demo<img src="../../assets/images/frontend_img_02_2021/right.svg" height="15px"></a>
+			<a [routerLink]="['/signup']" class="btn btn-secondary my-2 my-sm-0" id="signup-btn" type="info">sign up</a>
+		</form>
+	</div>
+</nav>
+
+<div  id="jumbo-div-0" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-6 col-md-6">
+			<p id="jumbo-text">Digital Quote<br> Forms</p>
+			<p id="jumbo-subtext">P&C agents get their own branded online quote form to gather their prospects information quickly.  </p>
+			<button id="pricing-btn" type="button" class="btn btn-light">Pricing<img src="../../assets/images/frontend_img_02_2021/right.svg" height="20px"></button><br><br><br><br>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-12"> <img id="jumbo-img" src="../../assets/images/frontend_img_02_2021/phone2email.png"></div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div id="integrations-row" class="row">    
+		<div id="#" class="col-lg-2 col-md-4 col-sm-4 col-6">
+			<img src="../../assets/images/frontend_img_02_2021/zapier-logo.png" height="50px">
+		</div>       
+		<div id="#" class="col-lg-2 col-md-4 col-sm-4 col-6">
+			<img src="../../assets/images/frontend_img_02_2021/ezlynx.png" height="50px">
+		</div>       
+		<div id="#" class="col-lg-2 col-md-4 col-sm-4 col-6">
+			<img src="../../assets/images/frontend_img_02_2021/agencyzoom.png" height="90px">
+		</div>      
+		<div id="#" class="col-lg-2 col-md-4 col-sm-4 col-6">
+			<img src="../../assets/images/frontend_img_02_2021/s2.png" height="65px">
+		</div>
+		<div id="#" class="col-lg-2 col-md-4 col-sm-4 col-6">
+			<img src="../../assets/images/frontend_img_02_2021/gmail.png" height="70px">
+		</div>
+		<div id="#" class="col-lg-2 col-md-4 col-sm-4 col-6">
+			<img src="../../assets/images/frontend_img_02_2021/mailchimp.png" height="50px">
+		</div>
+	</div> 
+</div> 
+
+<div class="container">
+	<div class="d-flex justify-content-center">
+		<div id="info" class="col-lg-4 col-12">
+			<h3><b>Fast</b></h3>
+			<br><br>
+			A user can provide all the information needed for a quote within 2-3 minutes from their phone. You will immediatley receive all your clients information via email to quote.
+		</div>   
+		<div id="info" class="col-lg-4 col-12">
+			<h3><b>Custom Questions</b></h3>
+			<br><br>
+			While the basic app comes fully functional, you'll be able to add custom questions to your specific app.
+		</div>  
+		<div id="info" class="col-lg-4 col-12">
+			<h3><b>Insure Smarter</b></h3>
+			<br><br>
+			We pull in many APIs such as google, realtor.com, places, and others to give your agents the best information possible.
+		</div>  
+	</div> 
+
+	<div class="d-flex justify-content-center">
+		<div id="info" class="col-lg-4 col-12">
+			<h3> <b>API</b></h3>
+			<br><br>
+			Connect to popular carriers with API technology to turn your apps into instant quotes.
+		</div>   
+	
+		<div id="info" class="col-lg-4 col-12">
+			<h3> <b>Connections</b></h3>
+			<br><br>
+			Connect to SalesForce, Pipedrive, Google Sheets, Zapier and more.
+		</div>      
+
+		<div id="info" class="col-lg-4 col-12">
+			<h3> <b>Tech Enabled Advisors</b></h3>
+			<br><br>
+			Become a tech enabled advisor that your prospective clients expect and want. Equip your sales teams with a simple tool to increase sales.
+		</div>   
+	</div>
+</div>
+<div id="info">
+	<h1>Get Your Apps Out There!</h1><br>
+	<img src="../../assets/images/frontend_img_02_2021/apps1.png" width="100%">
+</div>

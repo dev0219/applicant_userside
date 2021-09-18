@@ -1,0 +1,959 @@
+<div class="advance_home_comp_cont">
+<ng4-loading-spinner [timeout]="4000000"></ng4-loading-spinner>
+<app-sub-header [quote_id]="quote_id"></app-sub-header>
+<div class="container" id="scrollTop" [ngStyle]="(isMobile && step==1)?{'overflow':'hidden'}:{}">
+  <!-- Grid row -->
+  <!--<ngbd--basic></ngbd--basic>-->
+  <!-- Horizontal Steppers -->
+  <!--The first step that selects the insurance type.-->
+
+  <div class="row preDiv" *ngIf="step==0 && !isShowSpecificPage">
+    <div class="col-md-4 col-lg-6 col-12">
+      <div class="col-md-12 col-8 offset-2 col-lg-6">
+        <div class="agentImageDiv" [ngStyle]="isMobile?{'margin-top':'125px'}:{}">
+          <div class="pictureBoard col-md-12" [ngClass]="agentInfo['isSmall']?'col-12':'col-10 offset-1'"
+               [ngStyle]="!isMobile?{'min-height':'100px'}:{}">
+            <img [src]="'../../assets/images/'+agentInfo['logo']"
+                 [ngStyle]="(!isMobile && agentInfo['isSmall'])?{'width':'120%','margin-left':'-10%'}:{'height':'auto'}"
+                 width="100%">
+          </div>
+          <p></p>
+          <p class="text text-center font-weight-bolder"><strong>{{agentInfo['siteUrl']}}</strong></p>
+          <p class="text text-center font-weight-bolder"><strong>{{agentInfo['phone']}}</strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-lg-6 col-12 quoteTextDiv" [ngStyle]="isMobile?{'margin-bottom':'30px'}:{}">
+      <h1 class="text text-left text-primary h1-responsive quoteTitle">Apply for your quote here!</h1>
+      <p class="font-weight-bold mt-4">select your type of quote:</p>
+      <div class="form-row select_btn_block">
+        <div class="col-md-3 col-4" (click)="showFirstPage(1)">
+          <div class="select_insurance">
+            <img src="../../assets/images/home.svg"/>
+            <h5 class="font-weight-bold text-center text-primary">Home</h5>
+          </div>
+        </div>
+        <div class="col-md-3 col-4" (click)="showFirstPage(2)">
+          <div class="select_insurance">
+            <img src="../../assets/images/auto.svg"/>
+            <h5 class="font-weight-bold text-center text-primary">Auto</h5>
+          </div>
+        </div>
+        <div class="col-md-3 col-4" (click)="showFirstPage(3)">
+          <div class="select_insurance">
+            <img src="../../assets/images/bundle.svg"/>
+            <h5 class="font-weight-bold text-center text-primary">Bundle</h5>
+          </div>
+        </div>
+      </div>
+      <div class="form-row col-md-8" style="margin-top: 20px;">
+        <div class="col-md-5 offset-md-2 col-4 offset-3">
+          <img src="../../assets/images/shield.png" width="20px" height="20px">&nbsp;<strong
+          class="benefitWord">secure</strong>
+        </div>
+        <div class="col-md-5 col-5">
+          <img src="../../assets/images/clock.png" width="20px" height="20px">&nbsp;<strong
+          class="benefitWord">fast</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--This will be shown in everywhere except first step-->
+  <!--Horizontal stepper-->
+  <div class="row top_progress" *ngIf="step > 0 && !isShowSpecificPage && !showBuyHome">
+    <div class="col-md-8 offset-md-2">
+      <!-- Stepers Wrapper -->
+      <ul class="stepper stepper-horizontal" style="margin-top: 90px !important;"
+          [ngClass]="isMobile?'mobileStepper':''">
+        <!-- First Step -->
+        <li class="completed">
+          <a href="javascript:void(0)">
+            <span class="circle" [ngClass]="step>=1?'activeCircle':'inactiveCircle'">
+              <i class="fas fa-home"></i></span>
+            <span class="label" *ngIf="!isMobile" [ngClass]="step>=1?'text-primary':''">Address</span>
+          </a>
+        </li>
+
+        <!-- Second Step -->
+        <li class="active">
+          <a href="javascript:void(0)">
+            <span class="circle" [ngClass]="step>=2?'activeCircle':'inactiveCircle'"><i class="fas fa-user"></i></span>
+            <span class="label" *ngIf="!isMobile" [ngClass]="step>=2?'text-primary':''">Profile</span>
+          </a>
+        </li>
+        <!-- Third Step -->
+        <li class="active">
+          <a href="javascript:void(0)">
+            <span class="circle" [ngClass]="step>=3?'activeCircle':'inactiveCircle'"><i
+              class="fas fa-building"></i></span>
+            <span class="label" *ngIf="!isMobile" [ngClass]="step>=3?'text-primary':''">Property</span>
+          </a>
+        </li>
+        <!-- Third Step -->
+        <li class="active">
+          <a href="javascript:void(0)">
+            <span class="circle" [ngClass]="step>=4?'activeCircle':'inactiveCircle'"><i class="fas fa-check"></i></span>
+            <span class="label" *ngIf="!isMobile" [ngClass]="step>=4?'text-primary':''">Complete</span>
+          </a>
+        </li>
+
+      </ul>
+      <!-- /.Stepers Wrapper -->
+    </div>
+  </div>
+
+  <!--End steppers-->
+  <!---->
+
+ 
+
+  <div class="row mainContent animated fadeIn justify-content-center" *ngIf="step>0 && !isShowSpecificPage">
+    <div class="col-lg-11 col-md-10 col-12 request_data">
+      <div class="row mainContent animated fadeIn justify-content-center">
+        <div class="col-md-9">
+          <div class="row horizontal_new_scrollbar">
+            
+            <div class="col-md-10" *ngIf="(screen+1)==13">
+              <h3 class="font-weight-bold mb-2 main_screen_heading text-left">Application Completed!!</h3>
+              <p class="d-md-none d-block">We'er working on quotes for you now!</p>
+            </div>
+            
+            <div class="col-lg-6 col-md-12" *ngIf="(screen+1)!=13">
+              <span class="font-weight-bold">Quote</span>
+              <p class="small mb-0">{{screen+1}} of 13</p>
+              <ol class="progress_new_horizontal" data-steps="4">
+                <li  class="active">
+                    <span class="step"><span></span></span>
+                </li>
+                <li [ngClass]="[screen==1 ? 'half_active' : '' , screen>=2 ? 'active' : '']">
+                  
+                   <span class="step"><span></span></span>
+                </li>
+                <li [ngClass]="[screen==3 ? 'half_active' : '' , screen>=4 ? 'active' : '']">
+                    <span class="step"><span></span></span>
+                </li>
+                <li [ngClass]="[screen==5 ? 'half_active' : '' , screen>=6 ? 'active' : '']">
+                   <span class="step"><span></span></span>
+                </li>
+                <li [ngClass]="[screen==7 ? 'half_active' : '' , screen>=8 ? 'active' : '']">
+                    <span class="step"><span></span></span>
+                </li>
+                <li [ngClass]="[screen==9 ? 'half_active' : '' , screen>=10 ? 'active' : '']">
+                    <span class="step"><span></span></span>
+                </li>
+                <li [ngClass]="[screen==11 ? 'half_active' : '' , screen>=12 ? 'active' : '']">
+                    <span class="step"><span></span></span>
+                </li>
+                <li [ngClass]="[screen==13 ? 'half_active' : '' , screen>=14 ? 'active' : '']">
+                  <span class="step"><span></span></span>
+                </li>
+            </ol>
+            </div>
+           
+          </div>
+      </div>
+    </div>
+      <!-- Material input -->
+      <div class="md-form form-group mep-section text-center " *ngIf="step==1 && screen!=1">
+        <!-- <h3 *ngIf="step == 1 && screen != 12" class="top-address-label">{{ addressData['address'] }}</h3>
+        <div *ngIf="step == 1 && screen == 12">
+            <h3 class="request top-address-label">Quote Request Submited!</h3>
+            <p>We are now working on your application.</p>
+            <p class="request-msg">We'll send this to you at <span class="text text-danger"> {{email}} </span>shortly!</p>
+        </div>
+        <div id="mtsmap" [ngClass]="step == 1 && screen == 12 ? 'bordered': ''"></div>
+        <circle-progress
+          [percent]= progrss
+          [radius]="100"
+          [outerStrokeWidth]="10"
+          [innerStrokeWidth]="0"
+          [outerStrokeColor]="'#78C000'"
+          [innerStrokeColor]="'#C7E596'"
+          [animation]="true"
+          [animationDuration]="300"
+          [class]="progrss-circle"
+          [startFromZero] = "false"
+        ></circle-progress> -->
+
+        <div class="form-group" *ngIf="waitingtxtflag == 1"></div>
+        <div *ngIf="waitingtxtflag == 1" class="text-center">
+          <span class="text text-success">Note: {{ waitingtxt }}</span>
+        </div>
+      </div>
+
+
+
+      <!-- Step 1 -->
+
+       <!-- screen 0-->
+      <div class="row mainContent animated fadeIn justify-content-center" *ngIf="step==1 && screen==0">
+    <div class="col-lg-9 col-md-12 zero_screen_main_div">
+        <!-- <app-buy-home (setHomeData)="setHomeData($event)"></app-buy-home> -->
+      <app-insuarace-type-selection (setHomeData)="setHomeData($event)"></app-insuarace-type-selection>
+    </div>
+      </div>
+      <!-- End 0th Screen -->
+
+        <!-- First Screen -->
+
+        <div class="md-form form-group animated slideInRight" *ngIf="step==1 && screen==1">
+        <div class="row justify-content-center">
+         <div class="col-lg-9 col-md-12">
+              <div class="row">
+              <div class="col-lg-6 pl-md-0 animated slideInLeft_custom1">
+                <div class="col-md-12 head_sec" >
+                  <div class="d-flex map_with_heading">
+                    <h3 class="font-weight-bold mb-0 main_screen_heading">What property do you need to insure?</h3>
+                    <img src="../../assets/images/new_design/MAP (1).svg" width="50" class="float-right">
+                  </div>
+                
+       
+                  <!-- <p class="font-weight-bolder">Apply in a 2-3 minutes to get<br>quotes from multiple Carriers!</p> -->
+                </div>
+                <!-- <div class="col-md-1 col-2 form-row">
+                  <img src="../../assets/images/maps-and-flags.png" class="google-places-img mx-auto">
+                </div> -->
+                <div class="col-md-12 col-12 mb-3 p-0 ">
+                  <input class="form-control inputAddressMD" autocorrect="off"
+                        (onAddressChange)="handleAddressChange($event)"
+                        id="inputAddressMD" autocapitalize="off" spellcheck="off" (load)="loadGooglePlace()" type="text"
+                        *ngIf="GooglePlace==true" [(ngModel)]="staticAddress"
+                        #placesRef placeholder="Address">
+                  <input type="text" class="form-control inputAddressMD"
+                        placeholder="Ex: 419 Virginia Ave, Phoenixville, Pennsylvania 19460"
+                        *ngIf="GooglePlace==false" [(ngModel)]="staticAddress"/>
+    
+                </div>
+                <div class="manual_add_link">
+                  <a href="javascript:void(0)" (click)="isManualAddress = isManualAddress == true ? false : true">{{ isManualAddress == true ? 'google address':'Manually enter address' }}</a>
+                </div>
+                <div class="add_ntx" *ngIf="isManualAddress == true">
+                  <button class="btn btn-primary shadow-none " style="margin-left: 0px; padding-top: 8px; padding-bottom: 8px;" (click)="manualAddressSave()">
+                    Continue
+                  </button>
+                </div>
+                <!-- <div *ngIf="!GooglePlace" class="row">
+                  <div class="col-4 col-md-4">
+                    <input type="number" class="form-control inputManualField" placeholder="Square"
+                          [(ngModel)]="zillowData['square']">
+                  </div>
+                  <div class="col-4 col-md-4">
+                    <input type="number" class="form-control inputManualField" placeholder="Estimate"
+                          [(ngModel)]="zillowData['estimate']">
+                  </div>
+                  <div class="col-4 col-md-4">
+                    <input type="number" class="form-control inputManualField" placeholder="Year Built"
+                          [(ngModel)]="zillowData['built_year']">
+                  </div>
+                </div> -->
+                <button type="button" class="text-center text-white d-md-none d-block pink_btn" style="background-color: #F51E47;border: none;">Continue</button>
+
+              </div>
+              <div class="col-lg-1"></div>
+              <div class="col-lg-5 animated slideInRight_custom delay-1s">
+                  <div class="side_img_div"></div>
+              </div>
+            </div>
+             
+          </div>
+        </div>
+
+
+            
+
+          <!--div class="row zillowBoard" style="padding-bottom: 15px; margin-top: 20px;">
+            <div class="col-md-12 col-lg-12 col-sm-12 row">
+              <div class="offset-md-1 col-md-8 col-sm-12 col-12 pull-right">
+                <div>
+                  <img *ngIf="showImg" src="../../assets/images/zillow.png" class="zillowImg">
+                  <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                              *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+                  <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                              *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+                  <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                              *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+                  <span class="text text-danger font-weight-bolder" *ngIf="displayZillowData('square')">
+                    <strong>{{commonService.commafy(zillowData['square'])}}&nbsp;
+                      sqft
+                    </strong>
+                  </span>
+                  <span class="text text-danger font-weight-bolder" style="word-spacing: 12px"
+                        *ngIf="displayZillowData('estimate')">
+                    <strong> | {{zillowData['estimate'] != 'NaN' ? ('$' + commonService.commafy(zillowData['estimate'])) : ''}}
+                      |
+                    </strong>
+                  </span>
+                  <span class="text text-danger font-weight-bolder" style="word-spacing: 12px"
+                        *ngIf="displayZillowData('built_year')">
+                    <strong>
+                      {{zillowData['built_year']}}
+                    </strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-12 col-12 pull-left switchArea">
+                <a class="text font-weight-bolder text-dark"
+                  (click)="toggleGooglePlace();">
+                  <strong>{{GooglePlace ? 'Enter manually.' : 'Enter automatically.'}}</strong>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-6 offset-md-3" style="margin-top: 25px;">
+              <button class="btn btn-primary btn-block shadow-none next-btn" (click)="setAddrZillow()" style="margin-left: 0px; padding-top: 8px; padding-bottom: 8px;" *ngIf="nextbtn">
+                Next
+              </button>
+            </div>
+          </div-->
+
+        </div>
+        <!-- First Screen -->
+
+        <!-- Second Screen -->
+         <div class="md-form form-group text-center home_sec animated slideInRight" *ngIf="step==1 && screen==2">
+           <div class="row justify-content-center">
+             <div class="col-lg-9 col-md-12">
+               <div class="row">
+                 <div class="col-lg-6">
+                   <p class="font-weight-bold text-left mb-3">Please confirm these Details:</p>
+                   <div class="map_second_screen float-left">
+                      <div id="mtsmap" [ngClass]="step == 1 && screen == 12 ? 'bordered': ''"></div>
+                    </div>
+                   <div class="map_main_second_screen mb-4" style="height: 90px;">
+                   
+                     <div class="map_second_screen_details pl-3">
+                      <div *ngIf="IsChangeZollowInfo == false">
+                        <p class="font-weight-bold text-left ml-2 mb-1 font-large">
+                          <span *ngIf="zillowLoader == true">
+                            <img src="../../assets/images/loader.gif" width="25" height="25"/>
+                          </span>
+                          <span class="text-pink" *ngIf="zillowLoader == false">{{ zillowData['square'].toLocaleString() }}</span>&nbsp;Square Feet
+                        </p>
+                        <p class="font-weight-bold text-left ml-2 mb-1 font-large">
+                          <span *ngIf="zillowLoader == true">
+                            <img src="../../assets/images/loader.gif" width="25" height="25"/>
+                          </span>
+                          <span class="text-pink" *ngIf="zillowLoader == false">{{ zillowData['built_year'] }}</span>&nbsp;Year Built
+                        </p>
+                      </div>
+                      <div class='change-property-detail' *ngIf="IsChangeZollowInfo == true">
+                        <div class="zillow_sq_size_div">
+                          <input type="number" value="{{zillowData['square']}}" placeholder="Square Size" class="form-control edit_details_input" id="zillow_square_size"><span class="input_label">Square Feet</span>
+                        </div>  
+                        
+                        <div class="zillow_sq_size_div">
+                          <input type="number" value="{{zillowData['built_year']}}" placeholder="Built Year" class="form-control edit_details_input" id="zillow_built_year"><span class="input_label">Built Year</span>
+                        </div>
+                          
+                      </div>
+                         
+                        <button class="edit_btn"  (click)="changePropertyDetail()" *ngIf="IsChangeZollowInfo == false" style="padding-left: 8px !important;"><i class="far fa-edit bar_icon" style="font-size: 15px;"></i> Edit </button> 
+                         <button class="edit_btn"  (click)="savePropertyDetail()" *ngIf="IsChangeZollowInfo == true" style="padding-left: 8px !important;"><i class="far fa-save bar_icon" style="font-size: 15px;"></i> Save</button>
+                            
+                     </div>
+                   </div>
+                    <div class=" mt-5 map_section_details_buttons">
+                        <button type="button" (click)="usertypeselection(3,'I own this home')" class="" [ngClass]="selectedUserType == 'I own this home' ? 'active_button' : ''">I own this home</button>
+                        <button type="button" (click)="usertypeselection(3,'I will own this home')" class="" [ngClass]="selectedUserType == 'I will own this home' ? 'active_button' : ''">I will own this home</button>
+                        <button type="button" (click)="usertypeselection(3,'I rent this home')" class="" [ngClass]="selectedUserType == 'I rent this home' ? 'active_button' : ''">I rent this home</button>
+                        <button type="button" (click)="usertypeselection(3,'I am the landlord')" class="" [ngClass]="selectedUserType == 'I am the landlord' ? 'active_button' : ''">I am the landlord</button>
+                        <!-- <button type="button" class="text-center text-white" style="background-color: #F51E47;border: none;" (click)="usertypeselection(3,selectedUserType)">Continue</button> -->
+                    </div>
+                 </div>
+                 <div class="col-lg-1"></div>
+                 <div class="col-lg-5">
+                    <div class="side_img_div animated zoomOut_custom"></div>
+                 </div>
+               </div>
+              
+             </div>
+           </div>
+          
+        </div>
+        <!-- Second Screen -->
+
+        <!-- 3rd Screen -->
+            <!-- <div class="md-form form-group text-center home_sec" *ngIf="step==1 && screen==3">
+          <div class="flex">
+            <div class="built_img">
+              <img src="assets/images/network.svg" height="25" class="d-inline-block align-top" alt="">
+            </div>
+            <div class="built_data">
+              <div class="built_yr">Year built: <span>{{ zillowData['built_year'] }}</span> </div>
+              <div class="sqr_ft">Square Feet: <span>{{ zillowData['square'] }}</span></div>
+            </div>
+          </div>
+          <div class="loader_icon" *ngIf="GooglePlace">
+            <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                    *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+            <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                    *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+            <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                    *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+          </div>
+
+          <div class='change-property-detail' *ngIf="IsChangeZollowInfo == true || !GooglePlace">
+            <p>Enter currect built year & square size of property</p>
+            <input type="number" [(ngModel)]="zillowData['built_year']" placeholder="Built Year" class="form-control">
+            <input type="number" [(ngModel)]="zillowData['square']" placeholder="Square Size" class="form-control">
+          </div>
+          <div *ngIf="!zillowLoader && zillowDataFetched || !GooglePlace">
+            <button type="button" (click)="nextscreenmove(4)">this information is correct</button>
+            <button type="button" (click)="changePropertyDetail()" *ngIf="IsChangeZollowInfo == false" [ngClass]="!GooglePlace?'d-none':''">this information is not correct</button>
+          </div>
+        </div> -->
+        <!-- 3rd Screen -->
+
+        <!-- 4th Screen -->
+            <!-- <div class="md-form form-group home_sec" *ngIf="step==1 && screen==4">
+          <p class="home_type"><strong>type of home:</strong></p>
+          <div class="text-center">
+            <button type="button" (click)="hometypeselection(5,'primary residence')">primary residence</button>
+            <button type="button" (click)="hometypeselection(5,'rental property')">rental property</button>
+            <button type="button" (click)="hometypeselection(5,'2nd home')">2nd home</button>
+            <button type="button" (click)="hometypeselection(5,'other')">other</button>
+          </div>
+        </div> -->
+        <!-- 4th Screen -->
+
+        <!-- Third Screen () -->
+        <div class="md-form form-group DiscountDataForm animated slideInRight" *ngIf="step==1 && screen==3">
+          <app-page-adavance-five [addressData]="this.addressData" (setDiscountData)="setDiscountData($event)"></app-page-adavance-five>
+        </div>
+        <!-- Third Screen -->
+
+        <!-- four Screen -->
+        <div class="md-form form-group PropertyDataForm animated slideInRight" *ngIf="step==1 && screen==4">
+          <app-page-advance-six [PropertyDataForm]="this.PropertyDataForm" (setPropertyData)="setPropertyData($event)"></app-page-advance-six>
+        </div>
+        <!-- four Screen -->
+
+        <!--screen five contactinfo form-->
+        <div class="md-form form-group personDataForm animated slideInRight" *ngIf="step==1 && screen==5">
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="row">
+                  <div class="col-lg-6">
+                    
+                      <h3 class="font-weight-bold mb-3 mt-0 main_screen_heading">Contact Info</h3>
+                   
+                     <!-- Grid column -->
+                     <div class="">
+                      <form class="animated fadeIn personForm contact_info_form" [formGroup]="ContactInfoForm" (ngSubmit)="saveContactInfo()"
+                            [ngStyle]="isMobile?{'margin-top':'30px'}:{}">
+                            <div class="row member_mail_mob">
+                              <div class="col-sm-12 col-12">
+                                <div class="form-row">
+                                  <div class="col-12">
+                                        <div class="md-form mt-0">
+                                          <input mdbInput mdbValidate type="email" class="form-control w-93" id="form8" [(ngModel)] ="email" formControlName="emailInput" placeholder="enter email">
+          
+                                          <mdb-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">Email type is
+                                            invalid
+                                          </mdb-error>
+                                          <mdb-success *ngIf="emailInput.valid && (emailInput.dirty || emailInput.touched)">Email type is valid
+                                          </mdb-success>
+                                        </div>
+                                  </div>
+                                  <div class="col-12">
+                                        <div class="md-form mt-0">
+                                          <input mdbInput type="text" mdbValidate name="phone" formControlName="phoneInput" class="form-control w-93" id="form1" [(ngModel)]="phone" placeholder="phone number">
+                                          <mdb-error *ngIf="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)">Phone number is invalid.</mdb-error>
+                                          <mdb-success *ngIf="phoneInput.valid && (phoneInput.dirty || phoneInput.touched)">Phone number is
+                                            valid
+                                          </mdb-success>
+                                        </div>
+                                  </div>
+                                  <div class="col-12">
+                                    <div class="md-form mt-0">
+                                      <input class="form-control inputAddressMD" autocorrect="off"
+                                      (onAddressChange)="handleAddressChangeeventforStepsix($event)" formControlName="addressInput"
+                                      id="inputAddressMD" autocapitalize="off" spellcheck="off" type="text"
+                                       [(ngModel)]="curretMailingAddress"
+                                      #placesRef1 placeholder="Curret Mailing Address"> 
+                                      <!-- <input class="form-control w-93" formControlName="addressInput" autocorrect="off"
+                                      (onAddressChange)="handleAddressChange($event)" (keyup)="loadGooglePlaceForAddress()"
+                                      id="inputAddressMD" autocapitalize="off" spellcheck="off"  type="text"
+                                      [(ngModel)]="curretMailingAddress"
+                                      #placesRef placeholder="Current mailling address"> -->
+                                <!-- <input type="text" class="form-control w-93"  formControlName="addressInput"
+                                      placeholder="Current mailling address" 
+                                      *ngIf="GooglePlace==false" [(ngModel)]="curretMailingAddress"/> -->
+                                      <mdb-error *ngIf="addressInput.invalid && (addressInput.dirty || addressInput.touched)">Curret Mailing Address is required.</mdb-error>
+                                      <mdb-success *ngIf="addressInput.valid && (addressInput.dirty || addressInput.touched)">Address is
+                                        valid
+                                      </mdb-success>
+                                    </div>
+                              </div>
+                                </div>
+                              </div>
+                            </div>
+                          <div class="form-group text-center">
+                          <button type="button" class="text-center text-white pink_btn" style="border: none;" type="submit">Continue</button>
+
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-lg-1"></div>
+                  <div class="col-lg-5">
+                    <div class="side_img_div animated zoomOut_custom"></div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- six Screen -->
+        <div class="md-form form-group personDataForm animated slideInRight" *ngIf="step==1 && screen==6">
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="row">
+                  
+                  <div class="col-lg-12">
+                    
+                      <h3 class="font-weight-bold mb-3 mt-0 main_screen_heading">Household Members</h3>
+         
+                    <div class="mt-4">
+                    <form class="animated fadeIn personForm" [formGroup]="validatingForm" (ngSubmit)="showDiscounts()"
+                  [ngStyle]="isMobile?{'margin-top':'30px'}:{}">
+                 
+                  <div class="row animated fadeIn person-form-row" *ngFor="let item of personData; index as i">
+               
+                    <div class="col-lg-3 col-6">
+                      <div class="md-form mt-0">
+                        <input mdbInput type="text" mdbValidate class="form-control fname_input" [formControlName]="'firstnameInput'+i" [(ngModel)]="personData[i]['first_name']" placeholder="First Name*">
+                      </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-6">
+                      <div class="md-form mt-0">
+                        <input mdbInput type="text" mdbValidate class="form-control" [formControlName]="'lastnameInput'+i" [(ngModel)]="personData[i]['last_name']" placeholder="Last name*">
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                      <div class="md-form mt-0">
+                        <ejs-datepicker [id]="'datepicker_'+i" readonly  required class="form-control household_form_datepicker" placeholder="DOB*" [formControlName]="'birthdayInput'+i" [(ngModel)]="personData[i]['birthday']" format ='MM/dd/yyyy' (focus)="checkdob($event ,'datepicker_'+i)" (focusout)="checkdob($event , 'datepicker_'+i)"></ejs-datepicker>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                      <div class="md-form mt-0">
+                        <input mdbInput type="text" mdbValidate class="form-control dl_forminput" 
+                              [formControlName]="'licenseInput'+i"
+                              [(ngModel)]="personData[i]['license']" placeholder="Driver License">
+                      </div>
+                    </div>
+                
+                <div class="close_icon" *ngIf="i+1==personData.length">
+                    <button type="button" class="close" aria-label="Close" style="margin-top: 10px; font-size: 20pt !important;" (click)="deletePerson(i)" *ngIf="i>0">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                </div>
+
+              <div class="row animated fadeIn">
+                <div class="col-sm-12">
+                  <button mdbBtn type="button" color="warning" size="md" style="letter-spacing: 2px" class="shadow-none mt-4 mt-md-0" (click)="addPerson()">
+                   Add &nbsp; <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- Grid row -->
+              <div id="destination"></div>
+              <div class="form-group col-md-5 p-0" style="margin-top: 25px;margin-bottom: 50px;">
+                <app-next-button type="submit" color="primary" text="Continue"></app-next-button>
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+        </div>
+        <!-- six Screen -->
+
+        <!-- seven Screen -->
+          <div class="md-form form-group text-center personDataForm animated slideInRight" *ngIf="step==1 && screen==7">
+            <app-advance-page-ten *ngIf="step==1 && isPage6" (setInsurnaceType)="setInsurnaceType($event)"></app-advance-page-ten>
+          </div>
+        <!-- seven Screen -->
+
+         <!-- 8th Screen -->
+            <!-- <div class="md-form form-group text-center personDataForm" *ngIf="step==1 && screen==8">
+          <h5 class="font-weight-bolder h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">When do you want your policy to start?</h5>
+          <div class="row">
+            <div class="offset-2 col-2">
+             
+            </div>
+            <div class="col-sm-12 col-lg-5 policy_date">
+              <div class="md-form mt-0" >
+                <ejs-datepicker id='policy_start_datepicker'  required placeholder="Date" (change)="setInsurenceDate($event)" class="form-control" readonly  format ='MM/dd/yyyy'></ejs-datepicker>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div _ngcontent-cet-c6="" class="offset-2 col-2"></div>
+            <div class="col-sm-12 col-lg-5">
+              <div class="md-form mt-0" >
+                <app-next-button type="button" color="primary" text="ASAP" (click)="setInsurenceDate('ASAP')"></app-next-button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- 8th Screen -->
+
+        <!-- eight Screen -->
+        <div class="md-form form-group text-center personDataForm animated slideInRight" *ngIf="step==1 && screen==8">
+          <app-advance-page-seven [personData]="this.personData"
+          [addressData]="this.addressData" (setCarData)="setCarData($event)"></app-advance-page-seven>
+        </div>
+        <!-- eight Screen -->
+
+
+
+        <!--nine screen-->
+        <div class="md-form form-group text-center personDataForm animated slideInRight" *ngIf="step==1 && screen==9">
+          <app-advance-current-auto-premium (setCurrentPremiumData)="setCurrentPremiumData($event)"></app-advance-current-auto-premium>
+        </div>
+        <!-----end nine screen-->
+
+         <!--ten screen-->
+         <div class="md-form form-group text-center personDataForm animated slideInRight" *ngIf="step==1 && screen==10">
+          <app-advance-quote-upload (setQuoteUpload)="setQuoteUpload($event)"></app-advance-quote-upload>
+        </div>
+        <!-----end ten screen-->
+
+
+
+        <!--eleven  Screen -->
+        <div class="md-form form-group text-center personDataForm animated slideInRight" *ngIf="step==1 && screen==11">
+          <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <!-- <h5 class="font-weight-bolder h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">Do you have any special request(s) or comments to add?</h5> -->
+                  <div class="row form-group">
+                    <div class="col-12">
+                      <div class="md-form mt-0 sp_coment" >
+                        <textarea class="form-control" rows="6"  [(ngModel)]="requestorcomments" placeholder="Notes"></textarea>
+                        <p class="text-left mt-3 text-dark">Tell us any special requests you'd 
+                          like to make or<br> any important information you think we should know
+                          .</p>
+     
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="md-form mt-0">
+                        <app-next-button type="button" color="primary" text="Submit" (click)="setRequestOrComments()"></app-next-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-1">
+
+                </div>
+                <div class="col-lg-5">
+                  <div class="side_img_div animated zoomOut_custom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+        <!-- eleven Screen -->
+
+         <!-- Twel Screen -->
+        <div class="md-form form-group personDataForm quote_submit animated slideInRight" *ngIf="step==1 && screen==12">
+          <!-- <div class="row animated fadeIn" *ngIf="(step==1 && isPage9) || isShowSpecificPage">
+            <div class="col-md-12 col-lg-12 col-12 mt-5">
+              <div class="row background-secondary form-group">
+                <div class="col-md-4 col-4">
+                  <h6 class="agent_name">Your Agent</h6>
+                </div>
+
+                <div class="col-md-8">
+                  <h6 class="text-capitalize">{{agentInfo.name}}</h6>
+                  <h6>{{agentInfo.phone}}</h6>
+                  <h6>{{agentInfo.email}}</h6>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group input_file bg-primary" id="uploadDocSec"  *ngIf="api_status == -1">
+                <input type='file' (change)="docUpload($event)" multiple>
+                 <span><i class="fa fa-plus"></i></span>
+              </div>
+
+              <div class="row background-secondary form-group" *ngIf="api_status != -1">
+                <div class="col-md-2">
+                  <img src="assets/images/homeico.png" height="25" class="d-inline-block align-top mr-2" alt="">
+                </div>
+
+                <div class="col-md-10 text-center">
+                  <h5 class="text-capitalize">Home Insurance Estimate</h5>
+                  <h5 class="text text-danger">${{ priceArr['prices'][0] }} - {{ priceArr['prices'][priceArr['prices'].length - 1] }}</h5>
+                  <h5 class="text text-primary">{{ priceArr['prices'].length }} prices</h5>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group" *ngIf="api_status != -1 && monthlycost != 0">
+                <div class="col-md-2">
+                  <img src="assets/images/family.svg" height="25" class="d-inline-block align-top mr-2" alt="">
+                </div>
+
+                <div class="col-md-10 text-center">
+                  <h5 class="text-capitalize">Consider protecting your family with life insurance. 500,000  can cost as littel as <span class="text text-danger">${{ monthlycost }}</span> per month <br/><a href="{{ ethoslink }}" target="_blank" class="text text-primary">Click to Apply Now</a></h5>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group" *ngIf="api_status != -1 && hippo_premium != 0">
+                <div class="col-md-3">
+                  <img src="assets/images/hippo.png" height="25" class="d-inline-block align-top mr-2" alt="">
+                </div>
+
+                <div class="col-md-9 text-center">
+                  <h5 class="text-capitalize">Need Coverage Now ?</h5>
+                  <h5 class="text text-danger">{{ formatter.format(hippo_premium) }}</h5>
+                  <h5><a href="{{ hippo_link }}" class="text text-primary" target="_blank">Click to Apply Now</a></h5>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group" *ngIf="api_status != -1">
+                <div class="col-md-3">
+                  <img src="assets/images/flooded-house.svg" height="25" class="d-inline-block align-top mr-2" alt="">
+                </div>
+
+                <div class="col-md-9 text-center">
+                  <h5 class="text-capitalize">Flood Data</h5>
+                  <h5 class="text text-danger">{{ neptuneFoodZone }}</h5>
+                  <h5><a href="javascript:void(0);" class="text text-primary">Request a Quote from your Agent</a></h5>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group">
+                <div class="col-md-12">
+                  <h4>Coverages</h4>
+                </div>
+                <div class="col-7 cover_label">Dwelling</div>
+                <div class="col-5 cover_data">Standard</div>
+
+                <div class="col-7 cover_label">Liability</div>
+                <div class="col-5 cover_data">Standard</div>
+
+                <div class="col-7 cover_label">Contents</div>
+                <div class="col-5 cover_data">Standard</div>
+
+                <div class="col-7 cover_label">Other Structure</div>
+                <div class="col-5 cover_data">Standard</div>
+
+                <div class="col-7 cover_label">Water Backup</div>
+                <div class="col-5 cover_data text text-danger">Optional</div>
+
+                <div class="col-7 cover_label">Laitaral Sewer Line</div>
+                <div class="col-5 cover_data text text-danger">Optional</div>
+
+                <div class="col-7 cover_label">Replacement Cost</div>
+                <div class="col-5 cover_data text text-danger">Optional</div>
+
+              </div>
+
+              <div class="row background-secondary form-group input_file bg-primary" id="uploadDocSec" *ngIf="api_status != -1">
+                <input type='file' (change)="docUpload($event)" multiple>
+                 <span><i class="fa fa-plus"></i></span>
+              </div>
+
+            </div>
+          </div> -->
+          <!-- <div class="animated fadeIn">
+            <div id="uploadDocSec">
+              <div class="upload_txt">
+                <p><span><b>Upload Documents -</b></span> Do you have any documents that may help us get you the most accurate proposal ? Upload here.</p>
+              </div>
+              <div class="row background-secondary form-group input_file" >
+                <input type='file' multiple (change)="docUpload($event)">
+                <span><i class="fa fa-plus"></i></span>
+              </div>
+            </div>
+            <div class="qout_wrap">
+              <div class="qote_box">
+                <h3 class="agent_name">Your Agent</h3>
+                <div class="background-secondary form-group">
+                  <div class="d-flex box_head">
+                    <img class="agent_img" width="80" src="assets/agent_images/{{agentInfo.agent_image}}" alt="" (error) ="changeSource($event)" style="width:50px;" *ngIf="agentInfo.agent_image">
+                    <h3 class="agent_title">{{agentInfo.name}}</h3>
+                  </div>
+
+                  <div class="agent_detail">
+                    <h6>{{agentInfo.phone}}</h6>
+                    <h6>{{agentInfo.email}}</h6>
+                    <img class="agent_logo" src="assets/images/agents/{{agentInfo.logo}}" alt="" (error) ="changeSource($event)">
+                  </div>
+                </div>
+              </div>
+              <div class="qote_box" *ngIf="api_status != -1 && agentInfo.ethoslife_api != -1 && monthlycost != 0">
+                <h3 class="life_insure">Life Insurance</h3>
+                <div class="background-secondary form-group">
+                  <div class="d-flex box_head head_img">
+                    <img class="insure_logo" src="assets/images/ethos.png" alt="" (error) ="changeSource($event)">
+                  </div>
+
+                  <div class="detail">
+                    <h3 class="value_data">${{monthlycost}}<sub>/mo</sub></h3>
+                    <a href="{{ ethoslink }}" target="_blank" class="cont_link">continue <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="qout_wrap">
+              <div class="qote_box" *ngIf="api_status != -1 && agentInfo.hippo_api != -1 && hippo_premium != 0">
+                <h3 class="life_insure">Instant Home Quote</h3>
+                <div class="background-secondary form-group">
+                  <div class="d-flex box_head head_img">
+                    <img class="insure_logo" src="assets/images/hippo1.png" alt="" (error) ="changeSource($event)">
+                  </div>
+
+                  <div class="detail">
+                    <h3 class="value_data">{{ formatter.format(hippo_premium) }}</h3>
+                    <a href="{{ hippo_link }}" target="_blank" class="cont_link">continue <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="qote_box" *ngIf="api_status != -1 && agentInfo.neptuneflood_api != -1">
+                <h3 class="life_insure">Flood Data</h3>
+                <div class="background-secondary form-group">
+                  <div class="d-flex box_head head_img">
+                    <img class="insure_logo" src="assets/images/neptune.png" alt="" (error) ="changeSource($event)">
+                  </div>
+                  <div class="detail">
+                    <h5>flood data</h5>
+                    <h3 class="value_data">{{ neptuneFoodZone }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+            <!----new Updated Screen 27_4_2021-->
+            <div class="row justify-content-center">
+              <div class="col-lg-9">
+                <div class="row">
+                  <div class="col-lg-6">
+                     <div class="last_screen_left_div">
+                          <div class="insurance_types_main_div px-2">
+                            
+                            <div class="insurance_types_main_grid" *ngIf="insuranceTypeData.insuarance_type == 'Home'">
+                              <div class="">
+                                <input type="checkbox" name="custom_checkbox" class="insurance_checkbox" value="custom_checkbox" id="insurance_checkbox_home">
+                                <label for="insurance_checkbox_home" class="insurance-label-checkbox"></label>
+                              </div>
+                              <div class="insurance_types_sub_div" (click)="submitInsuaranceType('home')">
+                                  <span class="font-weight-bold font-large">Home</span>
+                                  <img src="../../../assets/images/new_design/home.svg" width="35">
+                              </div>
+                            </div>
+                           
+
+                            <div class="insurance_types_main_grid" *ngIf="insuranceTypeData.insuarance_type == 'Auto'">
+                              <div class="">
+                                  <input type="checkbox" name="custom_checkbox" class="insurance_checkbox" value="custom_checkbox" id="insurance_checkbox_auto">
+                                  <label for="insurance_checkbox_auto" class="insurance-label-checkbox"></label>
+                              </div>
+                              <div class="insurance_types_sub_div " (click)="submitInsuaranceType('auto')">
+                                <span class="font-weight-bold font-large">Auto</span>
+                                <img src="../../../assets/images/new_design/car.svg" width="45">
+                              </div>
+                            </div>
+
+                            <div class="insurance_types_main_grid" *ngIf="insuranceTypeData.insuarance_type == 'Bundle'">
+                               <div class="">
+                                  <input type="checkbox" name="custom_checkbox" class="insurance_checkbox" value="custom_checkbox" id="insurance_checkbox_bundle">
+                                  <label for="insurance_checkbox_bundle" class="insurance-label-checkbox"></label>
+                              </div>
+                              <div class="insurance_types_sub_div" (click)="submitInsuaranceType('bundle')">
+                                <div class="d-flex flex-column">
+                                    <span class="font-weight-bold font-large">Bundle</span>
+                                    <span class="font-weight-bold" style="font-size: 10px;">Save upto 35% by Bundling</span>
+                                </div>
+                                <img src="../../../assets/images/new_design/C+H.svg" width="120">
+                            </div>
+                            </div>
+                          </div>
+                          <div class="last_screen_quote_form mt-3">
+                            <h5 class="font-weight-bold">Have an extra minute?</h5>
+                            <p>Provide some extra details to help us get your the <br>best and most accurate quote!</p>
+
+                            <form [formGroup]="AccurateQuoteForm" (ngSubmit)="sendAccurateQuoteMail()">
+                              <div class="main_dl_div">
+                              <div *ngFor="let item of [].constructor(eightPlusPerson); let i = index"  [ngClass]="eightPlusHiddenDL[i] != '' ? 'd-none':'sub_dl_div'">
+                                <div class="col-lg-12 col-12 pl-0 position-relative" *ngIf="eightPlusHiddenDL[i] == ''">
+                                    <input mdbInput type="text" mdbValidate class="form-control" [placeholder]="eightPlusPersonName[i]+' DL#'" [formControlName]="'DLName'+i">
+                                    <!-- <mdb-error *ngIf="AccurateQuoteForm.get('DLName1').invalid && (AccurateQuoteForm.get('DLName1').dirty || AccurateQuoteForm.get('DLName1').touched)">Please enter propername</mdb-error> -->
+                                </div>
+                              </div>
+                              </div>
+                              <div class="form-group position-relative car_vin_input mb-4" *ngFor="let item of carData; index as i">
+                                  <input mdbInput type="text" mdbValidate class="form-control w-93" (keyup)="checkValidation(i)"  [formControlName]="'CARVIN'+i" [placeholder]="carData[i]['type']+' VIN'">
+                                  <!-- <mdb-error *ngIf="AccurateQuoteForm.get('CAR1VIN').invalid && (AccurateQuoteForm.get('CAR1VIN').dirty || AccurateQuoteForm.get('CAR1VIN').touched)">Please enter car {{ i }} VIN</mdb-error> -->
+                              </div>
+                              <!--<div class="form-group position-relative car_vin_input mb-4">
+                                  <input mdbInput type="text" mdbValidate class="form-control w-93" placeholder="<car 2> VIN" formControlName="CAR2VIN">
+                                  <mdb-error *ngIf="AccurateQuoteForm.get('CAR2VIN').invalid && (AccurateQuoteForm.get('CAR2VIN').dirty || AccurateQuoteForm.get('CAR2VIN').touched)">Please enter car 2 VIN</mdb-error>
+                              </div>
+                              <div class="form-group position-relative car_vin_input mb-4">
+                                  <input mdbInput type="text" mdbValidate class="form-control w-93" placeholder="<car 3> VIN" formControlName="CAR3VIN">
+                                    <mdb-error *ngIf="AccurateQuoteForm.get('CAR3VIN').invalid && (AccurateQuoteForm.get('CAR3VIN').dirty || AccurateQuoteForm.get('CAR3VIN').touched)">Please enter car 3 VIN</mdb-error>
+                              </div> -->
+                              <div class="form-group text-center">
+                                <p class="text text-success" *ngIf="accurateQuoteSuccessMsg">{{accurateQuoteSuccessMsg}}</p>
+                              </div>
+                              <button type="submit" class="text-center text-white pink_btn" style="background-color: #6B6B6B;border: none;margin-top: 13px;" [ngClass]="!isValidform==true ? 'invalid-frm': 'valid-frm' ">Submit</button>
+                            </form>
+                          </div>
+                     </div> 
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="last_screen_right_div">
+                      <h5 class="font-weight-bold">Will you need quotes on any other <br>
+                        lines of buisness?</h5>
+                      <p>Select all that apply</p>
+                      <div class="line_of_business_main_row">
+                        <div class="insurance_types_sub_div flex-column" (click)="updateQuoteForOtherBusiness('Jewelry')" [ngClass]="OtherlineOfBusiness.indexOf('Jewelry') != -1 ? 'active-business':'' ">
+                          <span class="font-weight-bold font-large">jewelry</span>
+                          <img src="../../assets/images/new_design/jwe.svg" class="pt-2" width="40">
+                        </div>
+                        <div class="insurance_types_sub_div flex-column" (click)="updateQuoteForOtherBusiness('Umbrella')" [ngClass]="OtherlineOfBusiness.indexOf('Umbrella') != -1 ? 'active-business':'' ">
+                          <span class="font-weight-bold font-large">umbrella</span>
+                          <img src="../../assets/images/new_design/umbrella.svg" class="pt-2" width="40">
+                        </div>
+                        <div class="insurance_types_sub_div flex-column" (click)="updateQuoteForOtherBusiness('Life')" [ngClass]="OtherlineOfBusiness.indexOf('Life') != -1 ? 'active-business':'' ">
+                          <span class="font-weight-bold font-large">life</span>
+                          <img src="../../assets/images/new_design/FAMILY.svg" class="pt-2" width="40">
+                        </div>
+                      </div>
+                      <div class="form-group text-center">
+                        <p class="text text-success" *ngIf="OtherBusinessSuccessMsg">{{OtherBusinessSuccessMsg}}</p>
+                      </div>
+                      <button type="button" class="text-center text-white pink_btn" style="background-color: #6B6B6B;border: none;margin-top: 13px;" (click)="SubmitQuoteForOtherBusiness()" [ngClass]="OtherlineOfBusiness.length ? 'valid-frm': 'invalid-frm'">Request</button>
+
+                      <div class="custom_logo my-3 my-md-0" *ngIf="agentInfo.logo">
+                        <img class="agent_logo" src="{{agentInfo.logo}}" alt="" (error) ="changeSource($event)" *ngIf="agentInfo.logo">
+                      </div>
+                    </div>
+
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        <!-- Twel Screen -->
+      <!-- End Step 1 -->
+
+      <app-page-eight *ngIf="step==1 && isPage8" (setQuestions)="setQuestions($event)"></app-page-eight>
+
+      <app-page-ten *ngIf="step==1 && isPage10" (setQuestions)="setQuestions($event)"></app-page-ten>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,46 @@
+<div (click)="$event.stopPropagation()" class="dropdown-content" #dropdownContent [ngStyle]="{'top.px': top, 'left.px': left, 'width.px': width}"
+[@dropdownAnimation]="{value: state, params: {startHeight: startHeight, endHeight: endHeight}}" (@dropdownAnimation.done)="onAnimationDone()" (@dropdownAnimation.start)="onAnimationStart()">
+  <div class="filter md-form px-2" *ngIf="filterEnabled" [ngClass]="{'md-outline': outline}">
+    <input
+    type="text"
+    class="search form-control w-100 d-block"
+    #filterInput
+    [attr.autocomplete]="filterAutocomplete ? 'on' : 'off'"
+    [placeholder]="placeholder"
+    (input)="onSingleFilterInput($event)"
+    (keydown)="onSingleFilterKeydown($event)">
+  </div>
+
+  <div class="options" #optionsList>
+    <ul class="select-dropdown" [ngClass]="{'multiple-select-dropdown': multiple}"
+    (wheel)="onOptionsWheel($event)">
+      <li [ngStyle]="{ 'height.px': optionHeight }" *ngIf="multiple && enableSelectAll && this.hasOptionsItems" (click)="onSelectAllClick()">
+        <span class="filtrable" *ngIf="multiple">
+          <input type="checkbox" [checked]="selectAllSelected" class="form-check-input {{customClass}}">
+          <label></label>
+          {{selectAllLabel}}
+        </span>
+      </li>
+      <li *ngFor="let option of optionList.filtered"
+        [ngClass]="{'active': option.highlighted, 'selected': option.selected, 'disabled': option.disabled, 'optgroup': option.group, 'd-flex justify-content-between flex-row-reverse align-items-center': option.icon}"
+        [ngStyle]="{'height.px': optionHeight, 'line-height.px': optionHeight, 'background-color': getOptionStyle(option)['background-color'], 'color': getOptionStyle(option)['color']}"
+        (click)="onOptionClick(option)"
+        (mouseover)="option.hovered = true"
+        (mouseleave)="option.hovered = false">
+        <img class="rounded-circle" [src]="option.icon" *ngIf="option.icon !== ''">
+        <span class="deselect-option" *ngIf="!multiple">{{option.label}}</span>
+        <span class="deselect-option" *ngIf="multiple">
+          <input type="checkbox" [checked]="option.selected" class="form-check-input {{customClass}}" [disabled]="option.disabled">
+          <label></label>
+          {{option.label}}
+        </span>
+      </li>
+      <li *ngIf="!this.hasOptionsItems" class="message disabled" [ngStyle]="{'height.px': optionHeight}">
+        <span>{{notFoundMsg}}</span>
+      </li>
+      <li #customContent class="custom-select-content">
+        <ng-content></ng-content>
+      </li>
+    </ul>
+  </div>
+</div>

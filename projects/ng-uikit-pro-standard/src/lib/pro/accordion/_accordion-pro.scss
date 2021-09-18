@@ -1,0 +1,271 @@
+// Accordion basic
+.md-accordion {
+  .card {
+    overflow: visible;
+    box-shadow: none;
+    border-bottom: 1px solid $grey-lighten-2;
+    border-radius: 0;
+
+    &:first-of-type,
+    &:not(:first-of-type):not(:last-of-type) {
+      border-bottom: 1px solid $grey-lighten-2;
+    }
+
+    .card-header {
+      border-bottom: 0;
+      padding: $accordion-card-header-padding-y $accordion-card-header-padding-x;
+      background: transparent;
+
+      .card-title {
+        font-weight: 400;
+      }
+
+      a {
+        transition: $accordion-link-hover-transition;
+      }
+
+      a:not(.collapsed) {
+        .rotate-icon {
+          transform: $accordion-rotate-icon-transform;
+        }
+      }
+    }
+
+    .fa-angle-down {
+      float: right;
+    }
+
+    .card-body {
+      font-size: $accordion-card-body-font-size;
+      line-height: $accordion-card-body-line-height;
+      font-weight: 300;
+      color: $accordion-card-body-color;
+    }
+  }
+}
+
+// Extended jQ Accordion
+// Accordion extended
+.accordion-gradient-bcg {
+  background: linear-gradient(45deg, rgba(234, 21, 129, 0.6), rgba(10, 23, 187, 0.6) 100%);
+}
+
+.accordion {
+  &.md-accordion {
+    // Font
+    &.accordion-1,
+    &.accordion-2,
+    &.accordion-3,
+    &.accordion-4,
+    &.accordion-5 {
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    // Border
+    &.accordion-1,
+    &.accordion-2,
+    &.accordion-4,
+    &.accordion-5 {
+      .card {
+        border: 0;
+
+        .card-header {
+          border: 0;
+        }
+      }
+    }
+
+    &.accordion-1 {
+      .card {
+        .card-body {
+          line-height: 1.4;
+        }
+      }
+    }
+
+    // With gradient background
+    &.accordion-2 {
+      .card {
+        background-color: transparent;
+
+        .card-body {
+          border: 0;
+          border-radius: 3px;
+        }
+      }
+    }
+
+    // With icons
+    &.accordion-3 {
+      border-radius: 3px;
+
+      .fas,
+      .fab,
+      .far {
+        &.fa-angle-down {
+          margin-top: -10px;
+        }
+      }
+    }
+
+    // With teal cards
+    &.accordion-4 {
+      .card {
+        &:last-of-type {
+          .card-body {
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+          }
+        }
+      }
+    }
+
+    // With photo background
+    &.accordion-5 {
+      .card {
+        background-color: transparent;
+
+        .card-header {
+          background-color: #f44336;
+          transition: 0.3s;
+
+          &:hover {
+            transition: 0.3s;
+            background-color: #455a64;
+          }
+
+          .fas,
+          .fab,
+          .far {
+            background-color: #fff;
+            border-top-left-radius: 3px;
+          }
+        }
+
+        .card-body {
+          border-bottom-right-radius: 3px;
+          border-bottom-left-radius: 3px;
+        }
+      }
+    }
+
+    // With table
+    &.accordion-blocks {
+      .card {
+        margin-bottom: 1.2rem;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+        .card-body {
+          border-top: 1px solid #eee;
+        }
+      }
+    }
+  }
+}
+
+// Angular styles
+// ACCORDION
+.accordion {
+  .waves-effect,
+  .waves-light {
+    z-index: unset;
+  }
+
+  .sb-item-body {
+    transition: 0.5s;
+    overflow: hidden;
+  }
+
+  .card {
+    border-bottom: 1px solid #eee;
+    box-shadow: none;
+
+    .card-header {
+      color: #0275d8;
+      padding: 1rem 1.5rem;
+      background: transparent;
+      border-bottom: 0;
+      cursor: pointer;
+
+      a {
+        .rotate-icon {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .fa-angle-down {
+      float: right;
+    }
+
+    .card-body {
+      padding-top: 0.25rem;
+    }
+
+    &.is-collapsed {
+      .card-header {
+        a {
+          .rotate-icon {
+            transform: rotate(0deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Collapsible body
+.collapsible-body {
+  display: none;
+}
+
+.card {
+  position: relative;
+
+  .card-body {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+  }
+}
+
+mdb-accordion-item > .card,
+mdb-item > .card {
+  border: 0;
+}
+
+.mdb-accordion-indicator.rotate-icon {
+  transition: all 150ms ease-in 0s;
+}
+
+.item-disabled,
+.item-disabled a > h5 {
+  color: #bdbdbd !important;
+  cursor: default !important;
+}
+
+mdb-accordion-item-head {
+  outline: none !important;
+
+  & .card-header a {
+    color: inherit;
+  }
+}
+
+.mdb-accordion-indicator {
+  position: absolute;
+  right: 0;
+  // fix(accordion cards): Resolved problem with wrongly aligned accordion indicator icon
+  margin-right: 24px;
+  top: 22px;
+  &::after {
+    content: '';
+    display: block;
+    border-style: solid;
+    border-width: 0 3px 3px 0;
+    padding: 3.5px;
+    transform: rotate(45deg);
+  }
+}

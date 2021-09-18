@@ -1,0 +1,16 @@
+export let data = [
+  {value: 1, text: 'GEICO'},
+  {value: 2, text: 'State Farm'},
+  {value: 3, text: 'Allstate'},
+  {value: 4, text: 'Progressive'},
+  {value: 5, text: 'Nationwide'},
+  {value: 6, text: 'NJM'},
+  {value: 7, text: 'Travelers'},
+  {value: 8, text: 'Plymouth'},
+  {value: 9, text: 'Chubb'},
+  {value: 10, text: 'USAA'},
+  {value: 11, text: 'Liberty'},
+  {value: 12, text: 'Farmers'},
+  {value: 13, text: 'Other'},
+  {value: 14, text: 'none'},
+];

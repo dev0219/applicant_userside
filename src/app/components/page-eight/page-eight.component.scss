@@ -1,0 +1,106 @@
+@import "../../../variables";
+
+.personal_articles, .haven_life, .umbrella_policy {
+  padding-top: 25px;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 25px;
+
+  .row {
+    background-color: #F4F4F4;
+    border-radius: 10px;
+    min-height: 100px;
+    padding-bottom: 40px;
+    @media screen and (max-width: $tablet - 1px) {
+      width: calc(100%) !important;
+      margin-left: 0px !important;
+    }
+
+    .col {
+      .p-2.text-center.font-small {
+        height: 100px;
+      }
+    }
+
+    .col-md-8 {
+      p {
+        font-size: 18px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+.form-check.text-center {
+  padding-left: 0px;
+}
+
+.form-check-input[type='radio']:checked + label:before,
+label.btn input[type='radio']:checked + label:before {
+  border: 2px solid lightseagreen;
+}
+
+.form-check-input[type='radio']:checked + label:after,
+label.btn input[type='radio']:checked + label:after {
+  -webkit-transform: scale(0.62);
+  transform: scale(0.62);
+}
+
+.form-check-input[type='radio']:checked + label:after,
+.form-check-input[type='radio'].with-gap:checked + label:after,
+label.btn input[type='radio']:checked + label:after,
+label.btn input[type='radio'].with-gap:checked + label:after {
+  background-color: lightseagreen;
+}
+
+.form-check-input[type='radio']:not(:checked) + label:before,
+.form-check-input[type='radio']:not(:checked) + label:after,
+label.btn input[type='radio']:not(:checked) + label:before,
+label.btn input[type='radio']:not(:checked) + label:after {
+  border: 2px solid lightseagreen;
+}
+
+.form-check-input[type='radio'] + label:before,
+.form-check-input[type='radio'] + label:after,
+label.btn input[type='radio'] + label:before,
+label.btn input[type='radio'] + label:after {
+  width: 25px;
+  height: 25px;
+}
+
+.page-eight-divider {
+  width: 5px;
+  background: white;
+  margin-top: 66px;
+}
+
+@media screen and (max-width: $tablet - 1px) {
+  .personal_articles, .haven_life, .umbrella_policy {
+    img {
+      margin-top: 20px;
+    }
+  }
+  .property.next-btn-div {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+.haven_life {
+  .col {
+    .align-items-center {
+      height: 200px;
+
+      .font-small {
+        height: 75px;
+      }
+    }
+  }
+}
+
+.umbrella_policy {
+  .mat-divider-vertical{
+    margin-top: 20px !important;
+  }
+}

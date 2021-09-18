@@ -1,0 +1,37 @@
+You have to edit three files "app.js, src/app/app-routing.module.ts, config.js".
+
+If you want to add this link "/zo" (AGENT_EMAIL: larenzo@guardha.com, AGENT_NAME: Larenzo Davenport, LINK_URL:'/zo');
+  
+You should add some code lines as following:
+
+1. app.js
+
+	app.use('/tj', express.static(path.join(__dirname, 'dist/mdb-angular-free')));
+	app.use('/trey', express.static(path.join(__dirname, 'dist/mdb-angular-free')));
+	app.use('/gola', express.static(path.join(__dirname, 'dist/mdb-angular-free')));
+	app.use('/fox', express.static(path.join(__dirname, 'dist/mdb-angular-free')));
+	```````````````````````````````````````````````````````````````````````````````````
+	app.use(LINK_URL, express.static(path.join(__dirname, 'dist/mdb-angular-free')));			
+
+	````````````````````````````````````````````````````````````````````````````````````
+2. src/app/app-routing.module.ts
+	const routes: Routes = [
+  		{ path: 'tc', component: HomeComponent },
+  		{ path: 'jason', component: HomeComponent },
+  		{ path: 'bill', component: HomeComponent },
+	````````````````````````````````````````````````````````````
+  		{ path: LINK_URL, component: HomeComponent },
+	`````````````````````````````````````````````````````````````
+	];
+
+3. config.js
+	
+	agentsInfo: {
+      		'guard': {email: 'info@guardha.com', name: 'Guard Agency'},
+      		'pete': {email: 'peter.hughes3@guardha.com', name: 'Peter Hughes - Guard'},
+      		'safeguard': {email: 'info@safeguardha.com', name: 'Safeguard Agency'},
+	`````````````````````````````````````````````````````````
+		'zo': {email: AGENT_EMAIL, name: AGENT_NAME},
+	`````````````````````````````````````````````````````````
+	}
+

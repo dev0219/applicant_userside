@@ -1,0 +1,29 @@
+#quote_upload_file {
+    display: none;
+}
+.custom-file-upload {
+    cursor: pointer;
+    margin: 0px 17px;
+    background: #5d5d5d;
+    color: white;
+    border-radius: 7px;
+    width: 85%;
+    padding: 17px;
+    font-size: large;
+    font-weight: bold;
+}
+.uploaded_file_list
+{
+    margin-top: 110px;
+    padding: 0px 0px 0px 40px;
+    list-style-position: inside;
+    text-align: left;
+}
+.uploaded_file_list li{
+    width: 75%;
+}
+.uploaded_file_list li i
+{
+    float: right;
+    cursor: pointer;
+}

@@ -1,0 +1,177 @@
+<soapenv:Envelope xmlns:atl="http://schemas.datacontract.org/2004/07/Atlas.Web.Data.Objects"
+                  xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+                  xmlns:ns="http://schemas.datacontract.org/2004/07/" xmlns:tem="http://tempuri.org/"
+                  xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <tem:upcicProcessQuote>
+      <tem:q>
+        <ns:ACHTransactionId>0</ns:ACHTransactionId>
+        <ns:AOPDeductible>1000</ns:AOPDeductible>
+        <ns:AcknowledgeBinding>false</ns:AcknowledgeBinding>
+        <ns:AdditionalInterests>
+          {% if personData.length>1 %}
+          <ns:Contact>
+            <ns:AddressLine1>{{street}}</ns:AddressLine1>
+            <ns:BusinessEntity>false</ns:BusinessEntity>
+            <ns:BusinessName></ns:BusinessName>
+            <ns:City>{{city}}</ns:City>
+            <ns:ContactTypeId>4</ns:ContactTypeId>
+            <ns:Country>US</ns:Country>
+            <ns:DateOfBirth>{{personData[1]['birthday']}}</ns:DateOfBirth>
+            <!-- <ns:Email>{{personData[1]['email']}}</ns:Email> -->
+            <ns:FirstName>{{personData[1]['first_name']}}</ns:FirstName>
+            <ns:Id>{00000000-0000-0000-0000-000000000000}</ns:Id>
+            <ns:LastName>{{personData[1]['last_name']}}</ns:LastName>
+            <ns:ReferenceNumber>0</ns:ReferenceNumber>
+            <ns:State>{{state}}</ns:State>
+            <ns:ZipCode>{{postal_code}}</ns:ZipCode>
+          </ns:Contact>
+          {% endif %}
+        </ns:AdditionalInterests>
+        <ns:AddressLine1>{{street}}</ns:AddressLine1>
+        <ns:Agriculture>false</ns:Agriculture>
+        <ns:AnyAdditionalInterests>{% if personData.length>1 %}true{% endif %}{% if personData.length==1 %}false{% endif
+          %}
+        </ns:AnyAdditionalInterests>
+        <ns:AnyLosses>false</ns:AnyLosses>
+        <ns:AnyScheduledItems>true</ns:AnyScheduledItems>
+        <ns:Applicants>
+          <ns:Contact>
+            <ns:AddressLine1>{{street}}</ns:AddressLine1>
+            <ns:BusinessEntity>false</ns:BusinessEntity>
+            <ns:BusinessName></ns:BusinessName>
+            <ns:City>{{city}}</ns:City>
+            <ns:ContactTypeId>4</ns:ContactTypeId>
+            <ns:Country>US</ns:Country>
+            <ns:DateOfBirth>{{birthday}}</ns:DateOfBirth>
+            <!-- <ns:Email>{{email}}</ns:Email> -->
+            <ns:FirstName>{{firstname}}</ns:FirstName>
+            <ns:Id>{00000000-0000-0000-0000-000000000000}</ns:Id>
+            <ns:LastName>{{lastname}}</ns:LastName>
+            <!-- <ns:PhoneNumber>{{phone}}</ns:PhoneNumber> -->
+            <ns:ReferenceNumber>0</ns:ReferenceNumber>
+            <ns:State>{{state}}</ns:State>
+            <ns:ZipCode>{{postal_code}}</ns:ZipCode>
+          </ns:Contact>
+        </ns:Applicants>
+        <ns:Arson>false</ns:Arson>
+        <ns:Bankruptcy>false</ns:Bankruptcy>
+        <ns:BurglarAlarm>Local</ns:BurglarAlarm>
+        <ns:Business>false</ns:Business>
+        <ns:CarrierId>1</ns:CarrierId>
+        <ns:CentralAirConditioning>true</ns:CentralAirConditioning>
+        <ns:CheckingAccountHolderName>?</ns:CheckingAccountHolderName>
+        <ns:CheckingAccountNumber>?</ns:CheckingAccountNumber>
+        <ns:CheckingRoutingNumber>?</ns:CheckingRoutingNumber>
+        <ns:City>{{city}}</ns:City>
+        <ns:ConfirmAcknowledgeBinding>false</ns:ConfirmAcknowledgeBinding>
+        <!-- <ns:ConfirmEmail>{{email}}</ns:ConfirmEmail> -->
+        {% if mode=='1' %}<ns:CoverageA>{{dwell_coverage}}</ns:CoverageA>{% endif %}{% if mode=='0' %}<ns:CoverageA
+        xsi:nil="true"/>{% endif %}
+        <ns:CoverageB xsi:nil="true"/>
+        {% if mode=='1' %}<ns:CoverageC>20000</ns:CoverageC>{% endif %}{% if mode=='0' %}<ns:CoverageC xsi:nil="true"/>
+        {% endif %}
+        {% if mode=='1' %}<ns:CoverageD>8000</ns:CoverageD>{% endif %}{% if mode=='0' %}<ns:CoverageD xsi:nil="true"/>{%
+        endif %}
+        <ns:CoverageE>300000</ns:CoverageE>
+        <ns:CoverageF>3000</ns:CoverageF>
+        <ns:CurrentPolicyExpiration>{{effective_date}}</ns:CurrentPolicyExpiration>
+        <ns:CurrentlyInsured>true</ns:CurrentlyInsured>
+        <ns:DateOfPurchaseOrLease>{{effective_date}}</ns:DateOfPurchaseOrLease>
+        <ns:DayCare>false</ns:DayCare>
+        <ns:DogTypes>
+        </ns:DogTypes>
+        <ns:Dogs>false</ns:Dogs>
+        <ns:EffectiveDate>{{effective_date}}</ns:EffectiveDate>
+        <ns:ElectricalUpdateYear>{{electric_year}}</ns:ElectricalUpdateYear>
+        <!-- <ns:Email>{{email}}</ns:Email> -->
+        <ns:Felony>false</ns:Felony>
+        <ns:FireAlarm>Local</ns:FireAlarm>
+        <ns:FirstName>{{firstname}}</ns:FirstName>
+        <ns:Fuses>false</ns:Fuses>
+        <ns:Have1802>true</ns:Have1802>
+        <ns:HeatingUpdateYear>{{ac_year}}</ns:HeatingUpdateYear>
+        <ns:HurricaneDeductible>
+          {% if mode=='1' %}1000{% endif %}{% if mode=='0' %}2{% endif %}
+        </ns:HurricaneDeductible>
+        <ns:Id>0</ns:Id>
+        <ns:InsuranceFraud>false</ns:InsuranceFraud>
+        <ns:Judgements>false</ns:Judgements>
+        <ns:KnobTube>false</ns:KnobTube>
+        <ns:LastName>{{lastname}}</ns:LastName>
+        <ns:LawsuitInsurance>false</ns:LawsuitInsurance>
+        <ns:LivingArea>{{sqft}}</ns:LivingArea>
+        <ns:LivingUnits>1</ns:LivingUnits>
+        <ns:Locked>false</ns:Locked>
+        <ns:Losses>
+
+        </ns:Losses>
+        <ns:MobileOrManufactured>false</ns:MobileOrManufactured>
+        <ns:MonthsUnoccupied>
+        </ns:MonthsUnoccupied>
+        <ns:NumberOfStories>1.0</ns:NumberOfStories>
+        <ns:OccupiedBy>Owner</ns:OccupiedBy>
+        <ns:OtherCoverages>
+          <ns:OtherCoverage>
+            <ns:Fields>
+              <ns:OtherCoverageField>
+                <ns:Id>4</ns:Id>
+                <ns:Value>Personal Property Replacement Cost</ns:Value>
+              </ns:OtherCoverageField>
+            </ns:Fields>
+            <ns:Id>4</ns:Id>
+            <ns:Included>true</ns:Included>
+          </ns:OtherCoverage>
+        </ns:OtherCoverages>
+        <ns:PaymentPlan>0</ns:PaymentPlan>
+        <ns:PlumbingUpdateYear>{{plumbing_year}}</ns:PlumbingUpdateYear>
+        <ns:PolicyNumber xsi:nil="true"/>
+        <ns:PolyButylene>false</ns:PolyButylene>
+        <ns:PoolFence>false</ns:PoolFence>
+        <ns:PortableHeat>false</ns:PortableHeat>
+        <ns:Premium xsi:nil="true"/>
+        <ns:ProductFamily>{% if mode=='1' %}Condo{% endif %}{% if mode=='0' %}Homeowners{% endif %}</ns:ProductFamily>
+        <ns:ProductId>1</ns:ProductId>
+        <ns:ProtectionClass>0</ns:ProtectionClass>
+        <ns:ReplacementCost xsi:nil="true"/>
+        <ns:RiskData>
+        </ns:RiskData>
+        <ns:RoofShape>{{roofShapeType}}</ns:RoofShape>
+        <ns:RoofingMaterial>{{roof_type}}</ns:RoofingMaterial>
+        <ns:RoofingUpdateYear>{{roof_year}}</ns:RoofingUpdateYear>
+        <ns:ScheduleInspection>false</ns:ScheduleInspection>
+        <ns:ScheduledItems>
+
+        </ns:ScheduledItems>
+        <ns:Service100Amp>false</ns:Service100Amp>
+        <ns:Sprinklers>None</ns:Sprinklers>
+        <ns:StateId>{{state_id}}</ns:StateId>
+        <ns:StyleOfHome>Dwelling</ns:StyleOfHome>
+        <ns:SwimmingPool>false</ns:SwimmingPool>
+        <ns:Trustee>false</ns:Trustee>
+        <ns:TypeOfConstruction>{{construction_type}}</ns:TypeOfConstruction>
+        <ns:TypeOfFoundation>{{foundation_type}}</ns:TypeOfFoundation>
+        <ns:TypeOfHeating>Electric</ns:TypeOfHeating>
+        <ns:TypeOfOccupancy>Primary</ns:TypeOfOccupancy>
+        <ns:UnitFloor>1</ns:UnitFloor>
+        <ns:WPDFactor>211111111</ns:WPDFactor>
+        <ns:WithWind>true</ns:WithWind>
+        <ns:Within1000ftOfFireHydrant>true</ns:Within1000ftOfFireHydrant>
+        <ns:YearBuilt>{{year_built}}</ns:YearBuilt>
+        <ns:ZipCode>{{postal_code}}</ns:ZipCode>
+      </tem:q>
+      <tem:properties>
+        <arr:string>?</arr:string>
+      </tem:properties>
+      <tem:t>
+        <ns:IP>{{tokenData['IP']}}</ns:IP>
+        <ns:Message></ns:Message>
+        <ns:TokenGuid>{{tokenData['TokenGuid']}}</ns:TokenGuid>
+        <ns:Username>{{tokenData['Username']}}</ns:Username>
+        <ns:Version>{{tokenData['Version']}}</ns:Version>
+      </tem:t>
+    </tem:upcicProcessQuote>
+  </soapenv:Body>
+</soapenv:Envelope>

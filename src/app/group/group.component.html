@@ -1,0 +1,66 @@
+<!-- Sidebar navigation -->
+<mdb-side-nav #sidenav [fixed]="true">
+  <links>
+    <!-- Side navigation links -->
+    <mdb-navbar-brand>
+      <li>
+        <div class="logo-wrapper waves-light" style="margin-top: 150px !important;">
+          <h3 class="font-weight-bold text-dark" style="padding-left: 20px !important;">Groups
+            <button type="button" mdbBtn color="white" size="sm" mdbWavesEffect class="mx-auto" (click)="createNew();"><i
+              class="fa fa-plus">
+              &nbsp;new</i></button></h3>
+        </div>
+      </li>
+      <!--/. Logo -->
+    </mdb-navbar-brand>
+    <li>
+      <ul class="collapsible collapsible-accordion">
+        <mdb-accordion [multiple]="false" aria-multiselectable="false">
+          <!-- Simple link -->
+          <mdb-accordion-item class="no-collase"
+                              *ngFor="let data of groups" (click)="editGroup(data._id)">
+            <mdb-accordion-item-head mdbWavesEffect>
+              <span class="text-dark font-weight-bolder" style="font-size: 1rem">
+                {{data.name}}</span>
+            </mdb-accordion-item-head>
+            <mdb-accordion-item-body></mdb-accordion-item-body>
+          </mdb-accordion-item>
+        </mdb-accordion>
+      </ul>
+    </li>
+    <!--/. Side navigation links -->
+  </links>
+  <div class="sidenav-bg mask-strong"></div>
+</mdb-side-nav>
+<div class="content col-md-8">
+  <h1 class="font-weight-bolder h1-responsive" style="margin-top: 50px; margin-bottom: 50px;">
+    <img [src]="'./uploads/'+loggedUserData['profilePic']" height="70"
+         style="margin-left: 30px;margin-right: 30px;"/>{{loggedUserData['label']}}</h1>
+  <div class="row col-md-9 col-10 offset-1 offset-md-1">
+    <h6 class="col-md-12">Name your group</h6>
+    <input type="text" class="form-control col-md-7 col-12  form-control-lg" [(ngModel)]="group_title"/>
+    <div class="col-md-5 col-12 actionButtons">
+      <button type="button" size="md" (click)="save()" style="margin-top: 0px;" mdbBtn color="default">
+        <mdb-icon fas icon="save"></mdb-icon>
+      </button>
+
+      <button mdbBtn size="md" color="danger" style="margin-top: 0px" *ngIf="edittedGroup[0]!=undefined"
+              (click)="deleteGroup(edittedGroup[0]['_id'])">
+        <mdb-icon fas icon="trash"></mdb-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row col-md-4 col-10 offset-1 offset-md-1 lastRow">
+    <h3 class="text font-weight-bold col-md-12" *ngIf="edittedGroup.length>0"
+        style="margin-top: 25px;">{{edittedGroup[0]['name']}}</h3>
+    <div class="linkGroup">
+      <h6>Select who you see in the group</h6>
+      <div class="col-md-12" *ngFor="let data of linkdata">
+        <button type="button" size="md" mdbBtn
+                (click)="data[0]['selected']=!data[0]['selected']"
+                [ngClass]="data[0]['selected']==true?'green':'btn-light'">{{data[0]['label']}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button mdbBtn type="button" color="mdb-color" size="md" class="showDashboard" *ngIf="isMobile" (click)="showDashboard()" mdbWavesEffect><mdb-icon fas icon="toggle-on"></mdb-icon></button>

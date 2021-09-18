@@ -1,0 +1,111 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div id="nav" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/pricing">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="isSubMenuClick = isSubMenuClick == true ? false : true">
+          For Agents
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="isSubMenuClick == true">
+          <a class="dropdown-item" routerLink="/about">Individuals</a>
+					<a class="dropdown-item" routerLink="/sales-teams">Sales Teams</a>   
+					<a class="dropdown-item" routerLink="/campaigns">Campaigns</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <!-- <a [routerLink]="['/signin']" class="btn btn-secondary my-2 my-sm-0 mr-3" id="call-button" type="info">Login</a> -->
+      <a blank target="_blank" href="https://apply.insure/f/demo" class="btn btn-warning my-2 my-sm-0" id="demo1-button" type="warning">demo</a>
+      <a [routerLink]="['/signup']" class="btn btn-secondary my-2 my-sm-0" id="call-button" type="info">sign up</a>
+    </form>
+  </div>
+</nav>
+<div class="text-center">
+  <p id="jumbo-text">Pricing </p>
+  <a [routerLink]="['/signup']">
+    <button type="button" class="btn btn-primary" id="signup">Sign Up</button>
+  </a>
+  <br/>
+  <i>
+    <p id="subtext">try free for 7 days</p>
+  </i>
+  <br/><br/>
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div id="price-div"  class="col-lg-4">
+        <b>Individual</b>
+        <br><br>
+        <h2>$25 / mo</h2>
+        <hr>1 User
+        <hr> Custom Questions
+        <hr>API connecting
+      </div>   
+    
+      <div id="price-div" class="col-lg-4">
+        <b>Team</b>
+        <br><br>
+        <h2>$20 / mo</h2>
+        <hr>$10 per additional user
+        <hr> Custom Questions
+        <hr>API connecting
+        <hr>Multiple User, Multiple Links
+      </div>
+      
+      <div id="price-div" class="col-lg-4">
+        <b>Marketing Campaigns</b>
+        <br><br>
+        <h2>$25 / mo</h2>
+        <hr>$5 per additional source link
+        <hr> Custom Questions
+        <hr>API connecting
+        <hr>1 User, Multiple Links
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div id="info" class="col-lg-4">
+      <h3><b>Can I customize my app?</b></h3>
+      <br>
+      Yes, you can customize your app. You can add custom questions to the full and short app based on your organization. You can also change the email sent to users upon completing the app.
+    </div>   
+      
+    <div id="info" class="col-lg-4">
+      <h3> <b>What is the difference between the full app and short app?</b></h3>
+      ProQuote offers two base applications sets. The short app includes the basics an advisor needs to get a client a quote. It is short so the user has a very high % of completing it.
+      The full app will include more in-depth questions so your advisors will have more detailed information while quoting. 
+    </div>      
+
+    <div id="info" class="col-lg-4">
+      <h3><b>How is my prospect's info delivered to me?</b></h3>
+      <br>
+      Your client's info will be emailed to you instantly. We can also use API's to connect it to popular 3rd party apps!
+    </div>  
+  </div>  
+
+  <div class="d-flex justify-content-center">
+    <div id="info" class="col-lg-4">
+      <h3> <b>How are Sales Teams using our app?</b></h3>
+      <br>
+      Small and large sales teams are using our apps to bring a seemless info gathering process to their organization. Organizations also want the ability to see what their agents are doing.        
+    </div>   
+    
+    <div id="info" class="col-lg-4">
+      <h3><b>What do prospective leads think?</b></h3>
+      <br>
+      The modern consumer wants their agent to use technology to improve their experience. They like that its quick, visually appealing, secure, and separate from an agency website.
+    </div>  
+  </div>    
+</div>    

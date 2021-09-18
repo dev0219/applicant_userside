@@ -1,0 +1,20 @@
+<div
+  class="card-header {{ customClass }}"
+  [ngClass]="{ 'item-disabled': isDisabled }"
+  (click)="toggleClick($event)"
+  [id]="id"
+>
+  <a
+    role="button"
+    href="javascript:;"
+    [attr.aria-expanded]="ariaExpanded"
+    [attr.aria-controls]="ariaControls"
+  >
+    <h5 class="mb-0">
+      <span class="">
+        <ng-content></ng-content>
+      </span>
+      <i *ngIf="indicator" class="mdb-accordion-indicator rotate-icon" aria-hidden="true"></i>
+    </h5>
+  </a>
+</div>

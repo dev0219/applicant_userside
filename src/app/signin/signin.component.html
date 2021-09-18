@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false" (click)="isMobileClick = isMobileClick == true ? false : true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div id="nav" class="collapse navbar-collapse" *ngIf="isMobileClick != false">
+      <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/pricing">Pricing</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="isSubMenuClick = isSubMenuClick == true ? false : true">
+            For Agents
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="isSubMenuClick == true">
+            <a class="dropdown-item" routerLink="/about">Individuals</a>
+            <a class="dropdown-item" routerLink="/sales-teams">Sales Teams</a>
+            <a class="dropdown-item" routerLink="/campaigns">Campaigns</a>
+          </div>
+        </li>
+      </ul>
+      <div class="text-right">
+        <!-- <a class="btn btn-secondary my-2 my-sm-0 mr-3 call-button" [routerLink]="['/signin']">Login</a> -->
+        <a blank target="_blank" href="https://apply.insure/f/demo" class="btn btn-warning my-2 my-sm-0" id="demo1-button" type="warning">demo</a>
+        <a class="btn btn-secondary my-2 my-sm-0 call-button" [routerLink]="['/signup']">Signup</a>
+      </div>
+    </div>
+  </nav>
+  <div class="text-center">
+    <p id="jumbo-text" class="mb-0">Welcome</p>
+    <h5 class="font-weight-bold">Log in to your account.</h5>
+    <br><br>
+    <div class="container">
+  
+      <div class="d-flex justify-content-center">
+        <div class="col-lg-4 login_main_div">
+          <form [formGroup]="signInForm" (ngSubmit)="signinSubmit(signInForm.value)" class="signup_form">
+           
+            <div class="form-group validation-center">
+                <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username"  [(ngModel)]="username" mdbValidate required [ngClass]="{ 'is-invalid': submitted && signInForm.controls.username.errors }">
+               
+            </div>
+
+            <div class="form-group validation-center">
+                <input type="password" class="form-control" id="password" placeholder="password" formControlName="password"  [(ngModel)]="password" mdbValidate required [ngClass]="{ 'is-invalid': submitted && signInForm.controls.password.errors }">
+               
+            </div>
+           
+            <button type="submit" class="btn-lg pink_btn" [disabled]="loading">Log in</button>
+
+            <div class="text-center pt-5">
+                <a href="" class="forgot_pswd_link">Forgot your password?</a>
+               
+            </div>
+            
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  

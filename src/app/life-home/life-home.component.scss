@@ -1,0 +1,804 @@
+.container {
+  .app-loader {
+    margin-left: 40px !important;
+    margin-top: 12px;
+    float: left !important;
+  }
+
+  .stepper-horizontal li:hover {
+    background-color: rgba(0, 0, 0, 0) !important;
+  }
+
+  .md-form input[type=number]:focus:not([readonly]) {
+    box-shadow: 0 1px 0 0 transparent !important;
+  }
+
+  .activeCircle {
+    background-color: #fff !important;
+    border: solid 2px #4285f4 !important;
+    color: #4285f4 !important;
+  }
+
+  .inactiveCircle {
+    background-color: #fff !important;
+    color: #8b878a !important;
+    border: solid 2px #8b878a !important;
+  }
+
+  .preDiv {
+    margin-top: 40px;
+
+    .pictureBoard {
+      margin: 0 auto;
+    }
+
+    .agentImageDiv {
+      margin: 0 auto;
+    }
+
+    .quoteTitle {
+      font-weight: 900;
+      font-size: 55px;
+    }
+
+    .quoteButton {
+      width: 50%;
+      margin-left: 10%;
+    }
+
+    .benefitWord {
+      font-weight: 900 !important;
+    }
+
+  }
+
+  .specificForm {
+    label, mdb-checkbox {
+      float: left;
+    }
+
+    textarea {
+      height: 200px;
+    }
+  }
+
+  .notSpecificPage {
+    margin-bottom: 50px;
+
+    .pageHeader {
+
+      .inputAddressMD {
+        border: solid 3px #EAEAEA !important;
+        text-indent: 15px;
+        border-radius: 10px;
+        background-color: white;
+      }
+
+      .inputManualField {
+
+        border: solid 3px #EAEAEA !important;
+        text-indent: 15px;
+        border-radius: 10px;
+        background-color: white;
+      }
+    }
+
+    .row {
+      .col-md-12 {
+        h1 {
+          border-bottom: dashed 1px #cecece;
+          padding-bottom: 30px;
+        }
+
+        @media screen and (max-width: 1024px) {
+          mdb-badge {
+            display: block !important;
+            height: 30px !important;
+            margin-top: 10px !important;
+            min-width: 150px !important;
+          }
+        }
+      }
+    }
+
+    .switchArea {
+      padding-top: 8px;
+      display: contents;
+      margin-left: 80%;
+
+      a {
+        padding: 8px;
+        text-decoration: underline;
+      }
+    }
+
+    form.personForm {
+      padding-top: 50px;
+      padding-bottom: 20px;;
+      border-bottom: dashed 1px #cecece;
+
+      .userFormGroup {
+        button[type=submit] {
+          padding: 10px 12px;
+          margin-left: 0;
+        }
+      }
+    }
+
+    div.insuranceForm {
+      margin-top: 30px;
+      margin-bottom: 20px;
+
+      .carFormGroup {
+        .carForm {
+          margin-bottom: 0px;
+        }
+      }
+    }
+
+    div.terms {
+      padding-top: 30px;
+      border-top: dashed 1px #cecece;
+      margin-bottom: 60px;
+
+      button {
+        margin-left: 0px !important;
+      }
+    }
+
+    div.pricing {
+      @media screen and (max-width: 1024px) {
+        .form-group:first-of-type {
+          .col-md-2 img {
+            margin-top: 10%;
+            width: 40%;
+            margin-left: 30%;
+          }
+
+          .col-md-6 {
+            margin-top: 10%;
+            margin-left: 10%;
+          }
+        }
+      }
+
+      mdb-card {
+        max-width: 20rem;
+        margin: 0 auto !important;
+        margin-top: 30px !important;
+      }
+
+      mdb-card-header.good {
+        background-color: #ffbb11;
+      }
+
+      mdb-card-header.enhanced {
+        background-color: #4285f4;
+      }
+
+      mdb-card-header.life {
+        background-color: #f73345 !important;
+
+        .getMoreInfoBtn {
+          margin-top: 19px;
+        }
+      }
+    }
+  }
+}
+
+
+.md-progress {
+  height: 20px;
+  margin-top: 20px !important;
+  margin: 0 auto;
+}
+
+mdb-card-body {
+  min-height: 400px;
+}
+
+.dropdown-item.active {
+  background-color: #ce0012 !important;
+}
+
+.border-light {
+  background-color: white;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.topImgGroup {
+  .topImage {
+    padding-right: 2.5px;
+    padding-left: 2.5px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+.dropdown-toggle, .getMoreInfoBtn {
+  width: 85% !important;
+  margin-left: 7.5% !important;
+}
+
+.dropdown-menu {
+  width: 80%;
+  margin-left: 7.5%;
+}
+
+.squareFeetTag {
+  padding: 8px;
+  width: 105px;
+  height: 20px;
+  background-color: orangered;
+  color: white;
+  border-radius: 10px;
+  font-size: 12px;
+  margin-right: 10px;
+  display: inline;
+}
+
+.userFormGroup .col-form-label {
+  color: lightgray !important;
+}
+
+.userFormGroup .btn.btn-sm, .carFormGroup .btn.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.64rem;
+  background: lightgray;
+  color: #3d3d3d;
+}
+
+.col {
+  margin-top: 20px;
+}
+
+form.specificForm input, form.specificForm textarea {
+  background-color: #F3F761;
+}
+
+.modal-dialog {
+  min-width: 442px;
+}
+
+.mobileStepper {
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 32px !important;
+  padding-top: 40px !important;
+}
+
+/*
+  Insurance Type select Block
+*/
+.select_btn_block {
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  .col-md-3 {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .select_insurance {
+      background-color: #E6E6E6;
+      border-radius: 15px;
+      //padding-top: 10%;
+      //padding-bottom: 10%;
+      cursor: pointer;
+      height: 100%;
+      img {
+        width: 70%;
+        margin-left: 15%;
+      }
+      h5{
+        margin-top: -10px;
+      }
+    }
+
+    .select_insurance:hover {
+      box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+.form-row.secure {
+  text-align: center;
+}
+
+/*Google Places API*/
+.md-form {
+  .row {
+    .google-places-img {
+      width: 25px;
+      height: 25px;
+      margin-top: 15px;
+    }
+  }
+}
+
+
+#mtsmap{
+  width: 150px;
+  height: 150px;
+  background-color: bisque;
+  border-radius: 50%;
+  margin: 0 auto;
+  z-index: 999;
+}
+#mtsmap > div{border-radius: 50%;}
+
+.row.top_progress {
+  display: none;
+}
+.md-form{
+  input{
+    background: #f2f2f2;
+    border-radius: 5px;
+    padding: 10px 15px;
+    line-height: 24px;
+    border: 0;
+  }
+  &.personDataForm{
+    width: 70%;
+    margin: 0 auto;
+    input{
+      width: 85%;
+      @media screen and (max-width: 1200px) {
+        width: 80%;
+      }
+    }
+    &.life-person-form{
+      width: 80%;
+      @media screen and (max-width: 767px) {
+        width: 100%;
+      }
+      input{
+        width: 80%;
+        @media screen and (max-width: 1200px) {
+          width: 70%;
+        }
+      }
+    }
+    .btn-warning{
+      color: #000;
+      background: #fbb03b !important;
+      border-radius: 5px;
+    }
+    .close_icon{
+      position: absolute;
+      right: -20px;
+      @media screen and (max-width: 767px) {
+        right: -10px;
+      }
+    }
+    .sp_coment{
+      textarea{
+        background: #f2f2f2;
+        border: none;
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 5px;
+        padding: 10px;
+        resize: none;
+      }
+    }
+    .background-secondary {
+      background: #f2f2f2;
+      width: 80%;
+      margin: 0px auto 30px;
+      padding: 10px 0;
+      &.input_file {
+        padding:0;
+        position: relative;
+      }
+      @media screen and (max-width: 767px) {
+        width: 100%;
+      }
+      h6.agent_name,h5,h4{
+          font-weight: 500;
+          color: #4c4c4c;
+      }
+      h6{
+        font-weight: 600;
+        word-break: break-all;
+      }
+      .text-primary{
+        color: #28abe1 !important;
+      }
+      .cover_label,.cover_data{
+        font-weight: 400;
+        color: #4c4c4c;
+      }
+      img{
+        width: 100%;
+        height: auto;
+        @media screen and (max-width: 767px) {
+          width: 20%;
+          margin: 0 auto !important;
+          display: block !important;
+        }
+      }
+      .col-md-3{
+        img{
+          height: 100%;
+        }
+      }
+    }
+    .personForm,.policy_date {
+      ejs-datepicker#datepicker {
+          background: #f2f2f2;
+          border-radius: 5px;
+          padding: 0;
+          line-height: 24px;
+          border: 0;
+          margin-bottom: 0;
+          span.e-input-group.e-control-wrapper.e-date-wrapper {
+            padding: 6px 6px 7px;
+            margin-bottom: 0;
+            border-radius: 5px;
+        }
+      }
+    }
+    .member_mail_mob{
+      input{
+        width: 90%;
+        @media screen and (max-width: 1200px) {
+          width: 85%;
+        }
+      }
+      .error-message,.success-message{
+        top: 50px;
+      }
+    }
+    .requst_commt{
+      width: 70%;
+      margin: 0 auto 20px;
+      text-align: left;
+    }
+  }
+  .head_sec{
+    text-align: center;
+    margin-top: 40px;
+
+    h2.title{
+      font-size: 40px;
+      font-weight: 600;
+    }
+  }
+  h3{
+    font-size: 28px;
+    font-weight: 400;
+    &.top-address-label{
+      height: 70px;
+    }
+  }
+  &.home_sec{
+    width: 70%;
+    margin: 0 auto;
+    button {
+        width: 80%;
+        border: none;
+        font-size: 20px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        padding: 15px;
+        &:hover{
+          background: #004fff;
+          color:#fff;
+        }
+        background-color: #efefef;
+    }
+    .flex{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .built_img{
+        margin-right: 15px;
+      }
+    }
+    .built_yr, .sqr_ft {
+      font-size: 20px;
+      margin-bottom: 5px;
+      span{
+        color:red;
+        font-weight: 700;
+      }
+    }
+    .loader_icon{
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 10px;;
+      .loader10{
+        margin: 0;
+        top: auto;
+      }
+    }
+  }
+  input#inputAddressMD {
+      width: 70%;
+      margin: 0 auto;
+      padding: 15px;
+  }
+}
+
+
+.request_data{
+  #mtsmap{
+    /* border: 5px solid #22b573; */
+    width: 188px;
+    height: 188px;
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 97px;
+    background-image: url(../../assets/images/dummy_map.png);
+    @media screen and (max-width: 320px) {
+      top: 93px;
+    }
+  }
+}
+
+
+input[type="date"]::before {
+	color: #999999;
+  content: attr(placeholder);
+  width:100%;
+}
+input[type="date"] {
+	color: #ffffff;
+}
+input[type="date"]:focus,
+input[type="date"]:valid {
+	color: #666666;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+  content: "" !important;
+  width:auto;
+}
+
+
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .CarTypeInput {
+    margin-left: -27%;
+    width: 134%;
+  }
+  .CarYearInput {
+    width: 80%;
+  }
+  .CarModelInput {
+    width: 150%;
+  }
+  .CarButton {
+    float: right !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .row.mainContent {
+    padding-top: 130px;
+  }
+  .md-form{
+    &.home_sec{
+      width: 100%;
+      button{
+        width: 100%;
+      }
+    }
+    &.personDataForm{
+      width:100%;
+      .personForm{
+        input{
+          width: 72%;
+        }
+      }
+      input{
+        width:90%;
+      }
+      .sp_coment{
+        textarea{
+          width: 100%;
+        }
+      }
+      .member_mail_mob{
+        input{
+          width: 87%;
+        }
+      }
+    }
+  }
+
+  .preDiv {
+    margin-top: 0px !important;
+
+    .quoteTitle {
+      text-align: center !important;
+      font-size: 30px !important;
+    }
+
+    .quoteButton {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  }
+  .switchArea {
+    margin-top: 20px !important;
+  }
+  .pageHeader {
+    background-size: 100% 100%;
+    //min-height: 435px !important;
+
+    .pageHeaderTitle {
+      font-size: 25px;
+      margin-top: 10px;
+    }
+
+    .topImgGroup {
+      width: 90%;
+      margin-left: 5%;
+
+      .topImage {
+        img {
+          margin-top: 5px;
+        }
+      }
+    }
+
+    br {
+      height: 0px;
+    }
+  }
+  .stepper-horizontal {
+    //padding-right: 15px !important;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .select_btn_block {
+    margin-bottom: 0px;
+  }
+  .agentImageDiv{
+    padding-top: 25px;
+  }
+  .form-row.secure {
+    margin-bottom: 15px;
+  }
+}
+
+
+@media screen and (min-width: 769px) {
+  .pageHeader {
+    background-size: 100% 100%;
+    min-height: 400px;
+
+    .pageHeaderTitle {
+      margin-top: 25px;
+      padding: 5px;
+      border: solid 5px white !important;
+    }
+
+    .inputAddressMD {
+      margin-top: 40px;
+    }
+  }
+  .container {
+    padding-top: 100px !important;
+  }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .quoteTextDiv {
+    padding-left: 50px !important;
+
+    h1 {
+      font-size: 40px !important;
+      margin-bottom: 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  ul.stepper li a {
+    padding: 1rem !important;
+  }
+  .md-form.personDataForm{
+    .personForm{
+      input{
+        width: 60%;
+      }
+    }
+  }  
+  .md-form.personDataForm{
+    .member_mail_mob{
+      input{
+        width: 80%;
+      }
+    }
+  }  
+}
+
+@media screen and (max-width: 390px) {
+  .zillowBoard {
+    img {
+      width: 45px !important;
+    }
+
+    span {
+      font-size: 12px !important;
+    }
+  }
+}
+.manual_add_link {
+  width: 70%;
+  margin: 5px auto 20px;
+  font-size: 16px;
+  a{
+    color: #292727;
+    &:hover{
+      color: #004fff;
+    }
+  }
+}
+.add_ntx {
+  width: 100%;
+  text-align: center;
+  margin-top: 17%;
+  @media screen and (max-width: 767px) {
+    margin-top: 30%;
+  }
+}
+.quote_title {
+  width: 60%;
+  margin: 0 auto 50px;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  p{
+    font-weight: 500;
+  }
+}
+.app-loader {
+  margin-left: 40px !important;
+  margin-top: 12px;
+  float: left !important;
+}
+.loading_img {
+  position: absolute;
+  left: 47%;
+  top: 50%;
+  transform: translate(-47%, -50%);
+  @media screen and (max-width: 767px) {
+    left: 47%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  }
+}
+
+.personForm{
+  .e-input-group.e-control-wrapper:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left){
+    border-color: transparent;
+  }
+  input{
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #8f8f8f;
+      font-weight: 500;
+    }
+    
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: #8f8f8f;
+      font-weight: 500;
+    }
+    
+    &::-ms-input-placeholder { /* Microsoft Edge */
+      color: #8f8f8f;
+      font-weight: 500;
+    }
+  }
+}

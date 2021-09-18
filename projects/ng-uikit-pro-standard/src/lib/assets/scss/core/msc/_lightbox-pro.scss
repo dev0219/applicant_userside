@@ -1,0 +1,50 @@
+.nav-left {
+  span {
+    &:before {
+      background: url('../img/lightbox/default-skin.svg');
+    }
+  }
+
+  &:hover span:before {
+    opacity: 1;
+  }
+}
+
+.nav-right {
+  span {
+    &:before {
+      background: url('../img/lightbox/default-skin.png');
+    }
+  }
+}
+
+.close-popup {
+  background: url('../img/lightbox/default-skin.png');
+}
+
+.fullscreen-toogle {
+  background: url('../img/lightbox/default-skin.png');
+}
+
+.zoom-toogle {
+  background: url('../img/lightbox/default-skin.png');
+}
+
+.pswp__button,
+.pswp__button--arrow--left:before,
+.pswp__button--arrow--right:before {
+  background: url('../img/lightbox/default-skin.png') 0 0 no-repeat;
+}
+
+.pswp--svg .pswp__button,
+.pswp--svg .pswp__button--arrow--left:before,
+.pswp--svg .pswp__button--arrow--right:before {
+  background-image: url('../img/lightbox/default-skin.png');
+}
+
+.pswp__preloader--active {
+  .pswp__preloader__icn {
+    /* We use .gif in browsers that don't support CSS animation */
+    background: url('../img/lightbox/preloader.gif') 0 0 no-repeat;
+  }
+}

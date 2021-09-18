@@ -1,0 +1,156 @@
+<div class="md-form form-group">
+  <!--<div class="md-form form-group" *ngIf="step==3 && !isCarDiv">-->
+  <div class="row propertyBoard animated fadeIn">
+    <!--<div class="offset-md-3 col-md-9" style="margin-bottom: 20px;">
+      <h5 class="font-weight-bolder h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">
+        <img src="../../../assets/images/maps-and-flags.png"
+             [ngStyle]="this.commonService.checkMobile()?{'height':'20px'}:{'height':'30px'}"
+             class="d-inline-block align-top" alt="">
+        <strong>&nbsp;{{
+          addressData['address'] + ', ' +
+          addressData['locality'] + ', ' +
+          addressData['administrative_area_level_1'] + ' ' +
+          addressData['postal_code']
+          }}</strong>
+      </h5>
+    </div>-->
+
+    <div class="col-12 row property">
+      <p class="font-weight-bolder label col-5">
+        <img src="assets/images/Asset2.png" height="25" class="d-inline-block align-top mr-2" alt="">
+        <strong>basement finished?</strong>
+      </p>
+      <div class="col-md-3 col-3">
+        <div [ngClass]="discountsData.claim_free?'activeOption':'inactiveOption'"
+             (click)="discountsData.claim_free=true">
+          <p class="font-weight-bold text text-center">yes</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-3">
+        <div [ngClass]="discountsData.claim_free===false?'activeOption':'inactiveOption'"
+             (click)="discountsData.claim_free=false">
+          <p class="font-weight-bold text text-center">no</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 row property">
+      <p class="font-weight-bolder label col-5">
+        <img src="assets/images/login.svg" height="25" class="d-inline-block align-top mr-2" alt="">
+        <strong>Security System? 44</strong>
+      </p>
+      <div class="col-md-3 col-3">
+        <div [ngClass]="discountsData.security_system?'activeOption':'inactiveOption'"
+             (click)="discountsData.security_system=true">
+          <p class="font-weight-bold text text-center">yes</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-3">
+        <div [ngClass]="discountsData.security_system===false?'activeOption':'inactiveOption'"
+             (click)="discountsData.security_system=false">
+          <p class="font-weight-bold text text-center">no</p>
+        </div>
+      </div>
+      <div class="col-md-1 col-1 sale flat">
+        <img src="assets/images/sale.svg" height="25" class="d-inline-block align-top" alt="">
+      </div>
+    </div>
+
+    <div class="col-12 row property">
+      <p class="font-weight-bolder label col-5">
+        <img src="assets/images/corgi.svg" height="25" class="d-inline-block align-top mr-2" alt="">
+        <strong>&nbsp;Do you have a dog?</strong>
+      </p>
+      <div class="col-md-3 col-3">
+        <div [ngClass]="discountsData.dog===true?'activeOption':'inactiveOption'" (click)="discountsData.dog=true">
+          <p class="font-weight-bold text text-center">yes</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-3">
+        <div [ngClass]="discountsData.dog===false?'activeOption':'inactiveOption'" (click)="discountsData.dog=false">
+          <p class="font-weight-bold text text-center">no</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12 row property">
+      <p class="font-weight-bolder label col-5">
+        <img src="assets/images/roof.svg" height="25" class="d-inline-block align-top mr-2" alt="">
+        <strong>do you have a new roof?<br/>(1-5 years old)</strong>
+      </p>
+      <div class="col-md-3 col-3">
+        <div [ngClass]="discountsData.roof_shape===true?'activeOption':'inactiveOption'"
+             (click)="discountsData.roof_shape=true">
+          <p class="font-weight-bold text text-center">yes</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-3 flat">
+        <div [ngClass]="discountsData.roof_shape===false?'activeOption':'inactiveOption'"
+             (click)="discountsData.roof_shape=false">
+          <p class="font-weight-bold text text-center">no</p>
+        </div>
+      </div>
+      <div class="col-md-1 col-1 sale flat">
+        <img src="assets/images/sale.svg" height="25" class="d-inline-block align-top" alt="">
+      </div>
+    </div>
+
+    <!--div class="offset-lg-3 col-lg-4 offset-md-2 col-lg-6 row property">
+      <p class="font-weight-bolder col-md-12">
+        <strong>&nbsp;pool?</strong>
+      </p>
+      <div class="col-md-6 col-6">
+        <div [ngClass]="discountsData.pool===true?'activeOption':'inactiveOption'" (click)="discountsData.pool=true">
+          <p class="font-weight-bold text text-center">yes</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-6">
+        <div [ngClass]="discountsData.pool===false?'activeOption':'inactiveOption'" (click)="discountsData.pool=false">
+          <p class="font-weight-bold text text-center">no</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="offset-md-3 col-md-6 row property discounts">
+      <p class="font-weight-bolder col-md-12">
+        <strong>&nbsp;Discounts</strong>
+      </p>
+      <div class="col-md-4 col-4">
+        <div [ngClass]="discountsData.alarm?'activeOption':'inactiveOption'"
+             (click)="discountsData.alarm=!discountsData.alarm">
+          <p class="font-weight-bold text text-center">alarm</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-4">
+        <div [ngClass]="discountsData.bundle?'activeOption':'inactiveOption'"
+             (click)="discountsData.bundle=!discountsData.bundle">
+          <p class="font-weight-bold text text-center">bundle</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-4">
+        <div [ngClass]="discountsData.life_ins?'activeOption':'inactiveOption'"
+             (click)="discountsData.life_ins=!discountsData.life_ins">
+          <p class="font-weight-bold text text-center">life ins</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-6">
+        <div [ngClass]="discountsData.smoke_detector?'activeOption':'inactiveOption'"
+             (click)="discountsData.smoke_detector=!discountsData.smoke_detector">
+          <p class="font-weight-bold text text-center">smoke detector</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-6">
+        <div [ngClass]="discountsData.good_credit?'activeOption':'inactiveOption'"
+             (click)="discountsData.good_credit=!discountsData.good_credit">
+          <p class="font-weight-bold text text-center">good credit</p>
+        </div>
+      </div>
+    </div-->
+    <div class="offset-md-3 col-md-9 row property">
+      <div class="form-group col-md-6 offset-md-1" style="margin-bottom: 50px;">
+        <app-next-button color="primary" type="button" text="Next" (click)="next()"></app-next-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+// MDB Autocomplete
+.mdb-autocomplete {
+  margin-bottom: $autocomplete-margin-bottom;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+button {
+  &:focus {
+    outline: 0 !important;
+  }
+
+  &.mdb-autocomplete-clear {
+    position: absolute;
+    z-index: 2;
+    top: $autocomplete-clear-top;
+    right: 0;
+    visibility: hidden;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    svg {
+      fill: $autocomplete-clear-color;
+    }
+  }
+}
+
+.mdb-autocomplete-wrap {
+  box-shadow: $z-depth-1;
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  list-style-type: none;
+  overflow-y: auto;
+  max-height: $autocomplete-wrap-max-height;
+  padding-left: 0;
+  background: $white-base;
+
+  li {
+    padding: $autocomplete-wrap-li-padding-y $autocomplete-wrap-li-padding-x;
+    cursor: pointer;
+    font-size: $autocomplete-wrap-li-font-size;
+
+    &:hover {
+      background: $autocomplete-wrap-li-hover-bg;
+    }
+    &.selected {
+      background-color: $autocomplete-wrap-li-hover-bg;
+    }
+  }
+}
+
+.form-inline {
+  .md-form {
+    .form-control {
+      &.mdb-autocomplete {
+        width: $form-inline-autocomplete-width;
+      }
+    }
+  }
+}
+
+// Angular styles
+ng2-completer {
+  .completer-dropdown-holder {
+    margin-top: -1rem;
+  }
+  .md-form {
+    label {
+      z-index: -1;
+    }
+  }
+}
+
+mdb-auto-completer {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.mdb-autocomplete {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.mdb-autocomplete-clear {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.completer-dropdown {
+  margin-top: 1px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  z-index: 110;
+  max-height: 210px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  .completer-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    font-size: 0.875rem;
+    .completer-description {
+      font-size: 14px;
+    }
+    .completer-image-holder {
+      .completer-image-default {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  .completer-no-results,
+  .completer-searching {
+    padding: 12px 15px;
+    font-size: 0.875rem;
+  }
+}
+
+.completer-selected-row {
+  background-color: #eee;
+}
+
+.completer-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.validate-success.ng-valid .completer-input {
+  border-bottom: 1px solid $input-success-color !important;
+  box-shadow: 0 1px 0 0 $input-success-color !important;
+}
+
+.validate-success.ng-valid .completer-holder label {
+  color: $input-success-color !important;
+}
+
+.validate-error.ng-invalid.ng-touched .completer-input,
+.form-submitted .validate-error.ng-invalid .completer-input {
+  border-bottom: 1px solid $input-error-color !important;
+  box-shadow: 0 1px 0 0 $input-error-color !important;
+}
+
+.validate-error.ng-invalid.ng-touched .completer-holder label,
+.form-submitted .validate-error.ng-invalid .completer-holder label {
+  color: $input-error-color !important;
+}
+
+//nowe
+.completer-row {
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+.highlight-row {
+  background-color: #eee;
+}

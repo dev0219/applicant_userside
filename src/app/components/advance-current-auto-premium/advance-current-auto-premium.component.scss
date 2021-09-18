@@ -1,0 +1,35 @@
+.cuurent_auto_premium_subdiv
+{
+    background: #F2F2F2;
+    height: 180px;
+    /* padding: 90px 20px; */
+    width: 100%;
+    text-align: center;
+    display: flex;
+    /* place-items: center; */
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 2px solid darkgray;
+   
+}
+.cuurent_auto_premium_subdiv .value_span
+{
+    font-size: 70px;
+    font-weight: 500;
+}
+.current_auto_input
+{
+    width: 50%;
+    text-align: center;
+}
+.current_auto_input::-webkit-outer-spin-button,
+.current_auto_input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.current_auto_input {
+  -moz-appearance: textfield;
+}

@@ -1,0 +1,36 @@
+<div class="ng-gallery mdb-lightbox {{ type }}" *ngIf="modalImages && showRepeat">
+  <figure class="col-md-4" *ngFor="let i of modalImages; let index = index">
+    <img src="{{ !i.thumb ? i.img : i.thumb }}" class="ng-thumb" (click)="openGallery(index)"
+         alt="Image {{ index + 1 }}"/>
+  </figure>
+</div>
+<div tabindex="0" class="ng-overlay" [class.hide_lightbox]="opened == false">
+  <div class="top-bar" style='z-index: 100000'>
+    <span *ngIf="modalImages" class="info-text">{{ currentImageIndex + 1 }}/{{ modalImages.length }}</span>
+    <a class="close-popup" (click)="closeGallery()" (click)="toggleRestart()"></a>
+    <a *ngIf="!is_iPhone_or_iPod" class="fullscreen-toogle" [class.toggled]='fullscreen' (click)="fullScreen()"></a>
+    <a class="zoom-toogle" [class.zoom]='zoom' (click)="toggleZoomed()" *ngIf="!isMobile"></a>
+  </div>
+  <div class="ng-gallery-content">
+    <img #galleryImg *ngIf="!loading" src="{{imgSrc}}" [class.smooth]='smooth' class="effect" (swipeleft)="swipe($event.type)"
+         (swiperight)="swipe($event.type)" (click)="toggleZoomed()" style=""/>
+
+    <div class="uil-ring-css" *ngIf="loading">
+      <div></div>
+    </div>
+    <a class="nav-left" *ngIf="modalImages && modalImages.length >1 && !isMobile" (click)="prevImage()">
+      <span></span>
+    </a>
+    <a class="nav-right" *ngIf="modalImages && modalImages.length >1 && !isMobile" (click)="nextImage()">
+      <span></span>
+    </a>
+  </div>
+  <div class="row" *ngIf="caption">
+    <div class="col-md-12 mx-auto bottom-bar text-center">
+      <figcaption #galleryDescription class="text-white lightbox-caption">{{caption}}</figcaption>
+    </div>
+  </div>
+</div>
+<div *ngIf="openModalWindow">
+  <mdb-image-modal [imagePointer]="imagePointer"></mdb-image-modal>
+</div>

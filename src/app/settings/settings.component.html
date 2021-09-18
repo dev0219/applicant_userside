@@ -1,0 +1,165 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Material form register -->
+      <mdb-card style="margin-top: 100px; margin-bottom: 100px;">
+
+        <mdb-card-header class="info-color white-text text-center py-4">
+          <h5>
+            <strong>Settings</strong>
+          </h5>
+
+        </mdb-card-header>
+
+        <!--Card content-->
+        <mdb-card-body class="px-lg-5 pt-0">
+
+          <!-- Form -->
+          <form class="text-center" style="color: #757575;" (ngSubmit)="updateInfo()" [formGroup]="settingsForm">
+
+            <div class="form-row">
+              <div class="col">
+                <div class="md-form">
+                  <input type="text" id="materialRegisterFormName" class="form-control" mdbInput
+                         [(ngModel)]="name" formControlName="nameInput">
+                  <mdb-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">Name is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="nameInput.valid && (nameInput.dirty || nameInput.touched)">Name is valid
+                  </mdb-success>
+                  <label for="materialRegisterFormName">Name</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="md-form">
+                  <input type="text" id="materialRegisterFormPhone" class="form-control"
+                         aria-describedby="materialRegisterFormPhoneHelpBlock" [(ngModel)]="phone"
+                         formControlName="phoneInput"
+                         mdbInput>
+
+                  <mdb-error *ngIf="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)">Phone is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="phoneInput.valid && (phoneInput.dirty || phoneInput.touched)">Phone is valid
+                  </mdb-success>
+                  <label for="materialRegisterFormPhone">Phone number</label>
+                  <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                    Optional - for two step authentication
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <div class="md-form">
+                  <input type="email" id="materialRegisterFormEmail" class="form-control" [(ngModel)]="email"
+                         formControlName="emailInput" mdbInput>
+
+                  <mdb-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">email is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="emailInput.valid && (emailInput.dirty || emailInput.touched)">email is valid
+                  </mdb-success>
+                  <label for="materialRegisterFormEmail">E-mail</label>
+                </div>
+
+              </div>
+
+              <div class="col">
+                <div class="md-form">
+                  <input type="text" id="materialRegisterFormLabel" class="form-control" mdbInput
+                         [(ngModel)]="label" formControlName="labelInput">
+
+                  <mdb-error *ngIf="labelInput.invalid && (labelInput.dirty || labelInput.touched)">Label is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="labelInput.valid && (labelInput.dirty || labelInput.touched)">Label is valid
+                  </mdb-success>
+                  <label for="materialRegisterFormLabel">label</label>
+                </div>
+              </div>
+            </div>
+            <!--<div class="form-row">-->
+
+              <!--<div class="col">-->
+                <!--<div class="md-form">-->
+                  <!--<input type="password" id="materialRegisterFormPassword" class="form-control"-->
+                         <!--aria-describedby="materialRegisterFormPasswordHelpBlock" [(ngModel)]="password"-->
+                         <!--formControlName="passwordInput"-->
+                         <!--mdbInput>-->
+                  <!--<mdb-error *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">Password is-->
+                    <!--invalid-->
+                  <!--</mdb-error>-->
+                  <!--<mdb-success *ngIf="passwordInput.valid && (passwordInput.dirty || passwordInput.touched)">Password is-->
+                    <!--valid-->
+                  <!--</mdb-success>-->
+                  <!--<label for="materialRegisterFormPassword">Password</label>-->
+                  <!--<small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">-->
+                    <!--At least 5 characters.-->
+                  <!--</small>-->
+                <!--</div>-->
+              <!--</div>-->
+
+              <!--<div class="col">-->
+                <!--<div class="md-form">-->
+                  <!--<input type="password" id="materialConfirmPassword" class="form-control"-->
+                         <!--aria-describedby="materialRConfrmPasswordHelpBlock" [(ngModel)]="Cpassword"-->
+                         <!--formControlName="CpasswordInput"-->
+                         <!--mdbInput>-->
+                  <!--<mdb-error-->
+                    <!--*ngIf="CpasswordInput.invalid && (CpasswordInput.dirty || CpasswordInput.touched) && Cpassword!=password">-->
+                    <!--Confirm Password is-->
+                    <!--invalid-->
+                  <!--</mdb-error>-->
+                  <!--<mdb-success-->
+                    <!--*ngIf="CpasswordInput.valid && (CpasswordInput.dirty || CpasswordInput.touched) && Cpassword==password">-->
+                    <!--Confirm Password is-->
+                    <!--valid-->
+                  <!--</mdb-success>-->
+                  <!--<label for="materialConfirmPassword">Confirm Password</label>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <div class="form-row">
+              <div class="col col-md-6  col-12">
+                <div class="file-field md-form">
+                  <div mdbWavesEffect>
+                    <img src="../../assets/images/image-upload-icon.png" width="47" mdbWavesEffect/>
+                    <input type="file" mdbFileSelect ng2FileSelect [uploader]="uploader">
+                  </div>
+                  <div class="file-path-wrapper mt-3">
+                    <input class="file-path" type="text" placeholder="Upload your profile picture"
+                           [(ngModel)]="fileName" [ngModelOptions]="{standalone: true}" disabled>
+                  </div>
+                </div>
+              </div>
+              <!--<div class="file-field md-form">-->
+                <!--<img src="../../assets/images/image-upload-icon.png" width="47" mdbWavesEffect/>-->
+                <!--<input type="file" mdbFileSelect ng2FileSelect [uploader]="uploader">-->
+                <!--<div class="file-path-wrapper mt-3">-->
+                  <!--<input class="file-path" type="text" placeholder="Upload the user's profile picture"-->
+                         <!--[(ngModel)]="fileName" [ngModelOptions]="{standalone: true}" disabled>-->
+                <!--</div>-->
+              <!--</div>-->
+
+
+              <div class="col col-md-6 col-12">
+
+                <div class="md-form">
+                  <button mdbBtn color="info" outline="true" [disabled]="isActiveButton==false" rounded="true"
+                          block="true" class="my-4 waves-effect z-depth-0"
+                          mdbWavesEffect
+                          type="submit">Save
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Sign up button -->
+          </form>
+          <!-- Form -->
+        </mdb-card-body>
+      </mdb-card>
+      <!-- Material form register -->
+    </div>
+  </div>
+</div>

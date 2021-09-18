@@ -1,0 +1,656 @@
+<ng4-loading-spinner [timeout]="4000000"></ng4-loading-spinner>
+<app-sub-header [quote_id]="quote_id"></app-sub-header>
+<div class="container" id="scrollTop" [ngStyle]="(isMobile && step==1)?{'overflow':'hidden'}:{}">
+  <!-- Grid row -->
+  <!--<ngbd-datepicker-basic></ngbd-datepicker-basic>-->
+  <!-- Horizontal Steppers -->
+  <!--The first step that selects the insurance type.-->
+
+  <div class="row preDiv" *ngIf="step==0 && !isShowSpecificPage">
+    <div class="col-md-4 col-lg-6 col-12">
+      <div class="col-md-12 col-8 offset-2 col-lg-6">
+        <div class="agentImageDiv" [ngStyle]="isMobile?{'margin-top':'125px'}:{}">
+          <div class="pictureBoard col-md-12" [ngClass]="agentInfo['isSmall']?'col-12':'col-10 offset-1'"
+               [ngStyle]="!isMobile?{'min-height':'100px'}:{}">
+            <img [src]="'../../assets/images/'+agentInfo['logo']"
+                 [ngStyle]="(!isMobile && agentInfo['isSmall'])?{'width':'120%','margin-left':'-10%'}:{'height':'auto'}"
+                 width="100%">
+          </div>
+          <p></p>
+          <p class="text text-center font-weight-bolder"><strong>{{agentInfo['siteUrl']}}</strong></p>
+          <p class="text text-center font-weight-bolder"><strong>{{agentInfo['phone']}}</strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-lg-6 col-12 quoteTextDiv" [ngStyle]="isMobile?{'margin-bottom':'30px'}:{}">
+      <h1 class="text text-left text-primary h1-responsive quoteTitle">Apply for your quote here!</h1>
+      <p class="font-weight-bold mt-4">select your type of quote:</p>
+      <div class="form-row select_btn_block">
+        <div class="col-md-3 col-4" (click)="showFirstPage(1)">
+          <div class="select_insurance">
+            <img src="../../assets/images/home.svg"/>
+            <h5 class="font-weight-bold text-center text-primary">Home</h5>
+          </div>
+        </div>
+        <div class="col-md-3 col-4" (click)="showFirstPage(2)">
+          <div class="select_insurance">
+            <img src="../../assets/images/auto.svg"/>
+            <h5 class="font-weight-bold text-center text-primary">Auto</h5>
+          </div>
+        </div>
+        <div class="col-md-3 col-4" (click)="showFirstPage(3)">
+          <div class="select_insurance">
+            <img src="../../assets/images/bundle.svg"/>
+            <h5 class="font-weight-bold text-center text-primary">Bundle</h5>
+          </div>
+        </div>
+      </div>
+      <div class="form-row col-md-8" style="margin-top: 20px;">
+        <div class="col-md-5 offset-md-2 col-4 offset-3">
+          <img src="../../assets/images/shield.png" width="20px" height="20px">&nbsp;<strong
+          class="benefitWord">secure</strong>
+        </div>
+        <div class="col-md-5 col-5">
+          <img src="../../assets/images/clock.png" width="20px" height="20px">&nbsp;<strong
+          class="benefitWord">fast</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--This will be shown in everywhere except first step-->
+  <!--Horizontal stepper-->
+  <div class="row top_progress" *ngIf="step > 0 && !isShowSpecificPage && !showBuyHome">
+    <div class="col-md-8 offset-md-2">
+      <!-- Stepers Wrapper -->
+      <ul class="stepper stepper-horizontal" style="margin-top: 90px !important;"
+          [ngClass]="isMobile?'mobileStepper':''">
+        <!-- First Step -->
+        <li class="completed">
+          <a href="javascript:void(0)">
+            <span class="circle" [ngClass]="step>=1?'activeCircle':'inactiveCircle'">
+              <i class="fas fa-home"></i></span>
+            <span class="label" *ngIf="!isMobile" [ngClass]="step>=1?'text-primary':''">Address</span>
+          </a>
+        </li>
+
+        <!-- Second Step -->
+        <li class="active">
+          <a href="javascript:void(0)">
+            <span class="circle" [ngClass]="step>=2?'activeCircle':'inactiveCircle'"><i class="fas fa-user"></i></span>
+            <span class="label" *ngIf="!isMobile" [ngClass]="step>=2?'text-primary':''">Profile</span>
+          </a>
+        </li>
+        <!-- Third Step -->
+        <li class="active">
+          <a href="javascript:void(0)">
+            <span class="circle" [ngClass]="step>=3?'activeCircle':'inactiveCircle'"><i
+              class="fas fa-building"></i></span>
+            <span class="label" *ngIf="!isMobile" [ngClass]="step>=3?'text-primary':''">Property</span>
+          </a>
+        </li>
+        <!-- Third Step -->
+        <li class="active">
+          <a href="javascript:void(0)">
+            <span class="circle" [ngClass]="step>=4?'activeCircle':'inactiveCircle'"><i class="fas fa-check"></i></span>
+            <span class="label" *ngIf="!isMobile" [ngClass]="step>=4?'text-primary':''">Complete</span>
+          </a>
+        </li>
+
+      </ul>
+      <!-- /.Stepers Wrapper -->
+    </div>
+  </div>
+
+  <!--End steppers-->
+  <!---->
+
+  <!-- For menually address add option YES / NO Button -->
+  <div class="row mainContent animated fadeIn" *ngIf="showBuyHome && !isShowSpecificPage">
+    <div class="col-md-8 offset-md-2">
+      <app-buy-home (setHomeData)="setHomeData($event)"></app-buy-home>
+    </div>
+  </div>
+  <!-- End First Screen -->
+
+  <div class="row mainContent animated fadeIn" *ngIf="step>0 && !isShowSpecificPage">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-12 request_data">
+      <!-- Material input -->
+      <div class="md-form form-group mep-section text-center " *ngIf="step==1 && screen!=1">
+        <h3 *ngIf="step == 1 && screen != 10" class="top-address-label">{{ addressData['address'] }}</h3>
+        <div *ngIf="step == 1 && screen == 10" class="quote-request-submited">
+          <h3 class="request top-address-label">Quote Request Submited!</h3>
+          <p>We are now working on your application.</p>
+          <p class="request-msg">We'll send this to you at <span class="text text-danger"> {{email}} </span>shortly!</p>
+        </div>
+        <div id="mtsmap" [ngClass]="step == 1 && screen == 10 ? 'bordered': ''"></div>
+        <circle-progress
+          [percent]= progrss
+          [radius]="100"
+          [outerStrokeWidth]="10"
+          [innerStrokeWidth]="0"
+          [outerStrokeColor]="'#78C000'"
+          [innerStrokeColor]="'#C7E596'"
+          [animation]="true"
+          [animationDuration]="300"
+          [class]="progrss-circle"
+          [startFromZero] = "false"
+        ></circle-progress>
+
+        <div class="form-group" *ngIf="waitingtxtflag == 1"></div>
+        <div *ngIf="waitingtxtflag == 1" class="text-center">
+          <span class="text text-success">Note: {{ waitingtxt }}</span>
+        </div>
+      </div>
+
+
+      <!-- Step 1 -->
+        <!-- carriar selection screen -->
+        <app-page-one  *ngIf="firstpage == 0" [current_carrier]="this.current_carrier" (setCurrentCarrierData)="setCurrentCarrierData($event)"></app-page-one>
+        <!-- carriar selection screen -->
+
+        <!-- First Screen -->
+        <div class="md-form form-group" *ngIf="step==1 && screen==1 && firstpage == 1">
+
+          <div class="row">
+            <div class="col-md-12 head_sec" style="margin-bottom: 20px;">
+              <h2 class="title">Let's Insure You home</h2>
+              <p class="font-weight-bolder">Apply in 2-3 minutes to get<br>quotes from multiple carriers!</p>
+            </div>
+            <!-- <div class="col-md-1 col-2 form-row">
+              <img src="../../assets/images/maps-and-flags.png" class="google-places-img mx-auto">
+            </div> -->
+
+
+            <div class="col-md-12 col-12 mb-3">
+              <input class="form-control inputAddressMD" autocorrect="off"
+                    (onAddressChange)="handleAddressChange($event)"
+                    id="inputAddressMD" autocapitalize="off" spellcheck="off" (load)="loadGooglePlace()" type="text"
+                    *ngIf="GooglePlace==true" [(ngModel)]="staticAddress"
+                    #placesRef placeholder="Enter address">
+              <input type="text" class="form-control inputAddressMD"
+                    placeholder="Ex: 419 Virginia Ave, Phoenixville, Pennsylvania 19460"
+                    *ngIf="GooglePlace==false" [(ngModel)]="staticAddress"/>
+
+            </div>
+            <div class="manual_add_link">
+              <a href="javascript:void(0)" (click)="isManualAddress = isManualAddress == true ? false : true">{{ isManualAddress == true ? 'google address':'manual address' }}</a>
+            </div>
+            <div class="add_ntx" *ngIf="isManualAddress == true">
+              <button class="btn btn-primary shadow-none " style="margin-left: 0px; padding-top: 8px; padding-bottom: 8px;" (click)="manualAddressSave()">
+                Continue
+              </button>
+            </div>
+          </div>
+          <div *ngIf="!GooglePlace" class="row">
+            <div class="col-4 col-md-4">
+
+              <input type="number" class="form-control inputManualField" placeholder="Square"
+                    [(ngModel)]="zillowData['square']">
+            </div>
+            <div class="col-4 col-md-4">
+              <input type="number" class="form-control inputManualField" placeholder="Estimate"
+                    [(ngModel)]="zillowData['estimate']">
+            </div>
+            <div class="col-4 col-md-4">
+
+              <input type="number" class="form-control inputManualField" placeholder="Year Built"
+                    [(ngModel)]="zillowData['built_year']">
+            </div>
+          </div>
+          <!--div class="row zillowBoard" style="padding-bottom: 15px; margin-top: 20px;">
+            <div class="col-md-12 col-lg-12 col-sm-12 row">
+              <div class="offset-md-1 col-md-8 col-sm-12 col-12 pull-right">
+                <div>
+                  <img *ngIf="showImg" src="../../assets/images/zillow.png" class="zillowImg">
+                  <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                              *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+                  <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                              *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+                  <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                              *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+                  <span class="text text-danger font-weight-bolder" *ngIf="displayZillowData('square')">
+                    <strong>{{commonService.commafy(zillowData['square'])}}&nbsp;
+                      sqft
+                    </strong>
+                  </span>
+                  <span class="text text-danger font-weight-bolder" style="word-spacing: 12px"
+                        *ngIf="displayZillowData('estimate')">
+                    <strong> | {{zillowData['estimate'] != 'NaN' ? ('$' + commonService.commafy(zillowData['estimate'])) : ''}}
+                      |
+                    </strong>
+                  </span>
+                  <span class="text text-danger font-weight-bolder" style="word-spacing: 12px"
+                        *ngIf="displayZillowData('built_year')">
+                    <strong>
+                      {{zillowData['built_year']}}
+                    </strong>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-12 col-12 pull-left switchArea">
+                <a class="text font-weight-bolder text-dark"
+                  (click)="toggleGooglePlace();">
+                  <strong>{{GooglePlace ? 'Enter manually.' : 'Enter automatically.'}}</strong>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-6 offset-md-3" style="margin-top: 25px;">
+              <button class="btn btn-primary btn-block shadow-none next-btn" (click)="setAddrZillow()" style="margin-left: 0px; padding-top: 8px; padding-bottom: 8px;" *ngIf="nextbtn">
+                Next
+              </button>
+            </div>
+          </div-->
+        </div>
+        <!-- First Screen -->
+
+        <!-- Second Screen -->
+        <div class="md-form form-group text-center home_sec" *ngIf="step==1 && screen==2">
+          <button type="button" (click)="usertypeselection(3,'I own this home')">I own this home</button>
+          <button type="button" (click)="usertypeselection(3,'I will own this home')">I will own this home</button>
+          <button type="button" (click)="usertypeselection(3,'I rent this home')">I rent this home</button>
+        </div>
+        <!-- Second Screen -->
+
+        <!-- Third Screen -->
+        <div class="md-form form-group text-center home_sec" *ngIf="step==1 && screen==3">
+          <div class="flex">
+            <div class="built_img">
+              <img src="assets/images/network.svg" height="25" class="d-inline-block align-top" alt="">
+            </div>
+            <div class="built_data">
+              <div class="built_yr">Year built: <span>{{ zillowData['built_year'] }}</span> </div>
+              <div class="sqr_ft">Square Feet: <span>{{ zillowData['square'] }}</span></div>
+            </div>
+          </div>
+          <div class="loader_icon" *ngIf="GooglePlace">
+            <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+          *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+          <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                    *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+          <app-loader [type]="'loader10'" [scale]="0.4" class="app-loader"
+                    *ngIf="zillowLoader && !zillowDataFetched"></app-loader>
+          </div>
+
+          <div class='change-property-detail' *ngIf="IsChangeZollowInfo == true || !GooglePlace">
+            <p>Enter currect built year & square size of property</p>
+            <input type="number"  [(ngModel)]="zillowData['built_year']" placeholder="Built Year" class="form-control">
+            <input type="number"  [(ngModel)]="zillowData['square']" placeholder="Square Size" class="form-control">
+          </div>
+          <div *ngIf="(!zillowLoader && zillowDataFetched) || !GooglePlace">
+            <button type="button" (click)="nextscreenmove(4)">this information is correct</button>
+            <button type="button" (click)="changePropertyDetail()" *ngIf="IsChangeZollowInfo == false" [ngClass]="!GooglePlace?'d-none':''">this information is not correct</button>
+          </div>
+        </div>
+        <!-- Third Screen -->
+
+         <!-- Four Screen -->
+        <div class="md-form form-group DiscountDataForm" *ngIf="step==1 && screen==4">
+          <app-page-five [addressData]="this.addressData" (setDiscountData)="setDiscountData($event)"></app-page-five>
+        </div>
+        <!-- Four Screen -->
+
+        <!-- Five Screen -->
+        <div class="md-form form-group personDataForm" *ngIf="step==1 && screen==5">
+          <div class="col-md-12" >
+            <h5 class="font-weight-bolder h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">Please list your household members:</h5>
+          </div>
+           <!-- Grid column -->
+           <div class="">
+            <form class="animated fadeIn personForm" [formGroup]="validatingForm" (ngSubmit)="showDiscounts()"
+                  [ngStyle]="isMobile?{'margin-top':'30px'}:{}">
+                  <div class="row member_mail_mob">
+                    <div class="col-sm-12 col-12">
+                      <div class="form-row">
+                        <div class="col-6">
+                            <!-- <div class="col-sm-2 col-2 ">
+                              <label for="form8" class="col-form-label text-success">
+                                <img src="assets/images/gmail.png" height="25" class="d-inline-block align-top" alt="">
+                              </label>
+                            </div> -->
+                              <div class="md-form mt-0">
+                                <input mdbInput mdbValidate type="email" class="form-control" id="form8"
+                                      [(ngModel)]="email" formControlName="emailInput" placeholder="enter email">
+
+                                <mdb-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">Email type is
+                                  invalid
+                                </mdb-error>
+                                <mdb-success *ngIf="emailInput.valid && (emailInput.dirty || emailInput.touched)">Email type is valid
+                                </mdb-success>
+                              </div>
+                        </div>
+                        <div class="col-6">
+                            <!-- <div class="col-sm-2 col-2 ">
+                            <label for="form1" class="col-form-label text-success">
+                              <img src="assets/images/smartphone.png" height="25" class="d-inline-block align-top" alt="">
+
+                            </label>
+                            </div> -->
+                              <div class="md-form mt-0">
+                                <input mdbInput type="text" mdbValidate name="phone" formControlName="phoneInput" class="form-control"
+                                      id="form1" [(ngModel)]="phone" placeholder="phone number">
+                                <mdb-error *ngIf="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)">Phone number is invalid.</mdb-error>
+                                <mdb-success *ngIf="phoneInput.valid && (phoneInput.dirty || phoneInput.touched)">Phone number is
+                                  valid
+                                </mdb-success>
+                              </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              <div class="row animated fadeIn" *ngFor="let item of personData; index as i">
+                <div class="col-md-12">
+                  <div class="form-row">
+                    <!-- <label for="form1" class="col-sm-2 col-2 col-form-label text-success">
+                      <img src="assets/images/person.png" height="25" class="d-inline-block align-top" alt="">
+
+                    </label> -->
+                    <div class="col-4">
+                      <div class="md-form mt-0">
+                        <input mdbInput type="text" mdbValidate class="form-control" [formControlName]="'firstnameInput'+i" [(ngModel)]="personData[i]['first_name']" placeholder="first name">
+                      </div>
+                    </div>
+                    <!-- <div class="col-2" *ngIf="commonService.checkMobile()"></div> -->
+                    <div class="col-4">
+                      <div class="md-form mt-0">
+                        <input mdbInput type="text" mdbValidate class="form-control" [formControlName]="'lastnameInput'+i" [(ngModel)]="personData[i]['last_name']" placeholder="last name">
+                      </div>
+                    </div>
+                    <div class="col-4" [ngClass]="addLicense?'col-sm-4':'col-sm-4'">
+                      <div class="md-form mt-0" onclick="this.children.focus()">
+                        <ejs-datepicker id='datepicker' readonly required class="form-control" placeholder="date of birth" [formControlName]="'birthdayInput'+i" [(ngModel)]="personData[i]['birthday']"  format ='MM/dd/yyyy' (focus)="checkdob($event)" (focusout)="checkdob($event)"></ejs-datepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--<div class="col-md-3">
+                  <div class="form-row">
+                    <label for="form1" class="col-sm-2 col-2 col-form-label text-success">
+                      <img src="assets/images/dob.png" height="25" class="d-inline-block align-top" alt="">
+                      <mdb-icon fas icon="phone" class="mr-1  fa-lg"></mdb-icon>
+                    </label>
+                    <div class="col-10" [ngClass]="addLicense?'col-sm-4':'col-sm-10'">
+                      <div class="md-form mt-0" onclick="this.children.focus()">
+                        <input type="date" class="form-control" placeholder="Birthday" style="height: 25px !important;"
+                              [formControlName]="'birthdayInput'+i" [(ngModel)]="personData[i]['birthday']">
+                      </div>
+                    </div>
+                    <label for="form1" class="col-sm-2 col-2 col-form-label text-success" *ngIf="addLicense">
+                      <img src="assets/images/DLICON.png" height="25" class="d-inline-block align-top" alt="">
+                      <mdb-icon fas icon="phone" class="mr-1  fa-lg"></mdb-icon>
+                    </label>
+                    <div class="col-sm-4 col-10">
+                      <div class="md-form mt-0">
+                        <input mdbInput type="text" mdbValidate class="form-control" *ngIf="addLicense"
+                              [formControlName]="'licenseInput'+i"
+                              [(ngModel)]="personData[i]['license']" placeholder="driver license">
+                      </div>
+                    </div>
+                  </div>
+                </div>-->
+                <div class="close_icon" *ngIf="i+1==personData.length">
+                    <button type="button" class="close" aria-label="Close" style="margin-top: 10px; font-size: 20pt !important;" (click)="deletePerson(i)" *ngIf="i>0">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                </div>
+
+              <div class="row animated fadeIn">
+                <div class="col-sm-12">
+                  <button mdbBtn type="button" color="warning" size="md" style="letter-spacing: 2px" class="shadow-none" (click)="addPerson()">
+                    <i class="fa fa-plus"></i>&nbsp; Add
+                  </button>
+                  <!--button mdbBtn type="button" color="warning" size="md" style="letter-spacing: 2px" class="shadow-none" (click)="addLicense=!addLicense;validatePersonForm()">
+                    enter&nbsp; <i class="fas fa-id-card"></i>
+                  </button-->
+                </div>
+              </div>
+              <!-- Grid row -->
+              <div id="destination"></div>
+              <div class="form-group col-md-12" style="margin-top: 25px;margin-bottom: 50px;">
+                <app-next-button type="submit" color="primary" text="Continue"></app-next-button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Five Screen -->
+
+        <!-- Six Screen -->
+          <div class="md-form form-group text-center personDataForm" *ngIf="step==1 && screen==6">
+            <app-page-six *ngIf="step==1 && isPage6" (setInsurnaceType)="setInsurnaceType($event)"></app-page-six>
+          </div>
+        <!-- Six Screen -->
+
+         <!-- Seven Screen -->
+        <div class="md-form form-group text-center personDataForm" *ngIf="step==1 && screen==7">
+          <h5 class="font-weight-bolder h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">When do you want your policy to start?</h5>
+          <div class="row">
+            <div class="offset-2 col-2">
+              <!-- <img src="assets/images/dob.png" height="25" class="d-inline-block align-top" alt=""> -->
+            </div>
+            <div class="col-sm-12 col-lg-5 policy_date">
+              <div class="md-form mt-0" >
+                <ejs-datepicker id='datepicker'  required placeholder="Date" (change)="setInsurenceDate($event)" class="form-control" readonly  format ='MM/dd/yyyy'></ejs-datepicker>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div _ngcontent-cet-c6="" class="offset-2 col-2"></div>
+            <div class="col-sm-12 col-lg-5">
+              <div class="md-form mt-0" >
+                <app-next-button type="button" color="primary" text="ASAP" (click)="setInsurenceDate('ASAP')"></app-next-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Seven Screen -->
+
+        <!-- Eight Screen -->
+        <div class="md-form form-group text-center personDataForm" *ngIf="step==1 && screen==8">
+          <h5 class="font-weight-bolder h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">Do you have any special request(s) or comments to add?</h5>
+          <div class="row form-group">
+            <div class="col-12">
+              <div class="md-form mt-0 sp_coment" >
+                <textarea class="form-control" rows="6"  [(ngModel)]="requestorcomments" placeholder="current premiums, jewlery coverage requests, other properties, umbrella insurance, motorcycle, etc."></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="md-form mt-0" >
+                <app-next-button type="button" color="primary" text="continue" (click)="setRequestOrComments()"></app-next-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Eight Screen -->
+
+        <!-- Nine Screen -->
+        <div class="md-form form-group text-center personDataForm" *ngIf="step==1 && screen==9">
+          <app-page-seven *ngIf="step==1 && isPage7" [personData]="this.personData"
+          [addressData]="this.addressData" (setCarData)="setCarData($event)"></app-page-seven>
+        </div>
+        <!-- Nine Screen -->
+
+         <!-- Ten Screen -->
+        <!-- <div class="md-form form-group personDataForm" *ngIf="step==1 && screen==10">
+          <div class="row animated fadeIn" *ngIf="(step==1 && isPage9) || isShowSpecificPage">
+            <div class="col-md-12 col-lg-12 col-12 mt-5"> -->
+              <!--app-page-nine [discountsData]="discountsData" [carData]="carData" [addressText]="formatted_address" [personData]="personData" [homeData]="homeData" (onSetDetails)="setDetailData($event)"></app-page-nine-->
+              <!-- <div class="row background-secondary form-group">
+                <div class="col-md-4 col-4">
+                  <h6 class="agent_name">Your Agent</h6> -->
+                  <!--img class="" width="80" [src]="agentInfo.logo" alt="" (error) ="changeSource($event)" style="width:50px;"-->
+                <!-- </div>
+
+                <div class="col-md-8">
+                  <h6 class="text-capitalize">{{urlHash}}</h6>
+                  <h6>{{agentInfo.phone}}</h6>
+                  <h6>{{agentInfo.email}}</h6>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group input_file bg-primary" id="uploadDocSec" *ngIf="api_status == -1">
+                <input type='file' (change)="docUpload($event)" multiple >
+                 <span><i class="fa fa-plus"></i></span>
+              </div>
+
+              <div class="row background-secondary form-group" *ngIf="api_status != -1">
+                <div class="col-md-2">
+                  <img src="assets/images/homeico.png" height="25" class="d-inline-block align-top mr-2" alt="">
+                </div>
+
+                <div class="col-md-10 text-center">
+                  <h5 class="text-capitalize">Home Insurance Estimate</h5>
+                  <h5 class="text text-danger">${{ priceArr['prices'][0] }} - {{ priceArr['prices'][priceArr['prices'].length - 1] }}</h5>
+                  <h5 class="text text-primary">{{ priceArr['prices'].length }} prices</h5>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group" *ngIf="api_status != -1 && monthlycost != 0">
+                <div class="col-md-2">
+                  <img src="assets/images/family.svg" height="25" class="d-inline-block align-top mr-2" alt="">
+                </div>
+
+                <div class="col-md-10 text-center" >
+                  <h5 class="text-capitalize">Consider protecting your family with life insurance. 500,000  can cost as littel as <span class="text text-danger">${{ monthlycost }}</span> per month <br/><a href="{{ ethoslink }}" target="_blank" class="text text-primary">Click to Apply Now</a></h5>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group" *ngIf="api_status != -1 && hippo_premium != 0">
+                <div class="col-md-3">
+                  <img src="assets/images/hippo.png" height="25" class="d-inline-block align-top mr-2" alt="">
+                </div>
+
+                <div class="col-md-9 text-center">
+                  <h5 class="text-capitalize">Need Coverage Now ?</h5>
+                  <h5 class="text text-danger">{{ formatter.format(hippo_premium) }}</h5>
+                  <h5><a href="{{ hippo_link }}" class="text text-primary" target="_blank">Click to Apply Now</a></h5>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group" *ngIf="api_status != -1">
+                <div class="col-md-3">
+                  <img src="assets/images/flooded-house.svg" height="25" class="d-inline-block align-top mr-2" alt="">
+                </div>
+
+                <div class="col-md-9 text-center">
+                  <h5 class="text-capitalize">Flood Data</h5>
+                  <h5 class="text text-danger">{{ neptuneFoodZone }}</h5>
+                  <h5><a href="javascript:void(0);" class="text text-primary">Request a Quote from your Agent</a></h5>
+                </div>
+              </div>
+
+              <div class="row background-secondary form-group">
+                <div class="col-md-12">
+                  <h4>Coverages</h4>
+                </div>
+                <div class="col-7 cover_label">Dwelling</div>
+                <div class="col-5 cover_data">Standard</div>
+
+                <div class="col-7 cover_label">Liability</div>
+                <div class="col-5 cover_data">Standard</div>
+
+                <div class="col-7 cover_label">Contents</div>
+                <div class="col-5 cover_data">Standard</div>
+
+                <div class="col-7 cover_label">Other Structure</div>
+                <div class="col-5 cover_data">Standard</div>
+
+                <div class="col-7 cover_label">Water Backup</div>
+                <div class="col-5 cover_data text text-danger">Optional</div>
+
+                <div class="col-7 cover_label">Laitaral Sewer Line</div>
+                <div class="col-5 cover_data text text-danger">Optional</div>
+
+                <div class="col-7 cover_label">Replacement Cost</div>
+                <div class="col-5 cover_data text text-danger">Optional</div>
+
+              </div>
+
+              <div class="row background-secondary form-group input_file bg-primary" id="uploadDocSec" *ngIf="api_status != -1">
+                <input type='file' (change)="docUpload($event)" multiple>
+                 <span><i class="fa fa-plus"></i></span>
+              </div>
+
+            </div>
+          </div>
+        </div> -->
+        <div class="md-form form-group personDataForm quote_submit" *ngIf="step==1 && screen==10">
+          <div class="animated fadeIn" *ngIf="(step==1 && isPage9) || isShowSpecificPage">
+            <div id="uploadDocSec">
+              <div class="upload_txt">
+                <p><span><b>Upload Documents -</b></span> Do you have any documents that may help us get you the most accurate proposal ? Upload here.</p>
+              </div>
+              <div class="row background-secondary form-group input_file" >
+                <input type='file' multiple (change)="docUpload($event)">
+                <span><i class="fa fa-plus"></i></span>
+              </div>
+            </div>
+            <div class="qout_wrap">
+              <div class="qote_box">
+                <h3 class="agent_name">Your Agent</h3>
+                <div class="background-secondary form-group">
+                  <div class="d-flex box_head">
+                    <img class="agent_img" width="80" src="assets/agent_images/{{agentInfo.agent_image}}" alt="" (error) ="changeSource($event)" style="width:50px;" *ngIf="agentInfo.agent_image">
+                    <h3 class="agent_title">{{agentInfo.name}}</h3>
+                  </div>
+
+                  <div class="agent_detail">
+                    <h6>{{agentInfo.phone}}</h6>
+                    <h6>{{agentInfo.email}}</h6>
+                    <img class="agent_logo" src="assets/images/agents/{{agentInfo.logo}}" alt="" (error) ="changeSource($event)">
+                  </div>
+                </div>
+              </div>
+              <div class="qote_box" *ngIf="api_status != -1 && agentInfo['ethoslife_api'] != -1 && monthlycost != 0">
+                <h3 class="life_insure">Life Insurance</h3>
+                <div class="background-secondary form-group">
+                  <div class="d-flex box_head head_img">
+                    <img class="insure_logo" src="assets/images/ethos.png" alt="" (error) ="changeSource($event)">
+                  </div>
+
+                  <div class="detail">
+                    <h3 class="value_data">${{monthlycost}}<sub>/mo</sub></h3>
+                    <a href="{{ ethoslink }}" target="_blank" class="cont_link">continue <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="qout_wrap">
+              <div class="qote_box" *ngIf="api_status != -1 && agentInfo['hippo_api'] != -1 && hippo_premium != 0">
+                <h3 class="life_insure">Instant Home Quote</h3>
+                <div class="background-secondary form-group">
+                  <div class="d-flex box_head head_img">
+                    <img class="insure_logo" src="assets/images/hippo1.png" alt="" (error) ="changeSource($event)">
+                  </div>
+
+                  <div class="detail">
+                    <h3 class="value_data">{{ formatter.format(hippo_premium) }}</h3>
+                    <a href="{{ hippo_link }}" target="_blank" class="cont_link">continue <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="qote_box" *ngIf="api_status != -1 && agentInfo['neptuneflood_api'] != -1">
+                <h3 class="life_insure">Flood Data</h3>
+                <div class="background-secondary form-group">
+                  <div class="d-flex box_head head_img">
+                    <img class="insure_logo" src="assets/images/neptune.png" alt="" (error) ="changeSource($event)">
+                  </div>
+                  <div class="detail">
+                    <h5>flood data</h5>
+                    <h3 class="value_data">{{ neptuneFoodZone }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Ten Screen -->
+      <!-- End Step 1 -->
+
+      <app-page-eight *ngIf="step==1 && isPage8" (setQuestions)="setQuestions($event)"></app-page-eight>
+
+      <app-page-ten *ngIf="step==1 && isPage10" (setQuestions)="setQuestions($event)"></app-page-ten>
+    </div>
+  </div>
+</div>

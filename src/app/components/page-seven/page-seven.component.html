@@ -1,0 +1,204 @@
+<div class="md-form form-group">
+  <div class="">
+
+      <div class="offset-md-2 col-md-8" style="margin-bottom: 40px;">
+    <!--      <h5 class="font-weight-bolder h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">-->
+    <!--        <img src="../../../assets/images/maps-and-flags.png"-->
+    <!--             [ngStyle]="this.commonService.checkMobile()?{'height':'20px'}:{'height':'30px'}"-->
+    <!--             class="d-inline-block align-top" alt="">-->
+    <!--        <strong>&nbsp;{{-->
+    <!--          addressData['address'] + ', ' +-->
+    <!--          addressData['locality'] + ', ' +-->
+    <!--          addressData['administrative_area_level_1'] + ' ' +-->
+    <!--          addressData['postal_code']-->
+    <!--          }}</strong>-->
+    <!--      </h5>-->
+          <h5 class="font-weight-bolder h5-responsive" [ngStyle]="this.commonService.checkMobile()?{'font-size':'17px'}:{}">What cars are in your household?</h5>
+       </div>
+    <div class="row propertyBoard animated fadeIn" *ngFor="let item of carData; index as i">
+      <div class="col-2 m-0">
+        <div class="d-flex align-items-center justify-content-center">
+          <img src="../../../assets/images/car.svg" class="mx-auto" style="height: 55px;width: 55px;" />
+        </div>
+      </div>
+      <div class="col-3 m-0 p-1">
+        <div class="form-group">
+          <div class="md-outline md-form opt_box">
+            <select class="browser-default custom-select CarYearInput" [(ngModel)]="carData[i]['year']">
+              <option value="" selected>Year</option>
+              <option *ngFor="let item of CarYearData; index as i" [value]="item.year">{{item.year}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3 m-0 p-1">
+        <div class="form-group">
+          <div class="md-outline md-form opt_box">
+            <select class="browser-default custom-select CarTypeInput" [(ngModel)]="carData[i]['type']">
+              <option value="" selected>Make</option>
+              <option *ngFor="let item of CarTypeData; index as i" [value]="item">{{item}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 m-0 p-1">
+        <div class="form-group">
+          <div class="md-outline md-form modal_box">
+            <input mdbInput type="text" class="form-control" placeholder="Model"
+                   [(ngModel)]="carData[i]['model']" [ngModelOptions]="{standalone: true}" >
+          </div>
+        </div>
+      </div>
+      <div class="col-1 m-0">
+        <button type="button" class="close" aria-label="Close" *ngIf="carData.length>1" (click)="deleteCar(i)">
+          <span aria-hidden="true">×</span>
+        </button>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" *ngIf="carData.length<4">
+        <div class="md-outline md-form add-car-containter">
+          <div class="form-row addCar align-items-center justify-content-center" (click)="addCar()">
+            <div class="col justify-content-center align-items-center ">
+              <div class="text-center">
+                <button mdbBtn type="button" color="warning" size="md" style="letter-spacing: 2px" class="shadow-none" (click)="addPerson()">
+                  <i class="fa fa-plus"></i>&nbsp; Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--    <div class="offset-md-2 col-md-8 row property">-->
+<!--      <div class="col-md-4 col-4">-->
+<!--        <p class="font-weight-bold">year</p>-->
+<!--      </div>-->
+<!--      <div class="col-md-4 col-4">-->
+<!--        <p class="font-weight-bold">make</p>-->
+<!--      </div>-->
+<!--      <div class="col-md-4 col-4">-->
+<!--        <p class="font-weight-bold">model</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="offset-md-2 col-md-8 row property animated fadeIn" style="margin-bottom:20px"-->
+<!--         *ngFor="let item of carData; index as i">-->
+<!--      <div class="col-md-4 col-4">-->
+<!--        <select class="browser-default custom-select CarYearInput" [(ngModel)]="carData[i]['year']">-->
+<!--          <option>Select</option>-->
+<!--          <option *ngFor="let item of CarYearData; index as i" [value]="item.year">{{item.year}}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div class="col-md-4 col-4">-->
+<!--        <select class="browser-default custom-select CarTypeInput" [(ngModel)]="carData[i]['type']">-->
+<!--          <option>Select</option>-->
+<!--          <option *ngFor="let item of CarTypeData; index as i" [value]="item">{{item}}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div class="col-md-4 col-4">-->
+<!--        <input mdbInput type="text" class="form-control CarModelInput" placeholder="Model"-->
+<!--               [(ngModel)]="carData[i]['model']" [ngModelOptions]="{standalone: true}">-->
+<!--      </div>-->
+
+<!--      <p class="text text-left font-weight-bolder col-md-4 col-6"-->
+<!--         style="font-size: 20px; color:#44b05d; cursor: pointer;"-->
+<!--         (click)="addCar()">-->
+<!--        <img src="../../../assets/images/plus.png" height="30" class="d-inline-block align-top" alt="">&nbsp;add car-->
+<!--      </p>-->
+<!--      <p class="text text-left font-weight-bolder col-md-4 col-6"-->
+<!--         style="font-size: 20px; color:#e21b1b; cursor: pointer;"-->
+<!--         (click)="deleteCar(i)" *ngIf="i>0">-->
+<!--        <img src="../../../assets/images/delete.png" height="30" class="d-inline-block align-top" alt="">&nbsp;delete-->
+<!--        car-->
+<!--      </p>-->
+<!--    </div>-->
+
+    <!--    <div *ngIf="addLicense">-->
+    <!--      <div class="form-group row userFormGroup animated fadeIn offset-md-2 col-md-8"-->
+    <!--           *ngFor="let item of personData; index as i">-->
+    <!--        &lt;!&ndash; Material input &ndash;&gt;-->
+    <!--        <p class="offset-sm-1 col-sm-11 text text-left font-weight-bolder"><strong>First Name</strong></p>-->
+
+    <!--        <label class="col-sm-1 col-2 col-form-label">-->
+    <!--          <img src="../../../assets/images/user.png" height="30" class="d-inline-block align-top" alt="">-->
+    <!--        </label>-->
+    <!--        <div class="offset-sm-1 col-sm-11 col-10">-->
+    <!--          <div class="md-form mt-0">-->
+    <!--            <input mdbInput type="text" mdbValidate class="form-control"-->
+    <!--                   [(ngModel)]="personData[i]['first_name']">-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--        <p class="offset-sm-1 col-sm-11 text text-left font-weight-bolder"><strong>Last Name</strong></p>-->
+
+    <!--        <div class="col-md-11 offset-md-1 col-10 offset-2">-->
+    <!--          <div class="md-form mt-0">-->
+    <!--            <input mdbInput type="text" mdbValidate class="form-control" [(ngModel)]="personData[i]['last_name']">-->
+    <!--          </div>-->
+    <!--        </div>-->
+
+    <!--        <p class="offset-sm-1 col-sm-11 text text-left font-weight-bolder"><strong>Birthday</strong></p>-->
+    <!--        <div class="col-md-11 offset-md-1 col-10 offset-2">-->
+    <!--          <div class="md-form mt-0" onclick="this.children.date.focus()">-->
+    <!--            <input type="date" class="form-control" placeholder="Birthday" style="height: 25px !important;"-->
+    <!--                   [(ngModel)]="personData[i]['birthday']">-->
+    <!--          </div>-->
+    <!--        </div>-->
+
+    <!--        <p class="offset-sm-1 col-sm-11 text text-left font-weight-bolder"><strong>Drivers License</strong></p>-->
+    <!--        <div class="col-md-11 offset-md-1 col-10 offset-2" *ngIf="addLicense">-->
+    <!--          <div class="md-form mt-0">-->
+    <!--            <input mdbInput type="text" mdbValidate class="form-control" [(ngModel)]="personData[i]['license']">-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--        <div class="col-sm-6" *ngIf="i+1==personData.length">-->
+    <!--          <div class="md-form mt-0">-->
+    <!--            <p class="text text-left font-weight-bolder" style="font-size: 20px; color:#44b05d; cursor: pointer;"-->
+    <!--               (click)="addPerson()">-->
+    <!--              <img src="../../../assets/images/plus.png" height="30" class="d-inline-block align-top" alt="">&nbsp;add-->
+    <!--              person-->
+    <!--            </p>-->
+    <!--          </div>-->
+    <!--        </div>-->
+
+    <!--        <div class="col-sm-6" *ngIf="i+1==personData.length">-->
+    <!--          <div class="md-form mt-0">-->
+    <!--            <p class="text text-left font-weight-bolder" style="font-size: 20px; color:#e21c1c; cursor: pointer;"-->
+    <!--               (click)="deletePerson(i)" *ngIf="i>0">-->
+    <!--              <img src="../../../assets/images/delete.png" height="30" class="d-inline-block align-top" alt="">&nbsp;delete-->
+    <!--              person-->
+    <!--            </p>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div class="form-group row offset-md-2 col-md-8 property animated fadeIn">-->
+    <!--      <div class="col-sm-1"></div>-->
+    <!--      <div class="col-sm-10">-->
+    <!--        <a href="javascript:void(0)" (click)="addLicense=!addLicense"-->
+    <!--           class="text-decoration-none"><u><i>+add drivers license #'s</i></u></a>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!-- <div class="form-group offset-md-2 col-md-8 col-12" style="margin-top: 25px;margin-bottom: 50px;"> -->
+      <!--      <button class="btn btn-primary btn-block col-md-6 mx-auto" type="button" (click)="financialCheck()"-->
+      <!--              *ngIf="carData[0]['type']!='' && carData[0]['model']!='' && carData[0]['name']!=''"-->
+      <!--              style="margin-left: 0px; padding-top: 8px; padding-bottom: 8px;">-->
+      <!--        Next-->
+      <!--      </button>-->
+      <!--      <button class="btn btn-primary btn-block col-md-6 mx-auto" type="button" data-toggle="modal"-->
+      <!--              data-target="#basicExample"-->
+      <!--              data-toggle="modal" data-target="#basicExample"-->
+      <!--              (click)="frame.show()"-->
+      <!--              *ngIf="!(carData[0]['type']!='' && carData[0]['model']!='' && carData[0]['name']!='')"-->
+      <!--              style="margin-left: 0px; padding-top: 8px; padding-bottom: 8px;">-->
+      <!--        Next-->
+      <!--      </button>-->
+    <!-- </div> -->
+    <div class="col-md-12 row property next-btn-div">
+      <div class="form-group col-md-12" style="margin-bottom: 50px;">
+        <app-next-button type="button" color="primary" text="Continue" (click)="next()"></app-next-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,396 @@
+<div class="animated fadeIn">
+  <div class="submit-header">
+    <div class="row">
+      <div class="col-md-8">
+        <h4 class="text-center">Please confirm these details!</h4>
+        <p class="text-center small">While we have all information we need to get started, you can improved the accuracy
+          of our quote by filling in any blank fields!</p>
+      </div>
+      <div class="col-md-4 form-row align-items-center justify-content-center">
+        <button type="button" mdbBtn block="true" color="success" class="shadow-none" (click)="next()">Submit</button>
+      </div>
+    </div>
+  </div>
+  <!--Address Form-->
+  <div class="submit-address">
+    <div class="info-header">Address</div>
+    <div class="info-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="addressInput" class="col-form-label col-md-6"
+                   style="font-size: 0.8rem">Propery to Insure</label>
+            <div class="col-md-6">
+              <input class="form-control" autocorrect="off" (onAddressChange)="handleAddressChange($event)"
+                     autocapitalize="off" spellcheck="off" (load)="loadGooglePlace()" type="text"
+                     [(ngModel)]="total_data.address_data.formatted_address" #placesRef id="addressInput"
+                     [ngClass]="!total_data.address_data.formatted_address?'invalid-input':''">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <mdb-checkbox [default]="true" [(ngModel)]="total_data.isMailingSameAsProperty">Mailing is same</mdb-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="addressInput" class="col-form-label col-md-6"
+                   style="font-size: 0.8rem">Prior Address</label>
+            <div class="col-md-6">
+              <input class="form-control" autocorrect="off" (onAddressChange)="handleAddressChange($event)"
+                     autocapitalize="off" spellcheck="off" (load)="loadGooglePlace()" type="text"
+                     [(ngModel)]="total_data.prior_address" #placesRef id="addressInput"
+                     [ngClass]="!total_data.prior_address?'invalid-input':''">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Personal Form-->
+    <div class="submit-address">
+      <div class="info-header">Personal</div>
+      <div class="info-body">
+        <form class="animated fadeIn personForm" [formGroup]="validatingForm">
+          <div class="row mb-4">
+            <div class="col-md-5">
+              <div class="form-row">
+                <!-- Material input -->
+                <label for="form8" class="col-sm-2 col-2 col-form-label text-success">
+                  <img src="assets/images/gmail.png" height="25" class="d-inline-block align-top" alt="">
+                </label>
+                <div class="col-sm-10 col-10">
+                  <input type="email" class="form-control" id="form8" [(ngModel)]="total_data.email"
+                         formControlName="emailInput" [ngClass]="!total_data.email?'invalid-input':''">
+                  <mdb-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">Email type is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="emailInput.valid && (emailInput.dirty || emailInput.touched)">Email type is valid
+                  </mdb-success>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-row">
+                <label for="form1" class="col-sm-2 col-2 col-form-label text-success">
+                  <img src="assets/images/smartphone.png" height="25" class="d-inline-block align-top" alt="">
+                  <!--<mdb-icon fas icon="phone" class="mr-1  fa-lg"></mdb-icon>-->
+                </label>
+                <div class="col-sm-10 col-10">
+                  <input mdbInput type="text" mdbValidate name="phone" formControlName="phoneInput" class="form-control"
+                         id="form1" [(ngModel)]="total_data.phone" [ngClass]="!total_data.phone?'invalid-input':''">
+                  <mdb-error *ngIf="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)">Phone number is
+                    required.
+                  </mdb-error>
+                  <mdb-success *ngIf="phoneInput.valid && (phoneInput.dirty || phoneInput.touched)">Phone number is
+                    valid
+                  </mdb-success>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row animated fadeIn" *ngFor="let item of total_data.personData; index as i">
+            <div class="col-md-2" *ngIf="total_data.personData.length>1 && commonService.checkMobile()">
+              <div class="md-form mt-0">
+                <button type="button" class="close" aria-label="Close"
+                        style="margin-top: 10px; font-size: 20pt !important;"
+                        (click)="deletePerson(i)">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-row">
+                <label for="form1" class="col-sm-2 col-2 col-form-label text-success">
+                  <img src="assets/images/person.png" height="25" class="d-inline-block align-top" alt="">
+                  <!--<mdb-icon fas icon="phone" class="mr-1  fa-lg"></mdb-icon>-->
+                </label>
+                <div class="col-sm-5 col-10">
+                  <input mdbInput type="text" mdbValidate class="form-control" [formControlName]="'firstnameInput'+i"
+                         [(ngModel)]="item['first_name']" placeholder="first name"
+                         [ngClass]="!item['first_name']?'invalid-input':''">
+                </div>
+                <div class="col-2" *ngIf="commonService.checkMobile()"></div>
+                <div class="col-sm-5 col-10" [ngClass]="commonService.checkMobile()?'mb-2':''">
+                  <input mdbInput type="text" mdbValidate class="form-control" [formControlName]="'lastnameInput'+i"
+                         [(ngModel)]="item['last_name']" placeholder="last name"
+                         [ngClass]="!item['last_name']?'invalid-input':''">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-row">
+                <label for="form1" class="col-sm-2 col-2 col-form-label text-success">
+                  <img src="assets/images/dob.png" height="25" class="d-inline-block align-top" alt="">
+                </label>
+                <div class="col-10" [ngClass]="addLicense?'col-sm-4':'col-sm-10'" onclick="this.children[0].focus()">
+                  <input type="date" class="form-control" placeholder="Birthday" style="height: 35px !important;"
+                         [formControlName]="'birthdayInput'+i" [(ngModel)]="item['birthday']"
+                         [ngClass]="!item['birthday']?'invalid-input':''">
+                </div>
+                <label for="form1" class="col-sm-2 col-2 col-form-label text-success" *ngIf="addLicense">
+                  <img src="assets/images/DLICON.png" height="25" class="d-inline-block align-top" alt="">
+                </label>
+                <div class="col-sm-4 col-10">
+                  <input mdbInput type="text" mdbValidate class="form-control" *ngIf="addLicense"
+                         [formControlName]="'licenseInput'+i"
+                         [(ngModel)]="item['license']" placeholder="driver license"
+                         [ngClass]="!item['license']?'invalid-input':''">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2" *ngIf="total_data.personData.length>1 && !commonService.checkMobile()">
+              <div class="md-form mt-0">
+                <button type="button" class="close" aria-label="Close"
+                        style="margin-top: 10px; font-size: 20pt !important;"
+                        (click)="deletePerson(i)">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row animated fadeIn">
+            <div class="col-sm-12">
+              <button mdbBtn type="button" color="default" size="sm" style="letter-spacing: 2px" class="shadow-none"
+                      (click)="addPerson()">
+                <i class="fa fa-plus"></i>&nbsp; Person
+              </button>
+              <button mdbBtn type="button" color="warning" size="sm" style="letter-spacing: 2px" class="shadow-none"
+                      (click)="addLicense=!addLicense;validatePersonForm()">
+                enter&nbsp; <i class="fas fa-id-card"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!--Discount Form-->
+    <div class="submit-address">
+      <div class="info-header">Discount</div>
+      <div class="info-body">
+        <div class="row" [ngStyle]="commonService.checkMobile()?{'padding-left':'15px'}:{}">
+          <div class="chip blue white-text" *ngIf="total_data.discountsData.alarm">
+            Alarm
+          </div>
+          <div class="chip blue white-text" *ngIf="total_data.discountsData.bundle">
+            Bundle
+          </div>
+          <div class="chip blue white-text" *ngIf="total_data.discountsData.new_roof">
+            New Roof
+          </div>
+          <div class="chip blue white-text" *ngIf="total_data.discountsData.life_insurance">
+            Life Bundle
+          </div>
+          <div class="chip blue white-text" *ngIf="total_data.discountsData.good_credit">
+            Good Credit
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Other Form-->
+    <div class="submit-address">
+      <div class="info-header">Other</div>
+      <div class="info-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label for="inputInsureProperty" class="col-form-label col-md-6"
+                     style="font-size: 0.8rem">Current Insurance</label>
+              <div class="col-md-6">
+                <select mdbInput class="form-control" [(ngModel)]="total_data.carrier_type" [ngClass]="!total_data.carrier_type?'invalid-input':''">
+                  <option *ngFor="let carrier of carriers;" [value]="carrier.value">{{carrier.text}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label for="inputInsureProperty" class="col-form-label col-md-6"
+                     style="font-size: 0.8rem">Current Auto Premium</label>
+              <div class="col-md-6">
+                <input [(ngModel)]="total_data.auto_premium" [ngClass]="!total_data.auto_premium?'invalid-input':''" class="form-control"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label for="basement_input" class="col-form-label col-md-6"
+                     style="font-size: 0.8rem">Current Home Premium</label>
+              <div class="col-md-6">
+                <input [(ngModel)]="total_data.home_premium" [ngClass]="!total_data.home_premium?'invalid-input':''" class="form-control"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label for="basement_input" class="col-form-label col-md-6"
+                     style="font-size: 0.8rem">Basement Finished</label>
+              <div class="col-md-6">
+                <select [(ngModel)]="total_data.discountsData.claim_free" class="form-control"
+                        id="basement_input" [ngClass]="(!total_data.discountsData.claim_free && total_data.discountsData.claim_free!==false)
+                        ?'invalid-input':''">
+                  <option value="true">YES</option>
+                  <option value="false">NO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label for="requestdate_input" class="col-form-label col-md-6"
+                     style="font-size: 0.8rem">Request Start</label>
+              <div class="col-md-6">
+                <input type="date" [(ngModel)]="total_data.homeData.buying_date" mdbInput class="form-control"
+                       id="requestdate_input" [ngClass]="!total_data.homeData.buying_date?'invalid-input':''"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label for="inputInsureProperty" class="col-form-label col-md-6"
+                     style="font-size: 0.8rem">Dog</label>
+              <div class="col-md-6">
+                <select [(ngModel)]="total_data.discountsData.dog" class="form-control" id="inputInsureProperty"
+                        [ngClass]="(!total_data.discountsData.dog && total_data.discountsData.dog!==false)
+                        ?'invalid-input':''">
+                  <option value="true">YES</option>
+                  <option value="false">NO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Home Updates Form-->
+    <div class="submit-address">
+      <div class="info-header">Home Updates</div>
+      <div class="info-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group align-items-center">
+              <label for="roofInput" class="col-form-label text-center"
+                     style="font-size: 0.8rem">Roof</label>
+              <div>
+                <input type="number" [(ngModel)]="total_data.yearData.roof_year" mdbInput class="form-control"
+                       id="roofInput" [ngClass]="!total_data.yearData.roof_year?'invalid-input':''"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group align-items-center">
+              <label for="plumbingInput" class="col-form-label text-center"
+                     style="font-size: 0.8rem">Plumbing</label>
+              <div>
+                <input type="number" [(ngModel)]="total_data.yearData.plumbing_year" mdbInput class="form-control"
+                       id="plumbingInput" [ngClass]="!total_data.yearData.plumbing_year?'invalid-input':''"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group align-items-center">
+              <label for="acInput" class="col-form-label text-center"
+                     style="font-size: 0.8rem">A/C</label>
+              <div>
+                <input type="number" [(ngModel)]="total_data.yearData.ac_year" mdbInput class="form-control"
+                       id="acInput" [ngClass]="!total_data.yearData.ac_year?'invalid-input':''"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group align-items-center">
+              <label for="electricInput" class="col-form-label text-center"
+                     style="font-size: 0.8rem">Electric</label>
+              <div>
+                <input type="number" [(ngModel)]="total_data.yearData.electric_year" mdbInput class="form-control"
+                       id="electricInput" [ngClass]="!total_data.yearData.electric_year?'invalid-input':''"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Cars Form-->
+    <div class="submit-address">
+      <div class="info-header">Cars</div>
+      <div class="info-body">
+        <div class="row animated fadeIn">
+          <div class="col-md-4 m-0" *ngFor="let item of total_data.carData; index as i">
+            <div class="d-flex align-items-center justify-content-center">
+              <img src="../../../assets/images/caricon.png" class="mx-auto"/>
+              <button type="button" class="close" aria-label="Close" *ngIf="total_data.carData.length>1"
+                      (click)="deleteCar(i)">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="form-group">
+              <div class="md-outline md-form ">
+                <select class="browser-default custom-select CarYearInput" [(ngModel)]="total_data.carData[i]['year']"
+                [ngClass]="!total_data.carData[i]['year']?'invalid-input':''">
+                  <option>Select</option>
+                  <option *ngFor="let item of CarYearData; index as i" [value]="item.year">{{item.year}}</option>
+                </select>
+              </div>
+              <div class="md-outline md-form ">
+                <select class="browser-default custom-select CarTypeInput" [(ngModel)]="total_data.carData[i]['type']"
+                [ngClass]="!total_data.carData[i]['type']?'invalid-input':''">
+                  <option>Select</option>
+                  <option *ngFor="let item of CarTypeData; index as i" [value]="item">{{item}}</option>
+                </select>
+              </div>
+              <div class="md-outline md-form ">
+                <input mdbInput type="text" class="form-control" placeholder="Model"
+                       [(ngModel)]="total_data.carData[i]['model']" [ngModelOptions]="{standalone: true}"
+                       [ngClass]="!total_data.carData[i]['model']?'invalid-input':''">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" *ngIf="total_data.carData.length<4">
+            <div class="md-outline md-form add-car-containter">
+              <div class="form-row addCar align-items-center justify-content-center" (click)="addCar()">
+                <div class="col justify-content-center align-items-center ">
+                  <div class="text-center">
+                    <mdb-icon fas icon="plus" size="3x" class=""></mdb-icon>
+                  </div>
+                  <div class="text-center">Add Car</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Send detail Form-->
+    <div class="submit-address">
+      <div class="info-header">Send us any infomation details you want to include:</div>
+      <div class="info-body">
+        <div class="row">
+          <div class="col-md-12">
+            <textarea [(ngModel)]="total_data.comment" id="form7" class="md-textarea md-textarea-auto form-control"
+                      mdbInput [ngClass]="!total_data.comment?'invalid-input':''"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Upload File Form-->
+    <div class="submit-address">
+      <div class="info-header">Upload any Dec pages you Have for Comparison:</div>
+      <div class="info-body">
+        <input type="file" mdbFileSelect ng2FileSelect [uploader]="uploader">
+      </div>
+    </div>
+    <div class="col-md-12 row property mt-5">
+      <div class="col-md-12 form-row align-items-center justify-content-center p-5">
+        <button type="button" mdbBtn color="success" mdbWavesEffect (click)="next()" class="shadow-none">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+

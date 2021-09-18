@@ -1,0 +1,46 @@
+<div class="md-form form-group">
+  <div class="">
+    <div class="offset-md-3 col-md-6" style="margin-bottom: 40px;">
+      <div class="row">
+        <div class="col-md-12 head_sec" style="margin-bottom: 20px;">
+          <h2 class="title">Let's Insure You</h2>
+          <p class="font-weight-bolder titel-text-after">Quickly apply for insurance quotes from <br>our agency! This process takes 2-3 minutes.</p>
+          <h4 class="text-hedding-after">select you current carrier:</h4>
+          <div class="current-category">
+            <div *ngIf="this.commonService.checkMobile()"><u><b>Not Currently Insured Anywhere</b></u></div>
+            <ol>
+              <li class="form-group">
+                <div class="d-flex inner-current-category">
+                  <img src="assets/images/allstate.png" width="80"/>
+
+                  <label class="container">
+                    <input type="radio" name="radio" (click)="selectCurrentCatregory('all state')">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </li>
+              <li class="form-group">
+                <div class="d-flex inner-current-category">
+                  <img src="assets/images/nationwide-tag.png" width="80" />
+                  <label class="container">
+                    <input type="radio" name="radio" (click)="selectCurrentCatregory('nationwide')">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </li>
+              <li class="form-group">
+                <div class="d-flex inner-current-category">
+                  <img src="assets/images/progressive-tag.png" width="80" />
+                  <label class="container">
+                    <input type="radio" name="radio" (click)="selectCurrentCatregory('progressive')">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

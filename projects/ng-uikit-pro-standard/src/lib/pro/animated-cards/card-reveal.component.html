@@ -1,0 +1,8 @@
+<div #cardOverflow class="card-overflow">
+  <div #cardFront class="card-front">
+    <ng-content select=".card-front"></ng-content>
+  </div>
+  <div #cardReveal class="card-reveal" *ngIf="show" [@socialsState]="socials">
+    <ng-content select=".card-reveal"></ng-content>
+  </div>
+</div>

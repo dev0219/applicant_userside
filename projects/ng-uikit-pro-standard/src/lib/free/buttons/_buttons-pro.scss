@@ -1,0 +1,243 @@
+// Buttons
+.btn {
+  &.btn-flat {
+    font-weight: 500;
+    box-shadow: none;
+    background-color: transparent;
+    color: inherit;
+    &:not([disabled]):not(.disabled):active {
+      box-shadow: none;
+    }
+  }
+}
+
+// Floating button
+.btn-floating {
+  box-shadow: $z-depth-1-half;
+  @include make-btn-floating(
+    $btn-floating-width,
+    $btn-floating-height,
+    $btn-floating-icon-size,
+    $btn-floating-line-height
+  );
+  position: relative;
+  z-index: 1;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  transition: $btn-floating-transtion;
+  margin: $btn-floating-margin;
+  border-radius: $btn-floating-border-radius;
+  padding: 0;
+  cursor: pointer;
+  i {
+    display: inline-block;
+    width: inherit;
+    text-align: center;
+    color: $white-base;
+  }
+  &:hover {
+    box-shadow: $z-depth-2;
+  }
+  &:before {
+    border-radius: 0;
+  }
+  &.btn-sm {
+    @include make-btn-floating(
+      $btn-floating-width-sm,
+      $btn-floating-height-sm,
+      $btn-floating-icon-size-sm,
+      $btn-floating-line-height-sm
+    );
+  }
+  &.btn-lg {
+    @include make-btn-floating(
+      $btn-floating-width-lg,
+      $btn-floating-height-lg,
+      $btn-floating-icon-size-lg,
+      $btn-floating-line-height-lg
+    );
+  }
+}
+
+// Fixed action button
+.fixed-action-btn {
+  position: fixed;
+  z-index: 998;
+  right: $fixed-action-btn-right;
+  bottom: $fixed-action-btn-bottom;
+  margin-bottom: 0;
+  padding-top: $fixed-action-btn-padding-top;
+  ul {
+    display: flex;
+    flex-direction: column;
+    transition: 400ms height;
+    position: absolute;
+    bottom: $fixed-action-btn-ul-bottom;
+    height: $fixed-action-btn-ul-bottom;
+    left: 0;
+    right: 0;
+    margin: 0 0 15px;
+    padding: 0;
+    text-align: center;
+    li {
+      display: flex;
+      margin-bottom: $fixed-action-btn-li-margin-bottom;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 0;
+    }
+    a {
+      &.btn-floating {
+        opacity: 0;
+        transition-duration: 0.4s;
+        transform: scale(0.4) translate(0);
+        &.shown {
+          transform: scale(1) translate(0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &.active ul {
+    height: 300px;
+  }
+}
+
+button,
+html [type='button'],
+[type='reset'],
+[type='submit'] {
+  appearance: none;
+}
+
+// Rounded buttons
+.btn-rounded {
+  border-radius: $btn-rounded-border-radius;
+}
+
+// Angular styles
+// Button tags
+.waves-input-wrapper {
+  display: inline-block;
+}
+
+// Flat button
+.btn {
+  &.btn-flat {
+    color: inherit !important;
+  }
+}
+
+.btn-flat {
+  background: transparent;
+  color: inherit !important;
+  position: relative;
+  padding: 8px 30px;
+  border: none;
+  margin: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: none !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+
+  &:focus,
+  &:hover {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+.fixed-action-btn {
+  position: fixed;
+  z-index: 998;
+  right: auto;
+  bottom: auto;
+}
+
+//Fixed buttons
+.fixed-action-btn {
+  .fixed_collapse {
+    left: 0;
+    right: 0;
+    text-align: center;
+    position: absolute;
+    bottom: 70px;
+    margin: 0;
+  }
+}
+
+// Floating button
+.btn-floating {
+  mdb-icon {
+    display: inline-block;
+    width: inherit;
+    text-align: center;
+    color: $white-base;
+  }
+
+  .fixed-button-caption {
+    background: black;
+    color: white;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    box-shadow: $z-depth-2;
+  }
+
+  &:before {
+    border-radius: 0;
+  }
+
+  &.btn-sm {
+    @include make-btn-floating(
+      $btn-floating-width-sm,
+      $btn-floating-height-sm,
+      $btn-floating-icon-size-sm,
+      $btn-floating-line-height-sm
+    );
+  }
+
+  &.btn-lg {
+    @include make-btn-floating(
+      $btn-floating-width-lg,
+      $btn-floating-height-lg,
+      $btn-floating-icon-size-lg,
+      $btn-floating-line-height-lg
+    );
+  }
+}
+
+.btn {
+  &.btn-floating {
+    position: fixed;
+  }
+}
+
+[type='checkbox'].onFocusSelect,
+[type='radio'].onFocusSelect {
+  visibility: visible !important;
+  opacity: 0 !important;
+}
+
+// Checkbox
+// [type="checkbox"] {
+//     &[class*="filled-in"] {
+//         &:checked {
+//             +label:after {
+
+//             }
+//         }
+//     }
+// }
+
+[type='checkbox'].onFocusSelect,
+[type='radio'].onFocusSelect {
+  visibility: visible !important;
+  opacity: 0 !important;
+}

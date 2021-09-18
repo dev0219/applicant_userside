@@ -1,0 +1,65 @@
+.list-group-item {
+  background-color: transparent !important;
+}
+
+.list-group-item-action {
+  text-align: left !important;
+  color: #000 !important;
+  border: none !important;
+}
+
+.list-group {
+  width: calc(100% - 10px);
+
+  .list-group-item.active {
+    background-color: #59698d;
+    border-color: #59698d;
+  }
+
+}
+
+@media screen and (min-width: 1441px) {
+
+  .content {
+    width: calc(100% - 315px) !important;
+    padding-top: 50px;
+    margin-left: 300px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .content {
+    width: 60% !important;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-left: 20%;
+  }
+
+}
+
+.list-row {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.options {
+  max-height: 600px !important;
+}
+
+.showDashboard{
+  position: fixed;
+  top: 50%;
+  left: 0%;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    width: 100% !important;
+    margin-left: 0px !important;
+  }
+}

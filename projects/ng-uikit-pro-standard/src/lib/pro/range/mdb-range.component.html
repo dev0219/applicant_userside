@@ -1,0 +1,41 @@
+<div *ngIf="!default" class="range-field" #rangeField>
+  <div class="track">
+    <div #rangeCloud class="range-cloud" title="range"
+         [ngClass]="{'visible': this.visibility, 'hidden': !this.visibility}">
+      <span class="text-transform">{{range}}</span>
+    </div>
+  </div>
+  <input #input
+         [name]="name"
+         type="range"
+         [disabled]="disabled"
+         [id]="id"
+         [min]="min"
+         [max]="max"
+         [step]="step"
+         [value]="value"
+         [(ngModel)]="range"
+         (focus)="this.visibility = true"
+         (blur)="this.visibility = false"
+         (input)="coverage($event)">
+</div>
+
+<div *ngIf="default">
+  <label for="customRange1">Example range</label>
+  <input #input
+         class="custom-range"
+         [name]="name"
+         type="range"
+         [id]="id"
+         [min]="min"
+         [max]="max"
+         [step]="step"
+         [attr.value]="value"
+         [value]="value"
+         [(ngModel)]="range"
+         (focus)="this.visibility = true"
+         (blur)="this.visibility = false"
+         (input)="coverage($event)"
+         (touchend)="blurRangeInput()">
+  <span class="{{defaultRangeCounterClass}}">{{ range }}</span>
+</div>

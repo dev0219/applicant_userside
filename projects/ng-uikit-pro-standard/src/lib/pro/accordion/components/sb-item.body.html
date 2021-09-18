@@ -1,0 +1,11 @@
+<div #body class="sb-item-body"
+     [style.height]="height"
+     (@expandBody.done)="animationCallback()"
+     [@expandBody]="expandAnimationState"
+     [id]="id"
+     role="region"
+     [attr.aria-labelledby]="ariaLabelledBy">
+    <div class="card-body {{ customClass }}">
+    	<ng-content></ng-content>
+    </div>
+</div>

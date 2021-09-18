@@ -1,0 +1,201 @@
+<div class="content col-md-9 offset-md-1">
+  <h1 class="font-weight-bolder h1-responsive" *ngIf="loggedUserData!=null" style="margin-top: 50px; margin-bottom: 50px;">
+    <img [src]="'./uploads/'+loggedUserData['profilePic']" height="70"
+         style="margin-left: 30px;margin-right: 30px;"/>{{loggedUserData['label']}}</h1>
+  <div>
+    <button mdbBtn type="button" color="primary" mdbWavesEffect size="md" (click)="mode=0;credentials={};basicModal.show()">
+      <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>Create
+    </button>
+  </div>
+  <mdb-card cascade="true" narrower="true" style="margin-top: 25px; margin-bottom: 50px !important">
+    <!--Card image-->
+    <!--<div-->
+    <!--class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">-->
+
+    <!--<a href="javascript:void(0);" class="white-text mx-3 text-center">User lists</a>-->
+
+    <!--<button type="button" mdbBtn color="white" outline="true" (click)="mode=0;credentials=[];basicModal.show()" rounded="true" size="sm" class="px-2" mdbWavesEffect>-->
+    <!--<mdb-icon fas icon="plus" class="mt-0"></mdb-icon>-->
+    <!--</button>-->
+    <!--</div>-->
+    <!--/Card image-->
+
+    <div class="px-4">
+
+      <!--<div class="col-md-6 mx-auto">-->
+      <!--<div class="md-form">-->
+      <!--<input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"-->
+      <!--mdbInput>-->
+      <!--<label for="search-input">Search</label>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div class="table-responsive">
+        <!--Table-->
+        <table mdbTable #tableEl="mdbTable" class="mb-0 table" mdbTable hover="true">
+
+          <!--Table head-->
+
+          <thead>
+          <tr>
+            <th [mdbTableSort]="elements" sortBy="name" scope="col">Name&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
+            <th [mdbTableSort]="elements" sortBy="link_title" scope="col">Link&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
+            <th [mdbTableSort]="elements" sortBy="email" scope="col">Email&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
+            <th [mdbTableSort]="elements" sortBy="phone" scope="col">Phone&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
+            <th [mdbTableSort]="elements" sortBy="label" scope="col">Label&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
+            <th scope="col">Actions</th>
+          </tr>
+          </thead>
+          <!--Table head-->
+          <!--Table body-->
+          <tbody>
+          <tr *ngFor="let user of userdata; let i = index">
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.name}}</td>
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.link_title}}</td>
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.email}}</td>
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.phone}}</td>
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.label}}</td>
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+              <button mdbBtn type="button" size="sm" color="primary" (click)="getDetail(user.email)" mdbWavesEffect>
+                <mdb-icon fas icon="edit" class="mr-1"></mdb-icon>
+              </button>
+              <button mdbBtn type="button" size="sm" color="danger" (click)="deleteUser(user.email)" mdbWavesEffect>
+                <mdb-icon fas icon="trash" class="ml-1"></mdb-icon>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot class="grey lighten-5 w-100">
+          <tr>
+            <td colspan="6">
+              <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+            </td>
+          </tr>
+          </tfoot>
+          <!--Table body-->
+        </table>
+        <!--Table-->
+      </div>
+    </div>
+  </mdb-card>
+</div>
+<div class="container">
+
+  <!-- Grid row -->
+  <!--<ngbd-datepicker-basic></ngbd-datepicker-basic>-->
+  <!-- Horizontal Steppers -->
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+           aria-labelledby="myBasicModalLabel" aria-hidden="true"  (open)="onOpen()">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <form class="text-center modal-content" enctype="multipart/form-data" style="color: #757575;" (submit)="register()"
+                [formGroup]="registerForm">
+              <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">{{mode == 0 ? 'Register' : 'Edit'}} User</h4>
+              </div>
+              <div class="modal-body">
+
+                <!-- Name -->
+                <div class="md-form">
+                  <input type="text" id="materialLoginFormName" class="form-control" mdbInput
+                         [(ngModel)]="credentials.name" formControlName="nameInput">
+                  <mdb-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">Name is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="nameInput.valid && (nameInput.dirty || nameInput.touched)">Name is valid
+                  </mdb-success>
+                  <label for="materialLoginFormName">Full Name</label>
+                </div>
+                <!-- Email -->
+                <div class="md-form">
+                  <input type="email" id="materialLoginFormEmail" class="form-control" mdbInput
+                         [(ngModel)]="credentials.email" formControlName="emailInput">
+                  <mdb-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">Email is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="emailInput.valid && (emailInput.dirty || emailInput.touched)">Email is valid
+                  </mdb-success>
+                  <label for="materialLoginFormEmail">E-mail</label>
+                </div>
+
+                <!-- Phone -->
+                <div class="md-form">
+                  <input type="text" id="materialLoginFormPhone" class="form-control" mdbInput
+                         [(ngModel)]="credentials.phone" formControlName="phoneInput">
+                  <mdb-error *ngIf="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)">Phone is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="phoneInput.valid && (phoneInput.dirty || phoneInput.touched)">Phone is valid
+                  </mdb-success>
+                  <label for="materialLoginFormPhone">Phone</label>
+                </div>
+
+                <!-- Link -->
+                <div class="md-form">
+                  <mdb-select [options]="optionsSelect" [multiple]="true" [highlightFirst]="false" [ngModelOptions]="{standalone: true}"  [(ngModel)]="credentials.link" placeholder="Select your link"></mdb-select>
+                  <!--<mdb-error *ngIf="linkInput.invalid && (linkInput.dirty || linkInput.touched)">Link is-->
+                    <!--invalid-->
+                  <!--</mdb-error>-->
+                  <!--<mdb-success *ngIf="linkInput.valid && (linkInput.dirty || linkInput.touched)">Link is valid-->
+                  <!--</mdb-success>-->
+                  <label>Links</label>
+                  <!--<select class="form-control" id="materialLoginFormLink" mdbInput [ngModelOptions]="{standalone: true}" [(ngModel)]="credentials.link"-->
+                          <!--multiple>-->
+                    <!--<option *ngFor="let link of links" [value]="link['_id']">{{link['name']}}</option>-->
+                  <!--</select>-->
+                  <!--<label for="materialLoginFormLink">Link</label>-->
+                </div>
+
+                <!-- Label -->
+                <div class="md-form">
+                  <input type="text" id="materialLoginFormLable" class="form-control" mdbInput
+                         [(ngModel)]="credentials.label" formControlName="labelInput">
+                  <mdb-error *ngIf="labelInput.invalid && (labelInput.dirty || labelInput.touched)">Label is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="labelInput.valid && (labelInput.dirty || labelInput.touched)">Label is valid
+                  </mdb-success>
+                  <label for="materialLoginFormLable">Label</label>
+                </div>
+                <!-- Password -->
+                <div class="md-form">
+                  <input type="password" id="materialLoginFormPassword" class="form-control" mdbInput
+                         [(ngModel)]="credentials.password" formControlName="passwordInput">
+                  <mdb-error *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">Password is
+                    invalid
+                  </mdb-error>
+                  <mdb-success *ngIf="passwordInput.valid && (passwordInput.dirty || passwordInput.touched)">Password is
+                    valid
+                  </mdb-success>
+                  <label for="materialLoginFormPassword">Password</label>
+                </div>
+
+                <!-- Password -->
+
+                <div class="file-field md-form">
+                  <div mdbWavesEffect>
+                    <img src="../../assets/images/image-upload-icon.png" width="47" mdbWavesEffect/>
+                    <input type="file" mdbFileSelect ng2FileSelect [uploader]="uploader">
+                  </div>
+                  <div class="file-path-wrapper mt-3">
+                    <input class="file-path" type="text" placeholder="Upload your profile picture"
+                           [(ngModel)]="fileName" [ngModelOptions]="{standalone: true}" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" mdbBtn color="secondary" class="waves-light" [disabled]="isActiveButton==false" aria-label="Close"
+                        (click)="basicModal.hide()" mdbWavesEffect>Close
+                </button>
+                <button mdbBtn color="info" mdbWavesEffect type="submit">Register
+                </button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
