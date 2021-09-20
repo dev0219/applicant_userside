@@ -136,27 +136,51 @@ export class PageAdavanceFiveComponent implements OnInit {
       let agnt = cagent[0].toString();
       currentAgent = agnt;
     }
+    const Baseapi = "https://apply.insure/all";
 
-    this.http.get('assets/'+currentAgent+'.csv', {responseType: 'text'})
-      .subscribe(
-          data => {
-            let csvToRowArray = data.split("\n");
-            for (let index = 1; index < csvToRowArray.length - 1; index++) {
-              let row = csvToRowArray[index].split(",");
-              
-              if(row[0] == "5"){
+    this.http.get(Baseapi)
+    .subscribe(
+        data => {
+          let csvToRowArray = data
+          for (const [key, row] of Object.entries(csvToRowArray)) {
+            if(row['link'].toString().trim() == currentAgent){
+               if(row['question5']){
                 var arr =  {
-                  question: row[1].toString().trim(),
-                  type: row[2].toString().trim(),
-                  answer: ''
-                };
-                this.pageFiveCustomQuestion.push(arr);
-              }
+                      question: row['question5'],
+                      type: row['answer_type5'],
+                      answer: ''
+                    };
+                    this.pageFiveCustomQuestion.push(arr);
+               }
             }
-        },
-        error =>{
-          console.log(error);
-        }
-      );
+          }
+      },
+      error =>{
+        console.log(error);
+      }
+    );
+      // this.http.get('assets/'+currentAgent+'.csv', {responseType: 'text'})
+      //   .subscribe(
+      //       data => {
+      //         let csvToRowArray = data.split("\n");
+      //         for (let index = 1; index < csvToRowArray.length - 1; index++) {
+      //           let row = csvToRowArray[index].split(",");
+                
+      //           if(row[0] == "5"){
+      //             var arr =  {
+      //               question: row[1].toString().trim(),
+      //               type: row[2].toString().trim(),
+      //               answer: ''
+      //             };
+      //             this.pageFiveCustomQuestion.push(arr);
+      //           }
+      //         }
+      //     },
+      //     error =>{
+      //       console.log(error);
+      //     }
+      //   );
+
+
     }
 }

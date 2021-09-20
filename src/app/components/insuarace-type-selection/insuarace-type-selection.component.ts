@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CommonService} from "../../services/common.service";
+import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
 
 @Component({
   selector: 'app-insuarace-type-selection',
@@ -9,13 +10,16 @@ import {CommonService} from "../../services/common.service";
 export class InsuaraceTypeSelectionComponent implements OnInit {
 
   public insuarance_type: string;
-    
+  introduceimageurl:any
     @Output() setHomeData: EventEmitter<object> = new EventEmitter<object>();
 
-    constructor(private commonService: CommonService) {
+    constructor(private commonService: CommonService, private advanceService:AdvanceHomeComponent) {
     }
 
   ngOnInit() {
+  
+   setTimeout(() => { this.introduceimageurl = this.advanceService.gethouseUrl()}, 1000);
+    
   }
 
   submitInsuaranceType(data)

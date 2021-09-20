@@ -1537,15 +1537,14 @@ function (req, res, next) {
     }else{
       address = total_data.manualAddress;
     }
-    console.log("server connect")
     Applicant.find({quote_id: total_data.quote_id}, function (err, applicant) {
       if (err) {
         res.render('error');
         return;
       }
-         console.log("applicant length",applicant.length)
       if (total_data.personData.length) {
         let applicant = new Applicant();
+        console.log("total datas", total_data)
         applicant.name = persons[0]['first_name'] + ' ' + persons[0]['last_name'];
         applicant.email = total_data.email;
         applicant.address = address;
@@ -1556,6 +1555,20 @@ function (req, res, next) {
         applicant.insuranceType = total_data.insuranceType?total_data.insuranceType:'';
         applicant.link = total_data.agent.link;
         applicant.status = "0";
+        if(total_data.pageFiveCustomQuestion.length > 0){
+          applicant.question5 = total_data.pageFiveCustomQuestion[0]['question'];
+          applicant.answer5 = total_data.pageFiveCustomQuestion[0]['answer'];
+        }else{
+          applicant.question5 = ''
+          applicant.answer5 = ''
+        }
+        if(total_data.pageSixCustomQuestion.length > 0){
+          applicant.question6 = total_data.pageSixCustomQuestion[0]['question'];
+          applicant.answer6 = total_data.pageSixCustomQuestion[0]['answer'];
+        }else{
+          applicant.question6 = ''
+          applicant.answer6 = ''
+        }
         applicant.carrierType = total_data.carrier_type?total_data.carrier_type:'';
         applicant.requestorcomments = total_data.requestorcomments?total_data.requestorcomments:'';
         applicant.mailingadress =  total_data.mailing_address.address?total_data.mailing_address.address:total_data.mailing_address;
@@ -1580,6 +1593,7 @@ function (req, res, next) {
         applicant.security_system = total_data.discountsData['security_system'];
         applicant.register_date = new Date();
         applicant.vin = '';
+        console.log("applicant list", applicant)
         applicant.save();
       }
     });

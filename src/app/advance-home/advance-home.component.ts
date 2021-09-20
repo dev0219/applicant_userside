@@ -76,6 +76,10 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   addLicense: boolean = false;
   comment: string;
   modalContentMargin: number;
+  householdimageurl:any;
+  propertyimageurl:any;
+  introduceimageurl:any;
+
   agentInfo: object;
   life_array = configs.life_array;
   autobeat: string;
@@ -298,6 +302,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   setDiscountData($event){
     this.discountsData = $event.discountsData;
     this.pageFiveCustomQuestion = $event.pageFiveCustomQuestion;
+    console.log("pageFiveCustomQuestion", this.pageFiveCustomQuestion)
     this.initStep3();
     this.nextscreenmove(4);
     this.progrss = 50;
@@ -1111,6 +1116,9 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
                 userArr['phone'] = row['phone']; 
                 row['api_status'] = row['api_status'].toLowerCase();
                 userArr['api_status'] = row['api_status'];
+                
+                userArr['householdimage'] = row['householdimage'];
+                userArr['propertyimage'] = row['propertyimage'];
                 this.api_status = row['api_status'].localeCompare("yes");
 
                 if(row['emailtext'].trim() != ''){
@@ -1124,7 +1132,18 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
                 // }else{
                 //   userArr['favicon'] = '';
                 // }
-
+                this.householdimageurl = row['householdimage'];
+                this.propertyimageurl = row['propertyimage'];
+                this.introduceimageurl = row['introimage'];
+                if(this.householdimageurl == '' || this.householdimageurl == undefined){
+                  this.householdimageurl = 'imgpsh_fullsize_anim.png'
+                }
+                if(this.propertyimageurl == '' || this.propertyimageurl == undefined){
+                  this.propertyimageurl = 'imgpsh_fullsize_anim.png'
+                }
+                if(this.introduceimageurl == '' || this.introduceimageurl == undefined){
+                  this.introduceimageurl = 'imgpsh_fullsize_anim.png'
+                }
                 if(row['agentimage'].trim() != ''){
                   userArr['agent_image'] = row['agentimage'];
                 }else{
@@ -1248,7 +1267,9 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   changeSource(event) {
     this.agentInfo['logo'] = '';
   }
-
+  gethouseUrl(){
+   return this.introduceimageurl;
+  }
   sumArray(arr) {
     var total = 0;
     arr.forEach(function(element){

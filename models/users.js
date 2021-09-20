@@ -114,6 +114,22 @@ const UserSchema = mongoose.Schema({
     type:String,
     required:false
   },
+  question5:{
+    type:String,
+    required:false
+  },
+  answer_type5:{
+    type:String,
+    required:false
+  },
+  question6:{
+    type:String,
+    required:false
+  },
+  answer_type6:{
+    type:String,
+    required:false
+  },
   created_at: {
     type: Date,
     required: false

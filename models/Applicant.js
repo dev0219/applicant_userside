@@ -92,6 +92,22 @@ let ApplicantSchema = new mongoose.Schema({
     type:String,
     required:false
   },
+  question5:{
+    type:String,
+    required:false
+  },
+  answer5:{
+    type:String,
+    required:false
+  },
+  question6:{
+    type:String,
+    required:false
+  },
+  answer6:{
+    type:String,
+    required:false
+  },
   cardatayear:{
     type:String,
     required:false

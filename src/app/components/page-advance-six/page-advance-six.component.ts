@@ -101,28 +101,50 @@ export class PageAdvanceSixComponent implements OnInit {
       let agnt = cagent[0].toString();
       currentAgent = agnt;
     }
+    const Baseapi = "https://apply.insure/all";
 
-    this.http.get('assets/'+currentAgent+'.csv', {responseType: 'text'})
-      .subscribe(
-          data => {
-              let csvToRowArray = data.split("\n");
-              for (let index = 1; index < csvToRowArray.length - 1; index++) {
-                let row = csvToRowArray[index].split(",");
-                if(row[0] == "6"){
-                  let num = index - 1;
-                  var arr = {
-                    question: row[1].toString().trim(),
-                    type: row[2].toString().trim(),
-                    answer: ''
-                  }
-                  this.pageSixCustomQuestion.push(arr);
-                }
+    this.http.get(Baseapi)
+    .subscribe(
+        data => {
+          let csvToRowArray = data
+          for (const [key, row] of Object.entries(csvToRowArray)) {
+            if(row['link'].toString().trim() == currentAgent){
+               if(row['question6']){
+                var arr =  {
+                      question: row['question6'],
+                      type: row['answer_type6'],
+                      answer: ''
+                    };
+                    this.pageSixCustomQuestion.push(arr);
+               }
             }
-            console.log(this.pageSixCustomQuestion);
-        },
-        error =>{
-          console.log(error);
-        }
-      );
+          }
+      },
+      error =>{
+        console.log(error);
+      }
+    );
+    // this.http.get('assets/'+currentAgent+'.csv', {responseType: 'text'})
+    //   .subscribe(
+    //       data => {
+    //           let csvToRowArray = data.split("\n");
+    //           for (let index = 1; index < csvToRowArray.length - 1; index++) {
+    //             let row = csvToRowArray[index].split(",");
+    //             if(row[0] == "6"){
+    //               let num = index - 1;
+    //               var arr = {
+    //                 question: row[1].toString().trim(),
+    //                 type: row[2].toString().trim(),
+    //                 answer: ''
+    //               }
+    //               this.pageSixCustomQuestion.push(arr);
+    //             }
+    //         }
+    //         console.log(this.pageSixCustomQuestion);
+    //     },
+    //     error =>{
+    //       console.log(error);
+    //     }
+    //   );
     }
 }
