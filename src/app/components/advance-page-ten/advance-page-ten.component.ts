@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import * as carriers from "../../../resource/carriers";
 import {CommonService} from "../../services/common.service";
+import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
 
 @Component({
   selector: 'app-advance-page-ten',
@@ -8,14 +9,21 @@ import {CommonService} from "../../services/common.service";
   styleUrls: ['./advance-page-ten.component.scss']
 })
 export class AdvancePageTenComponent implements OnInit {
+  householdimageurl:any
+  ishouseholdimage:any
   @Output() setInsurnaceType: EventEmitter<string> = new EventEmitter<string>();
-  constructor(public commonService: CommonService) {
+  constructor(public commonService: CommonService,private advanceService:AdvanceHomeComponent) {
     console.log(carriers);
   }
 
   public insurances: object = carriers.data;
 
   ngOnInit() {
+    this.ishouseholdimage = false;
+    setTimeout(() => { 
+      this.householdimageurl = this.advanceService.gethouseholdUrl()
+       this.ishouseholdimage = true;
+     }, 1000);
   }
 
   submitInsuranceType(event){

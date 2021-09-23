@@ -34,6 +34,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: false
   },
+  autoimage:{
+    type: String,
+    required: false
+  },
   householdimage:{
     type: String,
     required: false

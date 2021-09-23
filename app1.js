@@ -143,7 +143,10 @@ const storage = multer.diskStorage({
     cb(null, './upload');
   },
   filename: (req, file, cb) => {
-    cb(null, `${file.originalname}`);
+    var newname = file.originalname;
+    newname = newname.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '').toLowerCase()
+    newname = newname.replace(/\s+/g, '').toLowerCase();
+    cb(null, `${newname}`);
   }
 });
 

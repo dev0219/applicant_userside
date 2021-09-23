@@ -6,8 +6,8 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'AKIATLLLZDV4IXDD7WMR', // generated ethereal user
-      pass: 'BHfZyiL2mLcDL3DRZFcZxfDcyJ9kBFzaUs8MechqmRmB', // generated ethereal password
+        user: 'AKIATLLLZDV4LWUBZCP6', // generated ethereal user
+        pass: 'AAyKGjTJb8J6ilergxaBNeYDTVftJNdee4ulufjJ', // generated ethereal password
     },
   });
 const sendEmail = async (email, subject, text) => {

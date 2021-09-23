@@ -127,6 +127,79 @@
     border: 2px solid #f51e47;
   }
 }
+
+.customefixquestion {
+  padding-top: 5px;
+  @media screen and (max-width: $tablet) {
+    margin-left: 0px !important;
+  }
+  @media screen and (max-width: $tablet) {
+    padding: 10px 20px !important;
+  }
+  .label{
+    display: flex;
+    @media screen and (max-width: 767px) {
+      max-width: 100%;
+      flex: 100%;
+    }
+  }
+  .sale{
+    img{
+    height: 35px;
+    margin: 7px 0 0;
+    }
+  }
+  p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem !important;
+  }
+  .buildingImag {
+    width: 60%;
+    height: auto;
+    margin-left: 20%;
+  }
+
+  div:hover {
+    cursor: pointer;
+    transition: ease .3s;
+  }
+
+  div {
+    padding: 3px 5px 2px 5px;
+    border-radius: 10px;
+    @media screen and (max-width: 767px) {
+      &.col-3{
+        flex: 0 0 40%;
+        max-width: 40%;
+      }
+    }
+  }
+  .pool_opt {
+    span {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 15px;
+      input{
+        width: 20px;
+        height: 20px;
+      }
+      label{
+        position: relative;
+        margin: 0;
+        transform: none;
+        margin-left: 6px;
+        cursor: pointer;
+      }
+    }
+  }
+  textarea.form-control{
+      background-color: transparent;
+      padding: 3px 5px 2px 5px;
+      border-radius: 5px;
+      border: 1px solid #d6d6d6;
+      resize: none;
+  }
+}
 .propertyBoard{
   .property{
     .col-2 {
@@ -192,6 +265,11 @@
 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+}
+.row.customefixquestion
+{
+  display: grid;
   align-items: center;
 }
 .row.security_sys

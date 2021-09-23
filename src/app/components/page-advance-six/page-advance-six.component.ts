@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommonService} from "../../services/common.service";
 import {Router} from "@angular/router";
 import { HttpClient } from '@angular/common/http';
+import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
 
 @Component({
   selector: 'app-page-advance-six',
@@ -9,12 +10,13 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./page-advance-six.component.scss']
 })
 export class PageAdvanceSixComponent implements OnInit {
-
+  propertyimageurl:any
+  ispropertyimage:any
   @Output() setPropertyData: EventEmitter<object> = new EventEmitter<object>();
   @Input('addressData') public addressData: object;
 
   pageSixCustomQuestion = [];
-  constructor(public commonService: CommonService,private router: Router,private http: HttpClient) {
+  constructor(public commonService: CommonService,private router: Router,private http: HttpClient, private advanceService:AdvanceHomeComponent) {
     this.checkQuestion();
   }
 
@@ -35,6 +37,11 @@ export class PageAdvanceSixComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.ispropertyimage = false;
+    setTimeout(() => { 
+      this.propertyimageurl = this.advanceService.getpropertyUrl()
+       this.ispropertyimage = true;
+     }, 1000);
   }
 
 

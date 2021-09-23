@@ -197,66 +197,66 @@
         <!-- First Screen -->
 
         <div class="md-form form-group animated slideInRight" *ngIf="step==1 && screen==1">
-        <div class="row justify-content-center">
-         <div class="col-lg-9 col-md-12">
-              <div class="row">
-              <div class="col-lg-6 pl-md-0 animated slideInLeft_custom1">
-                <div class="col-md-12 head_sec" >
-                  <div class="d-flex map_with_heading">
-                    <h3 class="font-weight-bold mb-0 main_screen_heading">What property do you need to insure?</h3>
-                    <img src="../../assets/images/new_design/MAP (1).svg" width="50" class="float-right">
-                  </div>
-                
-       
-                  <!-- <p class="font-weight-bolder">Apply in a 2-3 minutes to get<br>quotes from multiple Carriers!</p> -->
-                </div>
-                <!-- <div class="col-md-1 col-2 form-row">
-                  <img src="../../assets/images/maps-and-flags.png" class="google-places-img mx-auto">
-                </div> -->
-                <div class="col-md-12 col-12 mb-3 p-0 ">
-                  <input class="form-control inputAddressMD" autocorrect="off"
-                        (onAddressChange)="handleAddressChange($event)"
-                        id="inputAddressMD" autocapitalize="off" spellcheck="off" (load)="loadGooglePlace()" type="text"
-                        *ngIf="GooglePlace==true" [(ngModel)]="staticAddress"
-                        #placesRef placeholder="Address">
-                  <input type="text" class="form-control inputAddressMD"
-                        placeholder="Ex: 419 Virginia Ave, Phoenixville, Pennsylvania 19460"
-                        *ngIf="GooglePlace==false" [(ngModel)]="staticAddress"/>
-    
-                </div>
-                <div class="manual_add_link">
-                  <a href="javascript:void(0)" (click)="isManualAddress = isManualAddress == true ? false : true">{{ isManualAddress == true ? 'google address':'Manually enter address' }}</a>
-                </div>
-                <div class="add_ntx" *ngIf="isManualAddress == true">
-                  <button class="btn btn-primary shadow-none " style="margin-left: 0px; padding-top: 8px; padding-bottom: 8px;" (click)="manualAddressSave()">
-                    Continue
-                  </button>
-                </div>
-                <!-- <div *ngIf="!GooglePlace" class="row">
-                  <div class="col-4 col-md-4">
-                    <input type="number" class="form-control inputManualField" placeholder="Square"
-                          [(ngModel)]="zillowData['square']">
-                  </div>
-                  <div class="col-4 col-md-4">
-                    <input type="number" class="form-control inputManualField" placeholder="Estimate"
-                          [(ngModel)]="zillowData['estimate']">
-                  </div>
-                  <div class="col-4 col-md-4">
-                    <input type="number" class="form-control inputManualField" placeholder="Year Built"
-                          [(ngModel)]="zillowData['built_year']">
-                  </div>
-                </div> -->
-                <button type="button" class="text-center text-white d-md-none d-block pink_btn" style="background-color: #F51E47;border: none;">Continue</button>
+          <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-12">
+                  <div class="row">
+                  <div class="col-lg-6 pl-md-0 animated slideInLeft_custom1">
+                    <div class="col-md-12 head_sec" >
+                      <div class="d-flex map_with_heading">
+                        <h3 class="font-weight-bold mb-0 main_screen_heading">What property do you need to insure?</h3>
+                        <img src="../../assets/images/new_design/MAP (1).svg" width="50" class="float-right">
+                      </div>
+                    
+          
+                      <!-- <p class="font-weight-bolder">Apply in a 2-3 minutes to get<br>quotes from multiple Carriers!</p> -->
+                    </div>
+                    <!-- <div class="col-md-1 col-2 form-row">
+                      <img src="../../assets/images/maps-and-flags.png" class="google-places-img mx-auto">
+                    </div> -->
+                    <div class="col-md-12 col-12 mb-3 p-0 ">
+                      <input class="form-control inputAddressMD" autocorrect="off"
+                            (onAddressChange)="handleAddressChange($event)"
+                            id="inputAddressMD" autocapitalize="off" spellcheck="off" (load)="loadGooglePlace()" type="text"
+                            *ngIf="GooglePlace==true" [(ngModel)]="staticAddress"
+                            #placesRef placeholder="Address">
+                      <input type="text" class="form-control inputAddressMD"
+                            placeholder="Ex: 419 Virginia Ave, Phoenixville, Pennsylvania 19460"
+                            *ngIf="GooglePlace==false" [(ngModel)]="staticAddress"/>
+        
+                    </div>
+                    <div class="manual_add_link">
+                      <a href="javascript:void(0)" (click)="isManualAddress = isManualAddress == true ? false : true">{{ isManualAddress == true ? 'google address':'Manually enter address' }}</a>
+                    </div>
+                    <div class="add_ntx" *ngIf="isManualAddress == true">
+                      <button class="btn btn-primary shadow-none " style="margin-left: 0px; padding-top: 8px; padding-bottom: 8px;" (click)="manualAddressSave()">
+                        Continue
+                      </button>
+                    </div>
+                    <!-- <div *ngIf="!GooglePlace" class="row">
+                      <div class="col-4 col-md-4">
+                        <input type="number" class="form-control inputManualField" placeholder="Square"
+                              [(ngModel)]="zillowData['square']">
+                      </div>
+                      <div class="col-4 col-md-4">
+                        <input type="number" class="form-control inputManualField" placeholder="Estimate"
+                              [(ngModel)]="zillowData['estimate']">
+                      </div>
+                      <div class="col-4 col-md-4">
+                        <input type="number" class="form-control inputManualField" placeholder="Year Built"
+                              [(ngModel)]="zillowData['built_year']">
+                      </div>
+                    </div> -->
+                    <button type="button" class="text-center text-white d-md-none d-block pink_btn" style="background-color: #F51E47;border: none;">Continue</button>
 
-              </div>
-              <div class="col-lg-1"></div>
-              <div class="col-lg-5 animated slideInRight_custom delay-1s" [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}">
-                  <div class="side_img_div"></div>
-              </div>
+                  </div>
+                  <div class="col-lg-1"></div>
+                  <div class="side_img_div col-lg-5 animated slideInRight_custom delay-1s" [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}">
+                    
+                  </div>
+                </div>
+                
             </div>
-             
           </div>
-        </div>
 
 
             
@@ -360,15 +360,15 @@
                     </div>
                  </div>
                  <div class="col-lg-1"></div>
-                 <div class="col-lg-5">
-                    <div class="side_img_div animated zoomOut_custom"></div>
-                 </div>
+                 
+                      <div class="side_img_div col-lg-5 animated slideInRight_custom delay-1s" [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}"></div>
+                
                </div>
               
              </div>
            </div>
-          
-        </div>
+           
+         </div>
         <!-- Second Screen -->
 
         <!-- 3rd Screen -->
@@ -566,9 +566,9 @@
             </form>
           </div>
         </div>
-        </div>
-      </div>
-    </div>
+               </div>
+            </div>
+          </div>
         </div>
         <!-- six Screen -->
 

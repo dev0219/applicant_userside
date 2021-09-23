@@ -38,7 +38,7 @@
 
         </div>
         <div class="col-lg-5">
-          <div class="side_img_div animated zoomOut_custom"></div>
+          <div class="side_img_div animated zoomOut_custom delay-3s" *ngIf="ishouseholdimage"  [ngStyle]="{'background-image': 'url(https://apply.insure/'+householdimageurl+')'}"></div>
         </div>
       </div>
     </div>

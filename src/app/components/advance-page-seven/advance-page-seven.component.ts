@@ -4,6 +4,7 @@ import {carData, CarYearData, personData} from "../../home/models";
 // import * as configs from "../../../../config";
 //import * as configs from "../../../../config";
 import * as config from "../../config/congifg"
+import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
 
 @Component({
   selector: 'app-advance-page-seven',
@@ -11,7 +12,8 @@ import * as config from "../../config/congifg"
   styleUrls: ['./advance-page-seven.component.scss']
 })
 export class AdvancePageSevenComponent implements OnInit {
-
+  autoimageurl:any
+  isautoimage:any
   @Output() setCarData: EventEmitter<object> = new EventEmitter<object>();
   @Input('addressData') public addressData: object;
   @Input('personData') public personData: personData[] = [];
@@ -19,7 +21,7 @@ export class AdvancePageSevenComponent implements OnInit {
   // public CarTypeData: object = configs.car_types;
   public CarYearData: CarYearData[] = [];
 
-  constructor(public commonService: CommonService) {
+  constructor(public commonService: CommonService, private advanceService:AdvanceHomeComponent) {
   }
 
   public email: string;
@@ -28,6 +30,11 @@ export class AdvancePageSevenComponent implements OnInit {
 
   ngOnInit() {
     this.CarYearData = this.commonService.getCarYearData();
+    this.isautoimage = false;
+    setTimeout(() => { 
+      this.autoimageurl = this.advanceService.getautoUrl()
+       this.isautoimage = true;
+     }, 1000);
   }
 
   addCar() {

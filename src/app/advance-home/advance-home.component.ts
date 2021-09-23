@@ -79,7 +79,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   householdimageurl:any;
   propertyimageurl:any;
   introduceimageurl:any;
-
+  autoimageurl:any;
   agentInfo: object;
   life_array = configs.life_array;
   autobeat: string;
@@ -1134,6 +1134,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
                 // }
                 this.householdimageurl = row['householdimage'];
                 this.propertyimageurl = row['propertyimage'];
+                this.autoimageurl = row['autoimage'];
                 this.introduceimageurl = row['introimage'];
                 if(this.householdimageurl == '' || this.householdimageurl == undefined){
                   this.householdimageurl = 'imgpsh_fullsize_anim.png'
@@ -1143,6 +1144,9 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
                 }
                 if(this.introduceimageurl == '' || this.introduceimageurl == undefined){
                   this.introduceimageurl = 'imgpsh_fullsize_anim.png'
+                }
+                if(this.autoimageurl == '' || this.autoimageurl == undefined){
+                  this.autoimageurl = 'imgpsh_fullsize_anim.png'
                 }
                 if(row['agentimage'].trim() != ''){
                   userArr['agent_image'] = row['agentimage'];
@@ -1270,6 +1274,15 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   gethouseUrl(){
    return this.introduceimageurl;
   }
+  getautoUrl(){
+    return this.autoimageurl;
+   }
+   getpropertyUrl(){
+    return this.propertyimageurl;
+   }
+   gethouseholdUrl(){
+    return this.householdimageurl;
+   }
   sumArray(arr) {
     var total = 0;
     arr.forEach(function(element){

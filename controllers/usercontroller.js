@@ -59,7 +59,7 @@ exports.getuserid = async function(req, res, next){
     res.send({userid:userid.userId})
 };
 exports.login_post = async function(req, res, next){
-    const user = await UserModel.findOne({ email: req.body.email });
+    const user = await UserModel.findOne({ 'email': {$regex: req.body.email, $options: 'i'}});
     if (!user)
             return res.status(200).send("user with given email doesn't exist");
     bcrypt.compare(req.body.password, user.password, function(err, isMatch) {

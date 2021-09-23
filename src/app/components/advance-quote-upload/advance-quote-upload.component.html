@@ -16,7 +16,7 @@
             </div>
             <div class="col-lg-1 col-12"></div>
             <div class="col-lg-5 col-12">
-                <div class="side_img_div animated zoomOut_custom">
+                <div class="side_img_div animated zoomOut_custom delay-3s" *ngIf="isautoimage"  [ngStyle]="{'background-image': 'url(https://apply.insure/'+autoimageurl+')'}">
                 </div>
             </div>
         </div>

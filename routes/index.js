@@ -46,8 +46,8 @@ let transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // true for 465, false for other ports
   auth: {
-    user: 'AKIATLLLZDV4IXDD7WMR', // generated ethereal user
-    pass: 'BHfZyiL2mLcDL3DRZFcZxfDcyJ9kBFzaUs8MechqmRmB', // generated ethereal password
+    user: 'AKIATLLLZDV4LWUBZCP6', // generated ethereal user
+    pass: 'AAyKGjTJb8J6ilergxaBNeYDTVftJNdee4ulufjJ', // generated ethereal password
   },
 });
 
@@ -70,6 +70,7 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
 });
+
 const upload = multer({storage: storage});
 let ObjectId = require('mongodb').ObjectId;
 sgMail.setApiKey(config.sendgrid);
@@ -1518,11 +1519,13 @@ cors({
   "Access-Control-Allow-Headers": true,
   "Access-Control-Expose-Headers": true
 }),
-function (req, res, next) {
+async function (req, res, next) {
   const form = new formidable.IncomingForm({multiples:true});
-  form.parse(req, function (err, fields, files){
+  let applicantunique = '';
+  form.parse(req, async function (err, fields, files){
     let total_data = JSON.parse(fields.data);
     const persons = total_data.personData;
+   
     let address = "";
     if(total_data.quote_id == "" || total_data.quote_id == undefined){
       total_data.quote_id = 'NQR000' + (Date.now().toString().substr(6, Date.now().toString().length));
@@ -1537,20 +1540,36 @@ function (req, res, next) {
     }else{
       address = total_data.manualAddress;
     }
-    Applicant.find({quote_id: total_data.quote_id}, function (err, applicant) {
+    await Applicant.find({quote_id: total_data.quote_id},async function (err, applicant) {
       if (err) {
         res.render('error');
         return;
       }
       if (total_data.personData.length) {
         let applicant = new Applicant();
-        console.log("total datas", total_data)
+        applicant.householdmember = [];
+        for(var i=0;i<persons.length;i++){
+          var data = {
+            name: persons[i]['first_name'] + ' ' + persons[i]['last_name'],
+            license: persons[i]['license'],
+            birthday : persons[i]['birthday']
+          };
+          applicant.householdmember.push(data)
+        }
+        applicant.cardata = [];
+        for(var j=0;j<total_data.carData.length;j++){
+          var car_data = {
+            cardatayear: total_data.carData[j]['year'],
+            cartype: total_data.carData[j]['type'],
+            carmodel : total_data.carData[j]['model']
+          };
+          applicant.cardata.push(car_data)
+        }
         applicant.name = persons[0]['first_name'] + ' ' + persons[0]['last_name'];
         applicant.email = total_data.email;
         applicant.address = address;
         applicant.quote_id = total_data.quote_id; 
-        applicant.phone = total_data.phone;
-        applicant.license = persons[0]['license'];
+        applicant.phone = total_data.phone;       
         applicant.agentemail = total_data.agent.email;
         applicant.insuranceType = total_data.insuranceType?total_data.insuranceType:'';
         applicant.link = total_data.agent.link;
@@ -1572,7 +1591,7 @@ function (req, res, next) {
         applicant.carrierType = total_data.carrier_type?total_data.carrier_type:'';
         applicant.requestorcomments = total_data.requestorcomments?total_data.requestorcomments:'';
         applicant.mailingadress =  total_data.mailing_address.address?total_data.mailing_address.address:total_data.mailing_address;
-        applicant.birthday = persons[0]['birthday'];
+      
         applicant.roof_shape = total_data.discountsData['roof_shape'];
         applicant.dog = total_data.discountsData['dog'];
         applicant.roof_type = total_data.discountsData['roof_type'];
@@ -1592,9 +1611,13 @@ function (req, res, next) {
         applicant.swimmingpool = total_data.propertyData['swimming_pool'];
         applicant.security_system = total_data.discountsData['security_system'];
         applicant.register_date = new Date();
-        applicant.vin = '';
+        applicant.vin = [];
         console.log("applicant list", applicant)
-        applicant.save();
+        console.log("applicant 1", applicant['_id'])
+        console.log("applicant 2", applicant.id)
+        console.log("applicant 3", applicant._id)
+        applicantunique = applicant['_id'];
+        await applicant.save();
       }
     });
 
@@ -1711,7 +1734,7 @@ function (req, res, next) {
     });
   });
   res.contentType('json');
-  res.send(JSON.stringify({result: "success"}));
+  res.send(JSON.stringify({result: "success", id:applicantunique}));
 });
 
 router.post('/send_signup_request', function (req, res, next) {
@@ -2075,11 +2098,15 @@ router.post("/get_nationwide",async function(req, res, next){
 });
 /////// **************************************************************8
 router.post("/send_accurate_quote_mail",async function(req, res, next){
-  var persondata = req.body.subject.personData;
-  let carvinoquery = {name:persondata[0]['first_name'] + ' ' + persondata[0]['last_name']};
-  let carvinoData = {vin:req.body.AccurateQuoteFormData["CARVIN0"]};
-  console.log("carvino",carvinoData,carvinoquery)
-  await Applicant.update(carvinoquery,carvinoData)
+  // let carvinoquery = {_id:applicantunique};
+  // var carvinarr = [];
+  // for(var k=0;k<req.body.carDataLength;k++){
+  //   var vinitem = {vininfo:req.body.AccurateQuoteFormData["CARVIN"+i]}
+  //   carvinarr.push(vinitem)
+  // }
+  // console.log("applicant id ", carvinoquery)
+  // let carvinoData = {vin:carvinarr};
+  // await Applicant.update(carvinoquery,carvinoData)
   try {
     var params = req.body;
     console.log("Its called ",params)

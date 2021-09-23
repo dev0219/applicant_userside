@@ -2,14 +2,15 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {CommonService} from "../../services/common.service";
 import { HttpClient } from '@angular/common/http';
-
+import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
 @Component({
   selector: 'app-page-adavance-five',
   templateUrl: './page-adavance-five.component.html',
   styleUrls: ['./page-adavance-five.component.scss']
 })
 export class PageAdavanceFiveComponent implements OnInit {
-
+  propertyimageurl:any
+  ispropertyimage:any
 
   @Output() setDiscountData: EventEmitter<object> = new EventEmitter<object>();
   @Input('addressData') public addressData: object;
@@ -46,7 +47,7 @@ export class PageAdavanceFiveComponent implements OnInit {
 
   pageFiveCustomQuestion = [];
 
-  constructor(public commonService: CommonService,private router: Router,private http: HttpClient) {
+  constructor(public commonService: CommonService,private router: Router,private http: HttpClient, private advanceService:AdvanceHomeComponent) {
     this.checkQuestion();
   }
 
@@ -70,6 +71,11 @@ export class PageAdavanceFiveComponent implements OnInit {
   dogstatus = false;
 
   ngOnInit() {
+    this.ispropertyimage = false;
+    setTimeout(() => { 
+      this.propertyimageurl = this.advanceService.getpropertyUrl()
+       this.ispropertyimage = true;
+     }, 1000);
   }
 
 

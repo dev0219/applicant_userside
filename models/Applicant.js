@@ -1,9 +1,14 @@
 let mongoose = require('mongoose');
 let ApplicantSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
+  name:{
+    type:String,
+    required:false
   },
+  householdmember : [{
+    name : String,
+    birthday : String,
+    license : String
+     }],
   email: {
     type: String,
     required: true
@@ -11,10 +16,6 @@ let ApplicantSchema = new mongoose.Schema({
   phone:{
     type:String,
     required:false
-  },
-  license:{
-     type:String,
-     required:false
   },
   agentemail:{
     type: String,
@@ -52,14 +53,9 @@ let ApplicantSchema = new mongoose.Schema({
     type:String,
     required:false
   },
-  birthday:{
-   type:String,
-   required:false
-  },
-  vin:{
-    type:String,
-    required:false
-  },
+  vin:[{
+    vininfo : String,
+     }],
   roof_shape: {
    type:String,
    required:false
@@ -108,18 +104,11 @@ let ApplicantSchema = new mongoose.Schema({
     type:String,
     required:false
   },
-  cardatayear:{
-    type:String,
-    required:false
-  },
-  cartype:{
-    type:String,
-    required:false
-  },
-  carmodel:{
-    type:String,
-    required:false
-  },
+  cardata : [{
+    cardatayear : String,
+    cartype : String,
+    carmodel : String
+     }],
   shortrentals:{
     type:Boolean,
     required:false

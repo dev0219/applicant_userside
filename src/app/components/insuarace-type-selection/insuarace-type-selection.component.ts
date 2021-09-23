@@ -11,14 +11,18 @@ export class InsuaraceTypeSelectionComponent implements OnInit {
 
   public insuarance_type: string;
   introduceimageurl:any
+  isintrouceimage:any
     @Output() setHomeData: EventEmitter<object> = new EventEmitter<object>();
 
     constructor(private commonService: CommonService, private advanceService:AdvanceHomeComponent) {
     }
 
   ngOnInit() {
-  
-   setTimeout(() => { this.introduceimageurl = this.advanceService.gethouseUrl()}, 1000);
+    this.isintrouceimage = false;
+   setTimeout(() => { 
+     this.introduceimageurl = this.advanceService.gethouseUrl()
+      this.isintrouceimage = true;
+    }, 1000);
     
   }
 

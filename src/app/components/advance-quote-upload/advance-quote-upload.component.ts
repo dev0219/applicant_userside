@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CommonService} from "../../services/common.service";
+import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
 
 @Component({
   selector: 'app-advance-quote-upload',
@@ -7,15 +8,20 @@ import {CommonService} from "../../services/common.service";
   styleUrls: ['./advance-quote-upload.component.scss']
 })
 export class AdvanceQuoteUploadComponent implements OnInit {
- 
+  autoimageurl:any
+  isautoimage:any
   public files: any = [];
   @Output() setQuoteUpload: EventEmitter<object> = new EventEmitter<object>();
 
-  constructor(private commonService: CommonService) {
+  constructor(private commonService: CommonService, private advanceService:AdvanceHomeComponent) {
   }
 
   ngOnInit() {
-    
+    this.isautoimage = false;
+    setTimeout(() => { 
+      this.autoimageurl = this.advanceService.getautoUrl()
+       this.isautoimage = true;
+     }, 1000);
   }
   quote_upload_submit()
   {

@@ -196,25 +196,27 @@
             </div>
             <!----------->
         
-            <div class="col-12 row property below_question p-md-0" *ngFor="let item of pageFiveCustomQuestion; index as i" >
-              <p class="font-weight-bolder label">
-                <span class="font-weight-bold small">{{ item.question }}</span>
-              </p>
+            <div class="col-12 row customefixquestion" *ngFor="let item of pageFiveCustomQuestion; index as i" >
+              <div class="col-md-8 col-7">
+                <p class="font-weight-bolder label">
+                  {{ item.question }}
+                </p>
+              </div>
         
               <!-- For input box -->
-              <div class="col-md-4 col-4" *ngIf="item.type == 'input'">
+              <div class="col-md-12" *ngIf="item.type == 'input'">
                 <div>
                     <textarea [(ngModel)]="item.answer" class="form-control" placeholder="Answer:"></textarea>
                 </div>
               </div>
         
               <!-- Yes/No Logic-->
-              <div class="" *ngIf="item.type == 'y/n'">
+              <div class="col-md-2 col-2" *ngIf="item.type == 'y/n'">
                 <div [ngClass]="item.answer == 'Yes' ? 'activeOption':'inactiveOption'" (click)="item.answer = 'Yes'">
                   <span class="font-weight-bold text text-center">yes</span>
                 </div>
               </div>
-              <div class="" *ngIf="item.type == 'y/n'">
+              <div class="col-md-2 col-2" *ngIf="item.type == 'y/n'">
                 <div [ngClass]="item.answer == 'No' ? 'activeOption':'inactiveOption'" (click)="item.answer = 'No'" >
                   <span class="font-weight-bold text text-center">no</span>
                 </div>
@@ -228,7 +230,7 @@
 
         </div>
         <div class="col-lg-5">
-          <div class="side_img_div"></div>
+          <div class="side_img_div animated zoomOut_custom delay-3s" *ngIf="ispropertyimage"  [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}"></div>
         </div>
       </div>
     </div>
