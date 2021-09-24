@@ -530,7 +530,7 @@ form.specificForm input, form.specificForm textarea {
     }
   }
   input#inputAddressMD {
-      width: 100%;
+      width: 93%;
       // margin: 0 auto;
       padding: 15px;
       @media screen and (max-width:576px) 
@@ -538,6 +538,36 @@ form.specificForm input, form.specificForm textarea {
         width: 89%;
       }
   }
+}
+#quote_upload_file {
+  display: none;
+}
+.custom-file-upload {
+  cursor: pointer;
+  margin: 0px 17px;
+  background: #5d5d5d;
+  color: white;
+  border-radius: 7px;
+  width: 85%;
+  padding: 17px;
+  font-size: large;
+  font-weight: bold;
+  top: -100px;
+}
+.uploaded_file_list
+{
+  margin-top: 110px;
+  padding: 0px 0px 0px 40px;
+  list-style-position: inside;
+  text-align: left;
+}
+.uploaded_file_list li{
+  width: 75%;
+}
+.uploaded_file_list li i
+{
+  float: right;
+  cursor: pointer;
 }
 
 
@@ -592,8 +622,52 @@ input[type="date"]:valid::before {
   content: "" !important;
   width:auto;
 }
-
-
+.img-circle{
+  border-radius: 50%;
+}
+.agentfirstname{
+  position: absolute;
+    right: 50%;
+    left: 51%;
+    top: -70px;
+    font-weight: 400;
+}
+.application_complete{
+  margin-top: 80px;
+}
+.application_complete>h3{
+  font-style: oblique;
+  font-size: 50px;
+  font-family: -webkit-pictograph;
+  font-weight: 500 !important;
+}
+.application_complete>p{
+  font-style: oblique;
+  font-size: 13px;
+  font-family: -webkit-pictograph;
+  font-weight: 100 !important;
+}
+.agentoption{
+  position: absolute;
+    left: 48%;
+    right: 50%;
+    top: -40px;
+    border: 4px solid gray;
+    width: 100px;
+    height: 100px;
+}
+.step-form-content{
+  margin-top: 10%;
+}
+.progress-step{
+  margin-top: 0%;
+}
+.last_screen_left_div{
+  width: 45%;
+}
+.last_screen_right_div{
+  width: 45%;
+}
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
   .CarTypeInput {
@@ -1199,6 +1273,34 @@ ejs-datepicker.household_form_datepicker span
 {
   padding-right: 0;
 }
-
+#quote_upload_file {
+  display: none;
+}
+.custom-file-upload {
+  cursor: pointer;
+  margin: 0px 17px;
+  background: #5d5d5d;
+  color: white;
+  border-radius: 7px;
+  width: 85%;
+  padding: 17px;
+  font-size: large;
+  font-weight: bold;
+}
+.uploaded_file_list
+{
+  margin-top: 110px;
+  padding: 0px 0px 0px 40px;
+  list-style-position: inside;
+  text-align: left;
+}
+.uploaded_file_list li{
+  width: 75%;
+}
+.uploaded_file_list li i
+{
+  float: right;
+  cursor: pointer;
+}
 
 

@@ -38,7 +38,7 @@ body::-webkit-scrollbar-track {
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-  background: #f51e47;
+  background: rgb(194, 192, 192);
   border-radius: 0px;
 }
 
@@ -328,8 +328,8 @@ input#datepicker_input {
 // slideInLeft========================
 @-webkit-keyframes slideInLeft_custom {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 0;
     
   }
@@ -343,8 +343,8 @@ input#datepicker_input {
 
 @keyframes slideInLeft_custom {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 0;
     
   }
@@ -365,8 +365,8 @@ input#datepicker_input {
 
 @-webkit-keyframes slideInLeft_custom1 {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 0;
     
   }
@@ -380,8 +380,8 @@ input#datepicker_input {
 
 @keyframes slideInLeft_custom1 {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 0;
     
   }
@@ -404,8 +404,8 @@ input#datepicker_input {
 // ===============================
 @-webkit-keyframes slideInLeft_custom2 {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 0;
     
   }
@@ -419,8 +419,8 @@ input#datepicker_input {
 
 @keyframes slideInLeft_custom2 {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 0;
     
   }
@@ -442,8 +442,8 @@ input#datepicker_input {
 // ====================================
 @-webkit-keyframes slideInLeft_custom3 {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 0;
     
   }
@@ -457,8 +457,8 @@ input#datepicker_input {
 
 @keyframes slideInLeft_custom3 {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 0;
     
   }
@@ -480,28 +480,28 @@ input#datepicker_input {
 // ==================================
 @-webkit-keyframes slideInRight_custom {
   from {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(5%, 0, 0);
+    transform: translate3d(5%, 0, 0);
    opacity: 0;
   }
 
   to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 1;
   }
 }
 
 @keyframes slideInRight_custom {
   from {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(5%, 0, 0);
+    transform: translate3d(5%, 0, 0);
     opacity: 0;
   }
 
   to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(15%, 0, 0);
+    transform: translate3d(15%, 0, 0);
     opacity: 1;
   }
 }
@@ -567,7 +567,7 @@ input#datepicker_input {
 
 
 // ==============new progressbar css
-ol.progress_new_horizontal[data-steps="4"] li { width: 10%; }
+ol.progress_new_horizontal[data-steps="4"] li { width: 14.25%; }
 
 
 .progress_new_horizontal {
@@ -599,7 +599,7 @@ ol.progress_new_horizontal[data-steps="4"] li { width: 10%; }
     background-color: #fff;
     border-radius: 50%;
     line-height: 1.2;
-    width:9px;
+    width:0px;
     height: 9px;
     display: inline-block;
     z-index: 0;

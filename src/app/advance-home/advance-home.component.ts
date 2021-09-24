@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, HostListener, Input, NgZone, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit,Component, ElementRef, HostListener, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from "../api-service";
 import {Router} from "@angular/router";
@@ -30,7 +30,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
     this.datepickerObj.show();
   } */
 
-
+  public files: any = [];
   @Input() name;
   @ViewChild('placesRef', {static: false}) public searchElementRef: ElementRef;
   @ViewChild('placesRef1', {static: false}) public searchElementRef1: ElementRef;
@@ -214,6 +214,11 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    /* virtual screen number */
+
+ 
+
+     /* virtual screen number */
     this.loadGooglePlace();
     // this.sendAPIRequest();
     this.quote_id = this.commonService.getQuoteID();
@@ -1089,8 +1094,8 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   }
 
   setRequestOrComments(){
-    this.commonService.applyTotalData('requestorcomments', this.requestorcomments);
-    this.nextscreenmove(12);
+   this.commonService.applyTotalData('requestorcomments', this.requestorcomments);
+    this.nextscreenmove(11);
   }
 
   checkAgent(){
@@ -1111,6 +1116,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
                 let userArr = [];
                 userArr['email'] = row['email'];
                 userArr['additional_email'] = row['additional_email'];
+                userArr['first_name'] = row['firstname'];
                 userArr['name'] = row['firstname'] + ' ' + row['lastname'];
                 userArr['logo'] = row['introimage'];
                 userArr['phone'] = row['phone']; 
@@ -1469,10 +1475,37 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
     this.current_auto_premium = data;
     this.nextscreenmove(10);
   }
-
+  uploadFile(event){ 
+    if(event.target.files.length > 0){
+      if (event.target.files && event.target.files[0]){
+        let ext = ["png","jpg","pdf","jpeg"];
+        // validation code.
+        if(typeof event.target.files[0].name != "undefined" && event.target.files[0].name != ""){
+          for(let i = 0; i < event.target.files.length; i++){
+            let selectedext = event.target.files[i].name.split(".")[event.target.files[i].name.split(".").length - 1];
+            selectedext = selectedext.toLowerCase();
+            if(ext.indexOf(selectedext) == -1){
+              this.commonService.modalOpen('Warning', 'Only PDF, JPG, PNG file are acceptable.');
+              return;
+            }
+          }
+          this.files = event.target.files;
+        }
+      }
+    }   
+    this.setQuoteUpload(this.files);
+  }
+  removeFile(key){
+    var arr: any = [];
+    for(var i = 0; i< this.files.length; i++){
+      if(i != key){
+        arr.push(this.files[i]);
+      }
+    }
+    this.files = arr;
+  }
   setQuoteUpload(data){
     this.QutoFiles = data;
-    this.nextscreenmove(11);
   }
    
   checkValidation(index){
