@@ -12,7 +12,7 @@ import {EventEmmiterService} from "../services/event-emmiter.service";
 import { HttpClient } from '@angular/common/http';
 import { DatePickerComponent, FocusEventArgs } from '@syncfusion/ej2-angular-calendars';
 // import { ConsoleReporter } from 'jasmine';
-
+declare var $: any;
 declare var google;
 @Component({
   selector: 'app-advance-home',
@@ -31,6 +31,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   } */
 
   public files: any = [];
+  public appfilename:any='';
   @Input() name;
   @ViewChild('placesRef', {static: false}) public searchElementRef: ElementRef;
   @ViewChild('placesRef1', {static: false}) public searchElementRef1: ElementRef;
@@ -120,6 +121,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   /*
   * Conditional Loaders
   * */
+  showModal:any
   zillowLoader: boolean = false;
   zillowDataFetched: boolean = false;
   showImg: boolean = false;
@@ -150,9 +152,10 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   pageFiveCustomQuestion;
   isManualAddress: boolean = false;
   manualAddress: string = "";
+  isfirstname: boolean = false;
   agentlink: string = "";
   selectedUserType: string = "";
-  QutoFiles: any;
+  QutoFiles: any=[];
   OtherlineOfBusiness: string[] = [];
   eightPlusPerson: number = 0;
   eightPlusPersonName: string[] = [];
@@ -212,12 +215,9 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // this.isMobile = window.innerWidth < 769;
   }
-
   ngOnInit() {
     /* virtual screen number */
-
- 
-
+      // this.screen = 11
      /* virtual screen number */
     this.loadGooglePlace();
     // this.sendAPIRequest();
@@ -237,7 +237,12 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
     this.isBgShow = true;
     this.commonService.applyTotalData('quote_id', this.quote_id);
   }
-
+  modalhide(){
+    $('#myModal').modal('hide');
+  }
+  modalshow(){
+    $('#myModal').modal('show');
+  }
   showFirstPage(type) {
     if (type == 1 || type == 3) {
       this.showBuyHome = true;
@@ -280,7 +285,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
 
   setCarData($event) {
     this.carData = $event;
-
+  
     let formData = {};
     for (let i = 0; i < this.eightPlusPerson; i++) {
       formData['DLName' + i] = new FormControl(this.eightPlusHiddenDL[i], Validators.required);
@@ -307,7 +312,6 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   setDiscountData($event){
     this.discountsData = $event.discountsData;
     this.pageFiveCustomQuestion = $event.pageFiveCustomQuestion;
-    console.log("pageFiveCustomQuestion", this.pageFiveCustomQuestion)
     this.initStep3();
     this.nextscreenmove(4);
     this.progrss = 50;
@@ -609,7 +613,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
       let dob = new Date(item['birthday']);
       item.birthday = dob.getDate()+'/'+(dob.getMonth() + 1)+'/'+dob.getFullYear();
     }); */
-    
+  
     this.personData.forEach(item => {
       let dob = new Date(item['birthday']);
       var day = dob.getDate();
@@ -618,7 +622,6 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
       var age = 18;
       var setDate = new Date(year + age, month - 1, day);
       var currdate = new Date();
-
       if (currdate >= setDate){
         this.eightPlusPersonName.push(item['first_name']+" "+item['last_name']);
         this.eightPlusPerson++;
@@ -628,6 +631,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
           this.eightPlusHiddenDL.push(item['license'].trim());
         }
       } 
+
     });
     
     this.commonService.applyTotalData('personData', this.personData);
@@ -959,7 +963,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
       this.commonService.modalOpen('Error', 'Please enter square size and built year !');
       return;
     }
-    else if(screen == 12){
+    else if(screen == 11){
         this.priceArr['prices'].sort(function(a, b){return a - b});
         this.eventEmitterService.toggleAPIDataStatus(false);
         this.docUpload();
@@ -1094,6 +1098,9 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
   }
 
   setRequestOrComments(){
+    if(this.appfilename == ''){
+      this.appfilename = 'default.jpg'
+    }
    this.commonService.applyTotalData('requestorcomments', this.requestorcomments);
     this.nextscreenmove(11);
   }
@@ -1117,9 +1124,20 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
                 userArr['email'] = row['email'];
                 userArr['additional_email'] = row['additional_email'];
                 userArr['first_name'] = row['firstname'];
+                userArr['agencyname'] = row['agencyname'];
                 userArr['name'] = row['firstname'] + ' ' + row['lastname'];
                 userArr['logo'] = row['introimage'];
-                userArr['phone'] = row['phone']; 
+                if(row['agencyimage'] == undefined || row['agencyimage'] == ''){
+                  userArr['agency_image'] = 'imgpsh_fullsize_anim.png';
+                }else{
+                  userArr['agency_image'] = row['agencyimage'];
+                }
+                if(row['phone'] == undefined || row['phone'] == ''){
+                  userArr['phone'] = 'xxx-xxx-xxxx'; 
+                }else{
+                  userArr['phone'] = row['phone']; 
+                }
+                
                 row['api_status'] = row['api_status'].toLowerCase();
                 userArr['api_status'] = row['api_status'];
                 
@@ -1184,6 +1202,8 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
                 arr[row['link']] = userArr;
                 configs['agentsInfo'] =arr;
                 this.agentInfo = userArr;
+                console.log("agent info", this.agentInfo)
+                this.isfirstname = true;
                 // For set favicon icon.
                 let path = "/assets/favicon/"+userArr['favicon'];
                 this.setFaviconIcon(path);
@@ -1505,7 +1525,21 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
     this.files = arr;
   }
   setQuoteUpload(data){
+    console.log("uploaded file", data)
     this.QutoFiles = data;
+    this.appfilename = this.QutoFiles[0].name
+    var newname = this.QutoFiles[0].name
+    newname = newname.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '').toLowerCase()
+    newname = newname.replace(/\s+/g, '').toLowerCase()
+    this.appfilename = newname;
+    this.apiService.fileUpload(this.QutoFiles).subscribe(lifemail => {
+      console.log('life upload document mail', lifemail);
+      //document.getElementById('uploadDocSec').style.display = "none";
+      this.waitingtxt = "Your document uploaded successfully.";
+      this.waitingtxtflag = 1;
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
   }
    
   checkValidation(index){

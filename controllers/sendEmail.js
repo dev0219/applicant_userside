@@ -11,7 +11,6 @@ const transporter = nodemailer.createTransport({
     },
   });
 const sendEmail = async (email, subject, text) => {
-    console.log("email account", email, subject, text)
     try {
         await transporter.sendMail({
             from: 'homehelp@apply.insure',

@@ -22,7 +22,7 @@ export class InsuaraceTypeSelectionComponent implements OnInit {
    setTimeout(() => { 
      this.introduceimageurl = this.advanceService.gethouseUrl()
       this.isintrouceimage = true;
-    }, 1000);
+    }, 2000);
     
   }
 

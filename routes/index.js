@@ -42,13 +42,13 @@ swig.setDefaults(
 
 // SMTP settings
 let transporter = nodemailer.createTransport({
-  host: "",
-  port: 587,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: '', // generated ethereal user
-    pass: '', // generated ethereal password
-  },
+  host: "email-smtp.us-east-1.amazonaws.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+        user: 'AKIATLLLZDV4DZH4DOH2', // generated ethereal user
+        pass: 'BAnp+PkCdCjGcin945s1QoND1YJqEBV+bAjxh2dGEp3X', // generated ethereal password
+    },
 });
 
 
@@ -1591,7 +1591,7 @@ async function (req, res, next) {
         applicant.carrierType = total_data.carrier_type?total_data.carrier_type:'';
         applicant.requestorcomments = total_data.requestorcomments?total_data.requestorcomments:'';
         applicant.mailingadress =  total_data.mailing_address.address?total_data.mailing_address.address:total_data.mailing_address;
-      
+        applicant.currentadress = total_data.currentAddress;
         applicant.roof_shape = total_data.discountsData['roof_shape'];
         applicant.dog = total_data.discountsData['dog'];
         applicant.roof_type = total_data.discountsData['roof_type'];
@@ -1612,10 +1612,6 @@ async function (req, res, next) {
         applicant.security_system = total_data.discountsData['security_system'];
         applicant.register_date = new Date();
         applicant.vin = [];
-        console.log("applicant list", applicant)
-        console.log("applicant 1", applicant['_id'])
-        console.log("applicant 2", applicant.id)
-        console.log("applicant 3", applicant._id)
         applicantunique = applicant['_id'];
         await applicant.save();
       }

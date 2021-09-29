@@ -29,6 +29,10 @@ let ApplicantSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  currentadress:{
+    type: String,
+    required: true
+  },
   quote_id: {
     type: String,
     required: false

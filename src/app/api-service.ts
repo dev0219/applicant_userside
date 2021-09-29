@@ -263,7 +263,16 @@ export class ApiService {
       map(this.extractData),
       catchError(this.handleError));
   }
-
+  fileUpload(data) {
+    const formData = new FormData();
+    formData.append('file', data[0]);
+    const BaseUrl = 'https://apply.insure/' 
+    return this.http.post(BaseUrl+'fileupload', formData)
+    .pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+   
   sendAdvanceLifeUploadDocEmail(data) {
     return this.http.post(apiUrl+'/send_adavace_life_upload_doc_email', data)
     .pipe(

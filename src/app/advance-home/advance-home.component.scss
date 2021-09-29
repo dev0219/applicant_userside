@@ -1,4 +1,4 @@
-.container {
+.container-fluid {
   .zillowBoard {
     .app-loader {
       margin-left: 40px !important;
@@ -277,9 +277,6 @@ form.specificForm input, form.specificForm textarea {
   background-color: #F3F761;
 }
 
-.modal-dialog {
-  min-width: 442px;
-}
 
 .mobileStepper {
   margin-bottom: 0px !important;
@@ -337,15 +334,18 @@ form.specificForm input, form.specificForm textarea {
 
 
 #mtsmap{
-  width: 135px;
-    height: 100px;
+  width: 100%x;
+    height: 200px;
   background-color: bisque;
   border-radius:0;
   margin: 0 auto;
   z-index: 999;
 }
 #mtsmap > div{border-radius: 50%;}
-
+.confirm_detail{
+  border: 2px solid #f0e8e8;
+    border-radius: 10px;
+}
 .row.top_progress {
   display: none;
 }
@@ -474,11 +474,16 @@ form.specificForm input, form.specificForm textarea {
       height: 70px;
     }
   }
+  .map_section_details_buttons > button{
+    width: 48% !important;
+    margin-left: 2%;
+  }
   &.home_sec{
     width: 100%;
     margin: 0 auto;
     button {
         width: 100%;
+     
         border:2px solid #efefef;
         font-size: 17px;
         border-radius: 15px;
@@ -535,7 +540,7 @@ form.specificForm input, form.specificForm textarea {
       padding: 15px;
       @media screen and (max-width:576px) 
       {
-        width: 89%;
+        width: 93%;
       }
   }
 }
@@ -627,46 +632,120 @@ input[type="date"]:valid::before {
 }
 .agentfirstname{
   position: absolute;
-    right: 50%;
-    left: 51%;
-    top: -70px;
-    font-weight: 400;
+    top: -55px;
+    left: calc(50% - 25px);
+    font-weight: 600;
+    font-style: oblique;
 }
 .application_complete{
-  margin-top: 80px;
+  margin-top: 50px;
 }
-.application_complete>h3{
+.agentInfo-modal>h3{
   font-style: oblique;
   font-size: 50px;
   font-family: -webkit-pictograph;
   font-weight: 500 !important;
 }
-.application_complete>p{
+.agentInfo-modal>h5{
   font-style: oblique;
-  font-size: 13px;
+  font-size: 30px;
   font-family: -webkit-pictograph;
-  font-weight: 100 !important;
+  font-weight: 200 !important;
 }
-.agentoption{
+.application_complete>div>h3{
+  font-size: 60px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500 !important;
+  color: #8d8888 !important;
+}
+.application_complete>div>p{
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100 !important;
+   color: #708090 !important;
+}
+.agentoption:hover{  
+  opacity: 0.9;
+}
+.agentoption{  
+  z-index: 999999999;
   position: absolute;
-    left: 48%;
-    right: 50%;
-    top: -40px;
-    border: 4px solid gray;
-    width: 100px;
-    height: 100px;
+    top: -25px;
+    width: 70px;
+    left: calc(50% - 35px);
+    height: 70px;
+}
+.modal-header {
+  border-bottom: 0 none;
+}
+
+.modal-footer {
+  border-top: 0 none;
+}
+.my-custom-phone{
+  -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+        margin-right: 8%;
+        background: #E7E6E6;
+        padding: 8px;
+        border-radius: 50%;
+        margin-top: -15px;
+}
+.agencyoption_profile{
+  width: 200px;
+  height: 150px;
+  border-radius: 20px;
+  margin-right: 0px !important;
+
+}
+.googlemaplocation{
+  margin-top: 0px !important;
+}
+.agentoption_profile{
+  position: absolute;
+  top: -40px;
+  width: 80px;
+  height: 80px;
+  background: white;
 }
 .step-form-content{
-  margin-top: 10%;
+  margin-top: 80px;
+}
+.laststep::before{
+  width: calc(100% + 2px);
+}
+.laststep{
+  border-radius: 0px !important
 }
 .progress-step{
-  margin-top: 0%;
+  margin-top: 80px;
 }
 .last_screen_left_div{
-  width: 45%;
+    background-color: #f6ff8d;
+    
+    padding: 3% 14% 3% 14%;
+}
+.request-button{
+  padding: 3% 20% 3% 20%;
+}
+.applicationcompleted-letter{
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100 !important;
+  color: #8d8888 !important;
+}
+.applicationcompleted_vin{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100 !important;
+  color: #8d8888 !important;
 }
 .last_screen_right_div{
-  width: 45%;
+  margin-top: 100px;
+  justify-content: center;
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
@@ -798,10 +877,10 @@ input[type="date"]:valid::before {
       margin-top: 40px;
     }
   }
-  .container {
-    padding-top: 100px !important;
-    max-width:100% !important;
-  }
+  // .adavance-container {
+  //   padding-top: 100px !important;
+  //   max-width:100% !important;
+  // }
 
 }
 
@@ -1053,7 +1132,7 @@ p.request-msg {
 .zillow_sq_size_div
 {
     display: grid;
-    grid-template-columns: 50% 40%;
+    grid-template-columns: 60% 40%;
     align-items: baseline;
     @media screen and (max-width:576px) {
       grid-template-columns: 50% 60%;
@@ -1064,6 +1143,7 @@ p.request-msg {
 {
   font-weight: bold;
   justify-self: baseline;
+  margin:0 10px;
   @media screen and (max-width:576px) {
     justify-self: auto;
     
@@ -1075,24 +1155,24 @@ p.request-msg {
 }
 .line_of_business_main_row
 {
-  display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 20px;
-    @media screen and (max-width:576px) {
-      grid-template-columns: 30% 30% 30%;
-      grid-column-gap: 15px;
+  text-align: center;
+  // display: grid;
+  //   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  //   grid-column-gap: 20px;
+  //   @media screen and (max-width:576px) {
+  //     grid-template-columns: 30% 30% 30%;
+  //     grid-column-gap: 15px;
       
-    }
+  //   }
 }
 .custom_logo
 {
-  border: 1px solid lightgrey;
   height:200px;
   width: 100%;
   border-radius: 10px;
+  margin-top:100px !important
 }
 .custom_logo img{
-  width: 100%;
   height: 100%;
   object-fit: contain;
 }
@@ -1304,3 +1384,187 @@ ejs-datepicker.household_form_datepicker span
 }
 
 
+
+.modal-content {
+  position: relative;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  width: 100% !important;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #0003;
+  border-radius: 1.3rem;
+  outline: 0;
+  margin-top: 90px;
+}
+.modal-dialog{
+  padding: 0 50px;
+}
+////////////////////////////////////////////////
+
+@media only screen and (max-width: 500px) {
+  .modal-dialog{
+    padding: 0 10px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .modal-dialog{
+    padding: 0 5px;
+  }
+}
+
+
+
+
+// @media only screen and (max-width: 770px) {
+//   .progress-step {
+//     margin-top: 17% !important;
+//   }
+// }
+// @media only screen and (max-width: 758px) {
+//   .progress-step {
+//     margin-top: 19% !important;
+//   }
+// }
+// @media only screen and (max-width: 562px) {
+//   .progress-step {
+//     margin-top: 21% !important;
+//   }
+// }
+// @media only screen and (max-width: 510px) {
+//   .progress-step {
+//     margin-top: 22% !important;
+//   }
+ 
+// }
+
+@media only screen and (max-width: 414px) {
+  
+  // .progress-step {
+  //   margin-top: 24% !important;
+  // }
+  .agentoption{
+    position: absolute;
+    top: -30px;
+    width: 50px;
+    left: calc(50% - 25px);
+    height: 50px;
+}
+  
+}
+
+    @media only screen and (max-width: 428px) {
+  
+      // .progress-step {
+      //   margin-top: 25% !important;
+      // }
+      .agentoption{
+        position: absolute;
+        top: -15px;
+        width: 50px;
+        left: calc(50% - 25px);
+        height: 50px;
+    }
+    }
+
+@media only screen and (max-width: 390px) {
+  
+  // .progress-step {
+  //   margin-top: 26% !important;
+  // }
+  .agentoption{
+    position: absolute;
+    top: -15px;
+    width: 54px;
+    left: calc(50% - 27px);
+    height: 54px;
+}
+  
+}
+@media only screen and (max-width: 375px) {
+ 
+  // .progress-step {
+  //   margin-top: 27% !important;
+  // }
+  .agentoption{
+    position: absolute;
+    top: -15px;
+    width: 50px;
+    left: calc(50% - 25px);
+    height: 50px;
+}
+}
+@media only screen and (max-width: 320px) {
+ 
+  // .progress-step {
+  //   margin-top: 32.5% !important;
+  // }
+  .googlemaplocation{
+    margin-top: 100px !important;
+  }
+  .agentoption {
+    position: absolute;
+    top: -15px;
+    width: 50px;
+    left: calc(50% - 25px);
+    height: 50px;
+}
+  
+}
+.agentinfo-h5{
+  font-style: oblique;
+  font-size: 14px;
+  font-family: -webkit-pictograph;
+  font-weight: 200 !important;margin-right: 15%;
+}
+
+/////////////////// responsive design /////////////
+
+
+@media only screen and (max-width: 320px) {
+  .agentInfo-modal{
+    left: 0% !important;
+    width: 100% !important;
+  }
+  .agentoption {
+  }
+  .progress-step {
+  }
+  
+}
+
+@media only screen and (max-width: 576px) {
+  .line_of_business_main_row
+{
+     display: block;
+    
+}
+}
+// @media only screen and (min-width: 576px) {
+//   .adavance-container{
+//     max-width: 100% !important;
+// }
+// }
+.adavance-container{
+  // max-width: 100!important;
+
+  top: 0px;
+  left: 0;
+  /* width: 50%; */
+  height: 90px;
+  background-color: #f7f7f7;
+}
+@media only screen and (min-width: 984px) and (max-width: 1306px)  {
+  //Put your CSS here for 200px to 767px width devices (cover all width between 200px to 767px //
+    .gmap-zollow{
+      display: block !important;
+    }
+  }
+  @media only screen and (min-width: 984px) and (max-width: 1327px)  {
+    //Put your CSS here for 200px to 767px width devices (cover all width between 200px to 767px //
+      .change-gmap-position{
+        display: block !important;
+      }
+    }

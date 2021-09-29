@@ -1,7 +1,39 @@
 <div class="advance_home_comp_cont">
 <ng4-loading-spinner [timeout]="4000000"></ng4-loading-spinner>
 <app-sub-header [quote_id]="quote_id" style="display: none;"></app-sub-header>
-<div class="container" id="scrollTop" [ngStyle]="(isMobile && step==1)?{'overflow':'hidden'}:{}">
+
+<div class="modal fade" id="myModal" role="dialog" style="padding:0px !important">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content agentInfo-modal">
+      <div class="modal-header text-center justify-content-center d-inline-block">
+        <div class="row justify-content-center"><img *ngIf="isfirstname"  class="d-flex agent_img  agentoption_profile img-circle" width="50" src="https://apply.insure/{{agentInfo.agent_image}}" alt=""></div><br>
+     
+        <h3 *ngIf="isfirstname" style="
+        font-size: 40px;margin-top: 40px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600 !important;">{{agentInfo.name}}</h3>
+        <h5 *ngIf="isfirstname" style="
+        font-size: 25px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300 !important;">{{agentInfo.agencyname}}</h5>
+      </div>
+
+      
+      <div class="modal-body text-center justify-content-center mt-2" style="margin-top: 15%;">
+        <div class="row justify-content-center"><img *ngIf="isfirstname" class="d-flex mr-2 agent_img  agencyoption_profile " width="50" src="https://apply.insure/{{agentInfo.agency_image}}" alt=""></div><br><br>
+        
+
+        <div class="row" style="margin: 0 15px;">
+          <div class="col-2 text-center"><div><i style="font-size:24px" class="fa my-custom-phone">&#xf095;</i></div><br><div><i style="font-size:24px" class="fa my-custom-phone">&#xf0e0;</i></div></div>
+          <div class="col-10 text-left"><h5 *ngIf="isfirstname" class="agentinfo-h5">{{agentInfo.phone}}</h5><br><h5 *ngIf="isfirstname" class="agentinfo-h5" >{{agentInfo.email}}</h5></div>
+        </div>
+      </div>
+    </div>      
+  </div>
+</div>
+<div class="container-fluid adavance-container" id="scrollTop" [ngStyle]="(isMobile && step==1)?{'overflow':'hidden'}:{}">
   <!-- Grid row -->
   <!--<ngbd--basic></ngbd--basic>-->
   <!-- Horizontal Steppers -->
@@ -108,19 +140,20 @@
  
   
   <div class="row mainContent animated fadeIn justify-content-center" *ngIf="step>0 && !isShowSpecificPage">
-    <div class="col-lg-12 col-md-10 col-12 request_data">
-     
+    <div class="col-lg-12  col-12 request_data">   
+
       <div class="row mainContent animated fadeIn justify-content-center progress-step">
         <div class="col-md-12">
           <div class="row horizontal_new_scrollbar">
-            <div>
-              <h5 class="agentfirstname">{{agentInfo.first_name}}</h5>
-              <img class="d-flex mr-2 agent_img agentoption img-circle" width="50" src="https://apply.insure/{{agentInfo.agent_image}}" alt="" *ngIf="agentInfo.agent_image">
+            <div class="col-12 ">
+              <h5  *ngIf="isfirstname" class="agentfirstname d-flex" style="top: -73px !important;left: calc(50% - 33px) !important;font-weight: 500 !important;font-size: 14px !important;">Your agent:</h5>
+              <h5  *ngIf="isfirstname" class="agentfirstname d-flex">{{agentInfo.first_name}}</h5>
+              <img (click)="modalshow()" *ngIf="isfirstname" class="d-flex agent_img agentoption img-circle"  width="50" src="https://apply.insure/{{agentInfo.agent_image}}" alt="">
             </div>
             
            
             
-            <div class="col-lg-12 col-md-12" *ngIf="(screen+1)!=13">
+            <div class="col-lg-12 col-md-12 p-0" *ngIf="(screen+1)!=13">
               <!-- <span class="font-weight-bold">Quote</span>
               <p class="small mb-0">{{screen+1}} of 13</p> -->
               <ol class="progress_new_horizontal" data-steps="4">
@@ -144,7 +177,7 @@
                     <span class="step"><span></span></span>
                 </li>
                 <li [ngClass]="[screen==11 ? 'active' : '']">
-                    <span class="step"><span></span></span>
+                    <span class="step laststep"><span></span></span>
                 </li>
                 <!-- <li [ngClass]="[screen==13 ? 'half_active' : '' , screen>=14 ? 'active' : '']">
                   <span class="step"><span></span></span>
@@ -152,16 +185,19 @@
             </ol>
             </div>
             <div class="col-md-12 application_complete" *ngIf="(screen+1)==12">
-              <h3 class="font-weight-bold  main_screen_heading text-center">Application Completed!!</h3>
+              <div>
+                <h3 class="font-weight-bold  main_screen_heading text-center">Application Complete!!</h3>
               <p class="text-center">We are now working on your proposal and will be in touch shortly. If you have an extra minute,<br>check out some of the information below</p>
-              <p class="d-md-none d-block">We'er working on quotes for you now!</p>
+              </div>
+              
+           
             </div>
            
           </div>
         </div>
       </div>
       <!-- Material input -->
-      <div class="md-form form-group mep-section text-center step-form-content" *ngIf="step==1 && screen!=1">
+      <div class="md-form form-group mep-section text-center step-form-content" *ngIf="step==1 && screen!=11">
         <!-- <h3 *ngIf="step == 1 && screen != 12" class="top-address-label">{{ addressData['address'] }}</h3>
         <div *ngIf="step == 1 && screen == 12">
             <h3 class="request top-address-label">Quote Request Submited!</h3>
@@ -194,7 +230,7 @@
 
        <!-- screen 0-->
       <div class="row mainContent animated fadeIn justify-content-center step-form-content" *ngIf="step==1 && screen==0">
-    <div class="col-lg-9 col-md-12 zero_screen_main_div">
+    <div class="col-lg-8 col-md-12 zero_screen_main_div">
         <!-- <app-buy-home (setHomeData)="setHomeData($event)"></app-buy-home> -->
       <app-insuarace-type-selection (setHomeData)="setHomeData($event)"></app-insuarace-type-selection>
     </div>
@@ -205,7 +241,7 @@
 
         <div class="md-form form-group animated slideInRight step-form-content"  *ngIf="step==1 && screen==1">
           <div class="row justify-content-center">
-            <div class="col-lg-9 col-md-12">
+            <div class="col-lg-8 col-md-12">
                   <div class="row">
                   <div class="col-lg-6 pl-md-0 animated slideInLeft_custom1">
                     <div class="col-md-12 head_sec" >
@@ -257,7 +293,7 @@
 
                   </div>
                   <div class="col-lg-1"></div>
-                  <div class="side_img_div col-lg-5 animated slideInRight_custom delay-1s" [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}">
+                  <div class="side_img_div col-lg-5 animated slideInRight_custom delay-0s" [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}">
                     
                   </div>
                 </div>
@@ -318,46 +354,48 @@
         <!-- Second Screen -->
          <div class="md-form form-group text-center home_sec animated slideInLeft_custom step-form-content" *ngIf="step==1 && screen==2">
            <div class="row justify-content-center">
-             <div class="col-lg-9 col-md-12">
+             <div class="col-lg-8 col-md-12">
                <div class="row">
                  <div class="col-lg-6">
-                   <p class="font-weight-bold text-left mb-3">Please confirm these Details:</p>
-                   <div class="map_second_screen float-left">
-                      <div id="mtsmap" [ngClass]="step == 1 && screen == 12 ? 'bordered': ''"></div>
-                    </div>
-                   <div class="map_main_second_screen mb-4" style="height: 90px;">
-                   
-                     <div class="map_second_screen_details pl-3">
-                      <div *ngIf="IsChangeZollowInfo == false">
-                        <p class="font-weight-bold text-left ml-2 mb-1 font-large">
-                          <span *ngIf="zillowLoader == true">
-                            <img src="../../assets/images/loader.gif" width="25" height="25"/>
-                          </span>
-                          <span class="text-pink" *ngIf="zillowLoader == false">{{ zillowData['square'].toLocaleString() }}</span>&nbsp;Square Feet
-                        </p>
-                        <p class="font-weight-bold text-left ml-2 mb-1 font-large">
-                          <span *ngIf="zillowLoader == true">
-                            <img src="../../assets/images/loader.gif" width="25" height="25"/>
-                          </span>
-                          <span class="text-pink" *ngIf="zillowLoader == false">{{ zillowData['built_year'] }}</span>&nbsp;Year Built
-                        </p>
+                   <!-- <p class="font-weight-bold text-left mb-3">Please confirm these Details:</p> -->
+                    <div class="confirm_detail">
+                      <div class="map_second_screen">
+                        <div id="mtsmap" [ngClass]="step == 1 && screen == 12 ? 'bordered': ''"></div>
                       </div>
-                      <div class='change-property-detail' *ngIf="IsChangeZollowInfo == true">
-                        <div class="zillow_sq_size_div">
-                          <input type="number" value="{{zillowData['square']}}" placeholder="Square Size" class="form-control edit_details_input" id="zillow_square_size"><span class="input_label">Square Feet</span>
-                        </div>  
-                        
-                        <div class="zillow_sq_size_div">
-                          <input type="number" value="{{zillowData['built_year']}}" placeholder="Built Year" class="form-control edit_details_input" id="zillow_built_year"><span class="input_label">Built Year</span>
+                    <div class="map_main_second_screen" style="height: 90px;">                    
+                      <div class="row map_second_screen_details pl-3">
+                        <div class='col-9 gmap-zollow' *ngIf="IsChangeZollowInfo == false" style="display: flex;">
+                          <p class="font-weight-bold text-left ml-2 mb-1 font-large">
+                            <span *ngIf="zillowLoader == true">
+                              <img src="../../assets/images/loader.gif" width="25" height="25"/>
+                            </span>
+                            <span class="text-pink" *ngIf="zillowLoader == false">{{ zillowData['square'].toLocaleString() }}</span>&nbsp;Square Feet
+                          </p>
+                          <p class="font-weight-bold text-left ml-2 mb-1 font-large">
+                            <span *ngIf="zillowLoader == true">
+                              <img src="../../assets/images/loader.gif" width="25" height="25"/>
+                            </span>
+                            <span class="text-pink" *ngIf="zillowLoader == false">{{ zillowData['built_year'] }}</span>&nbsp;Year Built
+                          </p>
                         </div>
+                        <div class='col-9 change-gmap-position change-property-detail' *ngIf="IsChangeZollowInfo == true" style="display: flex;">
+                          <div class="zillow_sq_size_div">
+                            <input type="number" value="{{zillowData['square']}}" placeholder="Square Size" class="form-control edit_details_input" id="zillow_square_size"><span class="input_label">Square Feet</span>
+                          </div>  
                           
-                      </div>
-                         
-                        <button class="edit_btn"  (click)="changePropertyDetail()" *ngIf="IsChangeZollowInfo == false" style="padding-left: 8px !important;"><i class="far fa-edit bar_icon" style="font-size: 15px;"></i> Edit </button> 
-                         <button class="edit_btn"  (click)="savePropertyDetail()" *ngIf="IsChangeZollowInfo == true" style="padding-left: 8px !important;"><i class="far fa-save bar_icon" style="font-size: 15px;"></i> Save</button>
+                          <div class="zillow_sq_size_div">
+                            <input type="number" value="{{zillowData['built_year']}}" placeholder="Built Year" class="form-control edit_details_input" id="zillow_built_year"><span class="input_label">Built Year</span>
+                          </div>
                             
-                     </div>
-                   </div>
+                        </div>                         
+                        <button class="col-3 edit_btn"  (click)="changePropertyDetail()" *ngIf="IsChangeZollowInfo == false" style="padding-left: 8px !important;"><i class="far fa-edit bar_icon" style="font-size: 15px;"></i> Edit </button> 
+                        <button class="col-3 edit_btn"  (click)="savePropertyDetail()" *ngIf="IsChangeZollowInfo == true" style="padding-left: 8px !important;"><i class="far fa-save bar_icon" style="font-size: 15px;"></i> Save</button>
+                              
+                      </div>
+                    </div>
+
+                    </div>
+                       
                     <div class=" mt-5 map_section_details_buttons">
                         <button type="button" (click)="usertypeselection(3,'I own this home')" class="" [ngClass]="selectedUserType == 'I own this home' ? 'active_button' : ''">I own this home</button>
                         <button type="button" (click)="usertypeselection(3,'I will own this home')" class="" [ngClass]="selectedUserType == 'I will own this home' ? 'active_button' : ''">I will own this home</button>
@@ -366,12 +404,9 @@
                         <!-- <button type="button" class="text-center text-white" style="background-color: #F51E47;border: none;" (click)="usertypeselection(3,selectedUserType)">Continue</button> -->
                     </div>
                  </div>
-                 <div class="col-lg-1"></div>
-                 
-                      <div class="side_img_div col-lg-5 delay-1s" [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}"></div>
-                
-               </div>
-              
+                 <div class="col-lg-1"></div>                 
+                 <div class="side_img_div col-lg-5 delay-0s" [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}"></div>                
+               </div>              
              </div>
            </div>
            
@@ -437,7 +472,7 @@
         <!--screen five contactinfo form-->
         <div class="md-form form-group personDataForm animated slideInLeft_custom step-form-content" *ngIf="step==1 && screen==5">
           <div class="row justify-content-center">
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 <div class="row">
                   <div class="col-lg-6">
                     
@@ -503,7 +538,7 @@
                   </div>
                   <div class="col-lg-1"></div>
                   <div class="col-lg-5">
-                    <div class="side_img_div slideInRight_custom animated zoomOut_custom delay-1s " [ngStyle]="{'background-image': 'url(https://apply.insure/'+householdimageurl+')'}"></div>
+                    <div class="side_img_div slideInRight_custom animated zoomOut_custom delay-0s " [ngStyle]="{'background-image': 'url(https://apply.insure/'+householdimageurl+')'}"></div>
                   </div>
                 </div>
             </div>
@@ -514,7 +549,7 @@
         <!-- six Screen -->
         <div class="md-form form-group personDataForm animated slideInLeft_custom step-form-content" *ngIf="step==1 && screen==6">
           <div class="row justify-content-center">
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 <div class="row">
                   
                   <div class="col-lg-12">
@@ -635,7 +670,7 @@
         <!--eleven  Screen -->
         <div class="md-form form-group text-center personDataForm animated slideInLeft_custom step-form-content" *ngIf="step==1 && screen==10">
           <div class="row justify-content-center">
-            <div class="col-lg-9 col-md-12">
+            <div class="col-lg-8 col-md-12">
               <div class="row">
                 <div class="col-lg-6">
                   
@@ -680,7 +715,7 @@
 
                 </div>
                 <div class="col-lg-5">
-                  <div class="side_img_div slideInRight_custom animated zoomOut_custom delay-1s " [ngStyle]="{'background-image': 'url(https://apply.insure/'+autoimageurl+')'}"></div>
+                  <div class="side_img_div slideInRight_custom animated zoomOut_custom delay-0s " [ngStyle]="{'background-image': 'url(https://apply.insure/'+autoimageurl+')'}"></div>
                 </div>
               </div>
             </div>
@@ -690,7 +725,7 @@
         <!-- eleven Screen -->
 
          <!-- Twel Screen -->
-        <div class="md-form form-group personDataForm quote_submit animated slideInRight step-form-content" *ngIf="step==1 && screen==11">
+        <div class="md-form form-group personDataForm quote_submit animated slideInRight step-form-content" style="padding: 0 10px;" *ngIf="step==1 && screen==11">
           <!-- <div class="row animated fadeIn" *ngIf="(step==1 && isPage9) || isShowSpecificPage">
             <div class="col-md-12 col-lg-12 col-12 mt-5">
               <div class="row background-secondary form-group">
@@ -860,11 +895,12 @@
           </div> -->
             <!----new Updated Screen 27_4_2021-->
             <div class="row justify-content-center">
-              <div class="col-lg-9">
-                <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="row justify-content-center" >
                
                      <div class="last_screen_left_div">
-                          <div class="insurance_types_main_div px-2">
+                      <p class="applicationcompleted-letter">Please provide a few more details to help us get you the most accurate quotes.</p>
+                          <!-- <div class="insurance_types_main_div px-2">
                             
                             <div class="insurance_types_main_grid" *ngIf="insuranceTypeData.insuarance_type == 'Home'">
                               <div class="">
@@ -902,22 +938,28 @@
                                 <img src="../../../assets/images/new_design/C+H.svg" width="120">
                             </div>
                             </div>
-                          </div>
-                          <div class="last_screen_quote_form mt-3">
-                            <h5 class="font-weight-bold">Have an extra minute?</h5>
-                            <p>Provide some extra details to help us get your the <br>best and most accurate quote!</p>
+                          </div> -->
+                          <div class="last_screen_quote_form mt-3" style="padding: 0 20px;">
+                            <!-- <h5 class="font-weight-bold">Have an extra minute?</h5> -->
+                           
 
                             <form [formGroup]="AccurateQuoteForm" (ngSubmit)="sendAccurateQuoteMail()">
-                              <div class="main_dl_div">
-                              <div *ngFor="let item of [].constructor(eightPlusPerson); let i = index"  [ngClass]="eightPlusHiddenDL[i] != '' ? 'd-none':'sub_dl_div'">
-                                <div class="col-lg-12 col-12 pl-0 position-relative" *ngIf="eightPlusHiddenDL[i] == ''">
-                                    <input mdbInput type="text" mdbValidate class="form-control" [placeholder]="eightPlusPersonName[i]+' DL#'" [formControlName]="'DLName'+i">
-                                    <!-- <mdb-error *ngIf="AccurateQuoteForm.get('DLName1').invalid && (AccurateQuoteForm.get('DLName1').dirty || AccurateQuoteForm.get('DLName1').touched)">Please enter propername</mdb-error> -->
+                              <!-- <div class="main_dl_div">
+                                <div *ngFor="let item of [].constructor(eightPlusPerson); let i = index"  [ngClass]="eightPlusHiddenDL[i] != '' ? 'd-none':'sub_dl_div'">
+                                  <div class="col-lg-12 col-12 pl-0 position-relative" *ngIf="eightPlusHiddenDL[i] == ''">
+                              
+                                      <input mdbInput type="text" mdbValidate class="form-control" [placeholder]="eightPlusPersonName[i]+' DL#'" [formControlName]="'DLName'+i">
+                                     
+                                  </div>
                                 </div>
-                              </div>
+                              </div> -->
+                              <div class="form-group position-relative car_vin_input mb-4" *ngFor="let item of [].constructor(eightPlusPerson); let i = index"  [ngClass]="eightPlusHiddenDL[i] != '' ? 'd-none':'sub_dl_div'">
+                                 <div *ngIf="eightPlusHiddenDL[i] == ''"> <input mdbInput type="text" mdbValidate class="form-control w-93 applicationcompleted_vin" [placeholder]="eightPlusPersonName[i]+' DL#'" [formControlName]="'DLName'+i" style="background: #fff;"></div>
+                               
+                                <!-- <mdb-error *ngIf="AccurateQuoteForm.get('CAR1VIN').invalid && (AccurateQuoteForm.get('CAR1VIN').dirty || AccurateQuoteForm.get('CAR1VIN').touched)">Please enter car {{ i }} VIN</mdb-error> -->
                               </div>
                               <div class="form-group position-relative car_vin_input mb-4" *ngFor="let item of carData; index as i">
-                                  <input mdbInput type="text" mdbValidate class="form-control w-93" (keyup)="checkValidation(i)"  [formControlName]="'CARVIN'+i" [placeholder]="carData[i]['type']+' VIN'">
+                                  <input mdbInput type="text" mdbValidate class="form-control w-93 applicationcompleted_vin" (keyup)="checkValidation(i)"  [formControlName]="'CARVIN'+i" [placeholder]="carData[i]['type']+' VIN'" style="background-color: white;">
                                   <!-- <mdb-error *ngIf="AccurateQuoteForm.get('CAR1VIN').invalid && (AccurateQuoteForm.get('CAR1VIN').dirty || AccurateQuoteForm.get('CAR1VIN').touched)">Please enter car {{ i }} VIN</mdb-error> -->
                               </div>
                               <!--<div class="form-group position-relative car_vin_input mb-4">
@@ -938,31 +980,45 @@
                 
                 </div>
                 <div class="row justify-content-center">
-                    <div class="last_screen_right_div">
-                      <h5 class="font-weight-bold">Will you need quotes on any other <br>
-                        lines of buisness?</h5>
-                      <p>Select all that apply</p>
+                    <div class="row last_screen_right_div">
+                      <!-- <h5 class="font-weight-bold">Will you need quotes on any other <br>
+                        lines of buisness?</h5> -->
+                        <div class="col-lg-12"><p class="applicationcompleted-letter text-center">Would you like to see quotes for other types of insurance?Select all that apply</p></div>
                       <div class="line_of_business_main_row">
-                        <div class="insurance_types_sub_div flex-column" (click)="updateQuoteForOtherBusiness('Jewelry')" [ngClass]="OtherlineOfBusiness.indexOf('Jewelry') != -1 ? 'active-business':'' ">
+                        <div class="d-inline-block"><div class="insurance_types_sub_div_last flex-column" (click)="updateQuoteForOtherBusiness('Jewelry')" [ngClass]="OtherlineOfBusiness.indexOf('Jewelry') != -1 ? 'active-business':'' ">
                           <span class="font-weight-bold font-large">jewelry</span>
                           <img src="../../assets/images/new_design/jwe.svg" class="pt-2" width="40">
-                        </div>
-                        <div class="insurance_types_sub_div flex-column" (click)="updateQuoteForOtherBusiness('Umbrella')" [ngClass]="OtherlineOfBusiness.indexOf('Umbrella') != -1 ? 'active-business':'' ">
+                        </div></div>
+                        <div  class="d-inline-block"><div class="insurance_types_sub_div_last flex-column" (click)="updateQuoteForOtherBusiness('Umbrella')" [ngClass]="OtherlineOfBusiness.indexOf('Umbrella') != -1 ? 'active-business':'' ">
                           <span class="font-weight-bold font-large">umbrella</span>
                           <img src="../../assets/images/new_design/umbrella.svg" class="pt-2" width="40">
-                        </div>
-                        <div class="insurance_types_sub_div flex-column" (click)="updateQuoteForOtherBusiness('Life')" [ngClass]="OtherlineOfBusiness.indexOf('Life') != -1 ? 'active-business':'' ">
+                        </div></div>
+                        <div  class="d-inline-block"><div class="insurance_types_sub_div_last flex-column" (click)="updateQuoteForOtherBusiness('Life')" [ngClass]="OtherlineOfBusiness.indexOf('Life') != -1 ? 'active-business':'' ">
                           <span class="font-weight-bold font-large">life</span>
                           <img src="../../assets/images/new_design/FAMILY.svg" class="pt-2" width="40">
-                        </div>
+                        </div></div>
+                        <div  class="d-inline-block"> <div class="insurance_types_sub_div_last flex-column" (click)="updateQuoteForOtherBusiness('Business')" [ngClass]="OtherlineOfBusiness.indexOf('Life') != -1 ? 'active-business':'' ">
+                          <span class="font-weight-bold font-large">Business</span>
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgg1_THjDQ6fmi4hZtoW44D7uAdgFr_kXAtw&usqp=CAU" class="pt-2" width="40">
+                        </div></div>
+                        <div  class="d-inline-block">
+                          <div class="insurance_types_sub_div_last flex-column" (click)="updateQuoteForOtherBusiness('Other')" [ngClass]="OtherlineOfBusiness.indexOf('Life') != -1 ? 'active-business':'' ">
+                          <span class="font-weight-bold font-large">Other</span>
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfKLu1nEAFapIXPbSDztpkUe36mFWzI8Vw9g&usqp=CAU" class="pt-2" width="40">
+                        </div></div>
+                        
+                        
+                       
+                        
                       </div>
                       <div class="form-group text-center">
                         <p class="text text-success" *ngIf="OtherBusinessSuccessMsg">{{OtherBusinessSuccessMsg}}</p>
                       </div>
-                      <button type="button" class="text-center text-white pink_btn" style="background-color: #6B6B6B;border: none;margin-top: 13px;" (click)="SubmitQuoteForOtherBusiness()" [ngClass]="OtherlineOfBusiness.length ? 'valid-frm': 'invalid-frm'">Request</button>
+                      <button type="button" class="text-center text-white pink_btn" style="width: 45%;;background-color: #6B6B6B;border: none;margin-top: 13px;" (click)="SubmitQuoteForOtherBusiness()" [ngClass]="OtherlineOfBusiness.length ? 'valid-frm': 'invalid-frm'">Request</button>
+                      
 
-                      <div class="custom_logo my-3 my-md-0" *ngIf="agentInfo.logo">
-                        <img class="agent_logo" src="{{agentInfo.logo}}" alt="" (error) ="changeSource($event)" *ngIf="agentInfo.logo">
+                      <div class="row custom_logo my-3 my-md-0 justify-content-center" style="padding: 0 15px;">                        
+                        <img class="agent_logo" src="assets/sitelogo/House&Person_v2.jpg" alt="" (error) ="changeSource($event)"><p class="text-left" style="margin-top: 35px;font-family: 'Open Sans', sans-serif;"><b>How to shop for instance: </b><br>1. Apply for a quote <br>2. Find the best combination of low price<br>and high converage<br>3. Issue Your Policy with an agent.<br>4. Cancel any old insurance and receive A pro-rated refund!</p>
                       </div>
                     </div>
 
