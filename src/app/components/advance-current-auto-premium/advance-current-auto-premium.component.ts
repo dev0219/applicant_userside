@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output,Input} from '@angular/core';
 import {CommonService} from "../../services/common.service";
 import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
 
@@ -8,8 +8,7 @@ import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
   styleUrls: ['./advance-current-auto-premium.component.scss']
 })
 export class AdvanceCurrentAutoPremiumComponent implements OnInit {
-  autoimageurl:any
-  isautoimage:any
+  @Input('autoimageurl') public autoimageurl: string;
   public current_premium: any;
     
   @Output() setCurrentPremiumData: EventEmitter<object> = new EventEmitter<object>();
@@ -18,11 +17,11 @@ export class AdvanceCurrentAutoPremiumComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isautoimage = false;
-    setTimeout(() => { 
-      this.autoimageurl = this.advanceService.getautoUrl()
-       this.isautoimage = true;
-     }, 1000);
+    // this.isautoimage = false;
+    // setTimeout(() => { 
+    //   this.autoimageurl = this.advanceService.getautoUrl()
+    //    this.isautoimage = true;
+    //  }, 1000);
   }
 
   autoPremium(){

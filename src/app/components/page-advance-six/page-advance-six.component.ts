@@ -10,10 +10,9 @@ import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
   styleUrls: ['./page-advance-six.component.scss']
 })
 export class PageAdvanceSixComponent implements OnInit {
-  propertyimageurl:any
-  ispropertyimage:any
   @Output() setPropertyData: EventEmitter<object> = new EventEmitter<object>();
   @Input('addressData') public addressData: object;
+  @Input('propertyimageurl') public propertyimageurl: string;
 
   pageSixCustomQuestion = [];
   constructor(public commonService: CommonService,private router: Router,private http: HttpClient, private advanceService:AdvanceHomeComponent) {
@@ -37,11 +36,11 @@ export class PageAdvanceSixComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.ispropertyimage = false;
-    setTimeout(() => { 
-      this.propertyimageurl = this.advanceService.getpropertyUrl()
-       this.ispropertyimage = true;
-     }, 1000);
+    // this.ispropertyimage = false;
+    // setTimeout(() => { 
+    //   this.propertyimageurl = this.advanceService.getpropertyUrl()
+    //    this.ispropertyimage = true;
+    //  }, 1000);
   }
 
 

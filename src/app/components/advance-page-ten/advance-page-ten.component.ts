@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output,Input} from '@angular/core';
 import * as carriers from "../../../resource/carriers";
 import {CommonService} from "../../services/common.service";
 import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
@@ -9,8 +9,9 @@ import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
   styleUrls: ['./advance-page-ten.component.scss']
 })
 export class AdvancePageTenComponent implements OnInit {
-  householdimageurl:any
-  ishouseholdimage:any
+  // householdimageurl:any
+  // ishouseholdimage:any
+  @Input('householdimageurl') public householdimageurl: string;
   @Output() setInsurnaceType: EventEmitter<string> = new EventEmitter<string>();
   constructor(public commonService: CommonService,private advanceService:AdvanceHomeComponent) {
     console.log(carriers);
@@ -19,11 +20,11 @@ export class AdvancePageTenComponent implements OnInit {
   public insurances: object = carriers.data;
 
   ngOnInit() {
-    this.ishouseholdimage = false;
-    setTimeout(() => { 
-      this.householdimageurl = this.advanceService.gethouseholdUrl()
-       this.ishouseholdimage = true;
-     }, 1000);
+    // this.ishouseholdimage = false;
+    // setTimeout(() => { 
+    //   this.householdimageurl = this.advanceService.gethouseholdUrl()
+    //    this.ishouseholdimage = true;
+    //  }, 1000);
   }
 
   submitInsuranceType(event){

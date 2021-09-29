@@ -12,11 +12,12 @@ import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
   styleUrls: ['./advance-page-seven.component.scss']
 })
 export class AdvancePageSevenComponent implements OnInit {
-  autoimageurl:any
-  isautoimage:any
+  // autoimageurl:any
+  // isautoimage:any
   @Output() setCarData: EventEmitter<object> = new EventEmitter<object>();
   @Input('addressData') public addressData: object;
   @Input('personData') public personData: personData[] = [];
+  @Input('autoimageurl') public autoimageurl: string;
   public CarTypeData: object = config.car_types;
   // public CarTypeData: object = configs.car_types;
   public CarYearData: CarYearData[] = [];
@@ -30,11 +31,11 @@ export class AdvancePageSevenComponent implements OnInit {
 
   ngOnInit() {
     this.CarYearData = this.commonService.getCarYearData();
-    this.isautoimage = false;
-    setTimeout(() => { 
-      this.autoimageurl = this.advanceService.getautoUrl()
-       this.isautoimage = true;
-     }, 1000);
+    // this.isautoimage = false;
+    // setTimeout(() => { 
+    //   this.autoimageurl = this.advanceService.getautoUrl()
+    //    this.isautoimage = true;
+    //  }, 1000);
   }
 
   addCar() {

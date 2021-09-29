@@ -220,8 +220,7 @@
                 <div [ngClass]="item.answer == 'No' ? 'activeOption':'inactiveOption'" (click)="item.answer = 'No'" >
                   <span class="font-weight-bold text text-center">no</span>
                 </div>
-              </div>
-        
+              </div>        
             </div>
             <button type="button" class="text-center text-white  pink_btn" style="background-color: #F51E47;border: none;" (click)="next()">Continue</button>
             <!---------------end------------->
@@ -230,7 +229,7 @@
 
         </div>
         <div class="col-lg-5">
-          <div class="side_img_div   zoomOut_custom delay-0s" *ngIf="ispropertyimage"  [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}"></div>
+          <div class="side_img_div   zoomOut_custom delay-1s"  [ngStyle]="{'background-image': 'url(https://apply.insure/'+propertyimageurl+')'}"></div>
         </div>
       </div>
     </div>

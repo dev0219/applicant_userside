@@ -9,12 +9,10 @@ import {AdvanceHomeComponent} from "../../advance-home/advance-home.component";
   styleUrls: ['./page-adavance-five.component.scss']
 })
 export class PageAdavanceFiveComponent implements OnInit {
-  propertyimageurl:any
-  ispropertyimage:any
 
   @Output() setDiscountData: EventEmitter<object> = new EventEmitter<object>();
   @Input('addressData') public addressData: object;
-
+  @Input('propertyimageurl') public propertyimageurl: string;
   homeSlider = { 
     
     dots: true, 
@@ -71,11 +69,11 @@ export class PageAdavanceFiveComponent implements OnInit {
   dogstatus = false;
 
   ngOnInit() {
-    this.ispropertyimage = false;
-    setTimeout(() => { 
-      this.propertyimageurl = this.advanceService.getpropertyUrl()
-       this.ispropertyimage = true;
-     }, 1000);
+    // this.ispropertyimage = false;
+    // setTimeout(() => { 
+    //   this.propertyimageurl = this.advanceService.getpropertyUrl()
+    //    this.ispropertyimage = true;
+    //  }, 1000);
   }
 
 

@@ -1,4 +1,4 @@
-import {AfterViewInit,Component, ElementRef, HostListener, Input, NgZone, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit,Component, Output,ElementRef, HostListener, Input, NgZone, OnInit, ViewChild,EventEmitter} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from "../api-service";
 import {Router} from "@angular/router";
@@ -32,6 +32,7 @@ export class AdvanceHomeComponent implements OnInit, AfterViewInit {
 
   public files: any = [];
   public appfilename:any='';
+ 
   @Input() name;
   @ViewChild('placesRef', {static: false}) public searchElementRef: ElementRef;
   @ViewChild('placesRef1', {static: false}) public searchElementRef1: ElementRef;

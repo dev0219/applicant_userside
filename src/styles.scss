@@ -479,33 +479,29 @@ input#datepicker_input {
 }
 // ==================================
 @-webkit-keyframes slideInRight_custom {
-  from {
+  0% {
     -webkit-transform: translate3d(5%, 0, 0);
     transform: translate3d(5%, 0, 0);
    opacity: 0;
-   transition-duration: 5s;
   }
 
-  to {
+  100% {
     -webkit-transform: translate3d(15%, 0, 0);
     transform: translate3d(15%, 0, 0);
-    transition-duration: 5s;
     opacity: 1;
   }
 }
 
 @keyframes slideInRight_custom {
-  from {
+  0% {
     -webkit-transform: translate3d(5%, 0, 0);
     transform: translate3d(5%, 0, 0);
-    transition-duration: 5s;
     opacity: 0;
   }
 
-  to {
+  100% {
     -webkit-transform: translate3d(15%, 0, 0);
     transform: translate3d(15%, 0, 0);
-    transition-duration: 5s;
     opacity: 1;
   }
 }
